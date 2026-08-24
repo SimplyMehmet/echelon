@@ -1,0 +1,41 @@
+name: echelon
+
+services:
+  back-end:
+    container_name: back-end
+    restart: no
+    build:
+      context: ../back-end
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-admin}
+
+  db:
+    container_name: db
+    image: mariadb:12.3.3
+    restart: always
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - sqldb:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-admin}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-echelon}
+
+  ui:
+    container_name: ui
+    build:
+      context: ../front-end
+    ports:
+      - 3000:80
+
+volumes:
+  sqldb:
