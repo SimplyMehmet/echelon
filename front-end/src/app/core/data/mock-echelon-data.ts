@@ -367,8 +367,11 @@ export class MockEchelonData extends EchelonData {
     return { history, seasons, teams };
   }
 
-  async listTeams(): Promise<Team[]> {
-    return [...(await this.load()).teams];
+  async listTeams(filter?: { seasonId?: SeasonId }): Promise<Team[]> {
+    const teams = (await this.load()).teams;
+    return filter?.seasonId
+      ? teams.filter((team) => team.seasonId === filter.seasonId)
+      : [...teams];
   }
 
   async getTeam(id: TeamId): Promise<TeamDetail | null> {
@@ -405,36 +408,38 @@ export class MockEchelonData extends EchelonData {
     const fixtures = await this.load();
     const memberships = this.memberships ?? [];
 
-    const standings = fixtures.teams.map((team) => {
-      const contributions = new Map<PlayerId, TeamContribution>();
+    const standings = fixtures.teams
+      .filter((team) => team.seasonId === seasonId)
+      .map((team) => {
+        const contributions = new Map<PlayerId, TeamContribution>();
 
-      for (const membership of memberships.filter((m) => m.teamId === team.id)) {
-        for (const entry of fixtures.entriesByPlayer.get(membership.playerId) ?? []) {
-          if (entry.seasonId !== seasonId) {
-            continue;
+        for (const membership of memberships.filter((m) => m.teamId === team.id)) {
+          for (const entry of fixtures.entriesByPlayer.get(membership.playerId) ?? []) {
+            if (entry.seasonId !== seasonId) {
+              continue;
+            }
+            const weekly = fixtures.weeklies.get(entry.weeklyId);
+            if (!weekly || !isMemberAt(membership, weekly.startAt)) {
+              continue;
+            }
+            const existing = contributions.get(membership.playerId);
+            contributions.set(membership.playerId, {
+              player: this.refFor(fixtures, membership.playerId, membership.playerId),
+              points: (existing?.points ?? 0) + entry.points,
+              weekliesCounted: (existing?.weekliesCounted ?? 0) + 1,
+            });
           }
-          const weekly = fixtures.weeklies.get(entry.weeklyId);
-          if (!weekly || !isMemberAt(membership, weekly.startAt)) {
-            continue;
-          }
-          const existing = contributions.get(membership.playerId);
-          contributions.set(membership.playerId, {
-            player: this.refFor(fixtures, membership.playerId, membership.playerId),
-            points: (existing?.points ?? 0) + entry.points,
-            weekliesCounted: (existing?.weekliesCounted ?? 0) + 1,
-          });
         }
-      }
 
-      const contributors = [...contributions.values()].sort((a, b) => b.points - a.points);
-      return {
-        team: { id: team.id, name: team.name, tag: team.tag },
-        points: contributors.reduce((sum, c) => sum + c.points, 0),
-        currentMemberCount: memberships.filter((m) => m.teamId === team.id && m.leftAt === null)
-          .length,
-        contributors,
-      };
-    });
+        const contributors = [...contributions.values()].sort((a, b) => b.points - a.points);
+        return {
+          team: { id: team.id, name: team.name, tag: team.tag },
+          points: contributors.reduce((sum, c) => sum + c.points, 0),
+          currentMemberCount: memberships.filter((m) => m.teamId === team.id && m.leftAt === null)
+            .length,
+          contributors,
+        };
+      });
 
     const ranked = rankWithTies(
       standings.sort((a, b) => b.points - a.points),

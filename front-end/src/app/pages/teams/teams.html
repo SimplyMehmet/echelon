@@ -2,8 +2,8 @@
   <header class="flex flex-col gap-3">
     <h1>Teams</h1>
     <p>
-      A team's score is the sum of what its members earned <em>while they were members</em>, so a
-      mid-season transfer never rewrites either team's past.
+      Teams are drafted fresh each season. A team's score is the sum of what its members earned
+      <em>while they were members</em>, so a mid-season transfer never rewrites either team's past.
     </p>
     @if (seasons.value(); as list) {
       <nav aria-label="Season" class="flex flex-wrap gap-2">
@@ -55,8 +55,9 @@
   } @else {
     <!-- The real day-one state: Levels teams do not exist on start.gg at all. -->
     <app-empty-state
-      title="No teams yet"
-      message="Teams do not exist on start.gg — an organiser assigns them here."
+      title="No teams for this season"
+      message="Teams do not exist on start.gg — an organiser assigns them here, and they are
+               drafted fresh each season."
     >
       <a routerLink="/admin/teams">Assign rosters</a>
     </app-empty-state>

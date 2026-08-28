@@ -1,32 +1,30 @@
 [
   {
-    "id": "t_ml",
-    "name": "Man Like",
-    "tag": "ML",
-    "founded_at": "2025-12-01T00:00:00Z"
+    "id": "t_s3_1",
+    "season_id": "season-3",
+    "name": "Team 1",
+    "tag": "T1",
+    "founded_at": "2026-08-16T11:00:00Z"
   },
   {
-    "id": "t_dnc",
-    "name": "Do Not Compete",
-    "tag": "DNC",
-    "founded_at": "2025-12-01T00:00:00Z"
+    "id": "t_s3_2",
+    "season_id": "season-3",
+    "name": "Team 2",
+    "tag": "T2",
+    "founded_at": "2026-08-16T11:00:00Z"
   },
   {
-    "id": "t_pf",
-    "name": "Pearl Fist",
-    "tag": "PF",
-    "founded_at": "2026-01-01T00:00:00Z"
+    "id": "t_s3_3",
+    "season_id": "season-3",
+    "name": "Team 3",
+    "tag": "T3",
+    "founded_at": "2026-08-16T11:00:00Z"
   },
   {
-    "id": "t_levels",
-    "name": "Levels",
-    "tag": "LEVELS",
-    "founded_at": "2025-12-01T00:00:00Z"
-  },
-  {
-    "id": "t_fox",
-    "name": "FOX Esports",
-    "tag": "FOX",
-    "founded_at": "2026-04-01T00:00:00Z"
+    "id": "t_s3_4",
+    "season_id": "season-3",
+    "name": "Team 4",
+    "tag": "T4",
+    "founded_at": "2026-08-16T11:00:00Z"
   }
 ]

@@ -1,110 +1,194 @@
 [
   {
-    "team_id": "t_ml",
-    "player_id": "p_2a1c51e15cce",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_83f2aabc9753",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_cc0bbcf848ba",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_65c5efcc7756",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_4eff91386408",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_54eed9451cf7",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_ml",
-    "player_id": "p_505c7e8656cc",
-    "joined_at": "2026-05-15T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_dnc",
+    "team_id": "t_s3_1",
     "player_id": "p_16cd44f2e716",
-    "joined_at": "2025-12-01T00:00:00Z",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_dnc",
-    "player_id": "p_7910fb5eb129",
-    "joined_at": "2025-12-01T00:00:00Z",
+    "team_id": "t_s3_1",
+    "player_id": "p_b8a87cddb342",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_dnc",
+    "team_id": "t_s3_1",
+    "player_id": "p_9dae64891a5c",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_1",
+    "player_id": "p_f242246e928e",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_1",
     "player_id": "p_64de9640de5b",
-    "joined_at": "2025-12-01T00:00:00Z",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_dnc",
-    "player_id": "p_505c7e8656cc",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": "2026-05-15T00:00:00Z"
-  },
-  {
-    "team_id": "t_pf",
-    "player_id": "p_2a6873e76006",
-    "joined_at": "2026-01-01T00:00:00Z",
+    "team_id": "t_s3_1",
+    "player_id": "p_80c81376d148",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_pf",
-    "player_id": "p_6fa6277a5763",
-    "joined_at": "2026-01-01T00:00:00Z",
+    "team_id": "t_s3_1",
+    "player_id": "p_c0f84b19f74d",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_pf",
-    "player_id": "p_6136c0c12af5",
-    "joined_at": "2026-01-01T00:00:00Z",
+    "team_id": "t_s3_1",
+    "player_id": "p_a46ab57e2d63",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   },
   {
-    "team_id": "t_levels",
-    "player_id": "p_b01ccd25ac05",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_levels",
-    "player_id": "p_394653395f8e",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_levels",
-    "player_id": "p_d93f70599cc4",
-    "joined_at": "2026-08-18T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_fox",
+    "team_id": "t_s3_2",
     "player_id": "p_c190ac577a4e",
-    "joined_at": "2026-04-01T00:00:00Z",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_d8ef19783134",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_1db071de748b",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_cc0bbcf848ba",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_2a1c51e15cce",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_f3bca1bb698f",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_f9e55c2713df",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_2",
+    "player_id": "p_1180916e3c42",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_85206cdd09d3",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_7910fb5eb129",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_505c7e8656cc",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_54eed9451cf7",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_cd38613b45f4",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_605fea925cd2",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_20f63d7dcfe4",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_3",
+    "player_id": "p_8dce8a153d36",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_544349ebd7e6",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_3d8199cf4122",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_d75b4408d427",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_dbf52f7bcaa2",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_f1ff481a42bd",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_86b5b9ddd2c5",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_a91817ae29fc",
+    "joined_at": "2026-08-16T11:00:00Z",
+    "left_at": null
+  },
+  {
+    "team_id": "t_s3_4",
+    "player_id": "p_b80a2880c48f",
+    "joined_at": "2026-08-16T11:00:00Z",
     "left_at": null
   }
 ]

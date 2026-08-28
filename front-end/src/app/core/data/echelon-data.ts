@@ -77,8 +77,8 @@ export abstract class EchelonData {
   /** GET /api/v1/players/{id}/profile */
   abstract getPlayerProfile(id: PlayerId): Promise<PlayerProfile | null>;
 
-  /** GET /api/v1/teams */
-  abstract listTeams(): Promise<Team[]>;
+  /** GET /api/v1/teams?season= — teams are drafted per season. */
+  abstract listTeams(filter?: { seasonId?: SeasonId }): Promise<Team[]>;
 
   /** GET /api/v1/teams/{id} */
   abstract getTeam(id: TeamId): Promise<TeamDetail | null>;

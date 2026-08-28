@@ -5,9 +5,14 @@ import { PlayerRef } from './player';
  * Teams do not exist in start.gg at all — 0 of 573 entrant rows carry one, and
  * the free-text sponsor prefixes are unusable as truth (`ML` vs `ML |`, someone
  * using `None`). They are assigned manually in our app.
+ *
+ * A team belongs to exactly one season: Levels drafts fresh teams each season,
+ * so "the same team" does not persist across them and standings must never mix
+ * a team from one season with entries from another.
  */
 export interface Team {
   readonly id: TeamId;
+  readonly seasonId: SeasonId;
   readonly name: string;
   readonly tag: string;
   readonly foundedAt: string;

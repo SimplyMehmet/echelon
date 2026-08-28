@@ -168,6 +168,7 @@ export function toPlayerStats(raw: RawPlayerStats): PlayerStats {
 
 export const toTeam = (raw: RawTeam): Team => ({
   id: teamId(raw.id),
+  seasonId: seasonId(raw.season_id),
   name: raw.name,
   tag: raw.tag,
   foundedAt: raw.founded_at,
