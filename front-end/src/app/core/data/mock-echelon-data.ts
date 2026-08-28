@@ -9,7 +9,6 @@ import {
   PlayerHistoryRow,
   PlayerId,
   PlayerProfile,
-  PlayerSearchHit,
   PlayerSeasonSummary,
   PlayerStats,
   PlayerTeamSpell,
@@ -275,38 +274,15 @@ export class MockEchelonData extends EchelonData {
   }
 
   /** SERVER-SIDE LATER: GET /players?q= */
-  async searchPlayers(query?: string): Promise<PlayerSearchHit[]> {
+  /** SERVER-SIDE LATER: GET /players?q= — matches the current gamertag only. */
+  async searchPlayers(query?: string): Promise<Player[]> {
     const fixtures = await this.load();
-    const all = [...fixtures.players.values()];
     const needle = query?.trim().toLowerCase();
-
-    if (!needle) {
-      return all
-        .sort(
-          (a, b) =>
-            b.attendance.played - a.attendance.played || a.gamertag.localeCompare(b.gamertag),
-        )
-        .map((player) => ({
-          player,
-          matchedOn: 'gamertag' as const,
-          matchedText: player.gamertag,
-        }));
-    }
-
-    const hits: PlayerSearchHit[] = [];
-    for (const player of all) {
-      if (player.gamertag.toLowerCase().includes(needle)) {
-        hits.push({ player, matchedOn: 'gamertag', matchedText: player.gamertag });
-        continue;
-      }
-      // A former tag must still find the player — and must not merge them with
-      // whoever holds that tag now. Metabyte (was "Probase") vs Probaze.
-      const alias = player.aliases.find((a) => a.toLowerCase().includes(needle));
-      if (alias) {
-        hits.push({ player, matchedOn: 'alias', matchedText: alias });
-      }
-    }
-    return hits.sort((a, b) => b.player.attendance.played - a.player.attendance.played);
+    return [...fixtures.players.values()]
+      .filter((player) => (needle ? player.gamertag.toLowerCase().includes(needle) : true))
+      .sort(
+        (a, b) => b.attendance.played - a.attendance.played || a.gamertag.localeCompare(b.gamertag),
+      );
   }
 
   async getPlayer(id: PlayerId): Promise<Player | null> {

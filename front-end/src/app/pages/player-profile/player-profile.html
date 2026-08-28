@@ -6,9 +6,6 @@
   <article class="flex flex-col gap-6">
     <header class="card flex flex-col gap-2 p-4">
       <h1>{{ p.gamertag }}</h1>
-      @if (p.aliases.length > 0) {
-        <p>Formerly {{ p.aliases.join(', ') }}</p>
-      }
       @if (p.startggProfileUrl; as url) {
         <a [href]="url" rel="noopener" target="_blank">start.gg profile</a>
       }

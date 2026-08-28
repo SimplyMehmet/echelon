@@ -28,10 +28,3 @@ export interface PlayerRef {
   readonly id: PlayerId;
   readonly gamertag: string;
 }
-
-/** Search must disambiguate: "probas" matches both Metabyte (via alias) and Probaze. */
-export interface PlayerSearchHit {
-  readonly player: Player;
-  readonly matchedOn: 'gamertag' | 'alias';
-  readonly matchedText: string;
-}

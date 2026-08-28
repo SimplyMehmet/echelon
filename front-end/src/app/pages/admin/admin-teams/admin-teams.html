@@ -20,7 +20,11 @@
       </select>
     </div>
 
-    <app-player-picker [hits]="players.value() ?? []" label="Add player" (selected)="add($event)" />
+    <app-player-picker
+      [players]="players.value() ?? []"
+      label="Add player"
+      (selected)="add($event)"
+    />
 
     @if (note(); as message) {
       <p role="status">{{ message }}</p>

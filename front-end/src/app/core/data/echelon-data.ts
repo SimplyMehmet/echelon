@@ -4,7 +4,6 @@ import {
   Player,
   PlayerId,
   PlayerProfile,
-  PlayerSearchHit,
   PlayerStats,
   HomeSummary,
   ScoringMeta,
@@ -66,7 +65,7 @@ export abstract class EchelonData {
   abstract getWeeklyResults(id: WeeklyId): Promise<WeeklyResults | null>;
 
   /** GET /api/v1/players?q= */
-  abstract searchPlayers(query?: string): Promise<PlayerSearchHit[]>;
+  abstract searchPlayers(query?: string): Promise<Player[]>;
 
   /** GET /api/v1/players/{id} */
   abstract getPlayer(id: PlayerId): Promise<Player | null>;
