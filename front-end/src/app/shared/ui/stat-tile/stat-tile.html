@@ -1,0 +1,7 @@
+<div class="sketch-box flex flex-col gap-1 p-3">
+  <dt>{{ label() }}</dt>
+  <dd>{{ value() }}</dd>
+  @if (hint(); as h) {
+    <p>{{ h }}</p>
+  }
+</div>

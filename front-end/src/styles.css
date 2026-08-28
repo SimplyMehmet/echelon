@@ -1,3 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/*
+ * Design tokens land here. Left empty on purpose — this is a structural sketch,
+ * and colour/typography decisions have not been made yet. Tailwind v4 is
+ * CSS-first, so this block is the whole theming surface; do NOT add a
+ * tailwind.config.js, it would be silently ignored.
+ */
+/* @theme { } */
+
+/*
+ * The only decoration allowed in the sketch. Makes structure visible without
+ * committing to a single colour, border radius or shadow — and deleting this
+ * one rule removes the entire sketch aesthetic in one edit, instead of hunting
+ * 200 instances of `border border-gray-200`.
+ */
+.sketch-box {
+  outline: 1px dashed;
+  outline-offset: -1px;
+}

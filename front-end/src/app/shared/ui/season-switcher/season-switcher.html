@@ -1,0 +1,11 @@
+<nav aria-label="Season" class="flex flex-wrap gap-2">
+  @for (season of seasons(); track season.id) {
+    <a
+      [routerLink]="[basePath(), season.id]"
+      [attr.aria-current]="season.id === activeSeasonId() ? 'page' : null"
+      class="sketch-box p-2"
+    >
+      {{ season.name }}
+    </a>
+  }
+</nav>

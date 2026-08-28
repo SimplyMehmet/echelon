@@ -1,0 +1,4 @@
+<a [routerLink]="['/players', player().id]">{{ player().gamertag }}</a>
+@if (showFormerTags() && formerTags().length > 0) {
+  <span> (formerly {{ formerTags().join(', ') }})</span>
+}

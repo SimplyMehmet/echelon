@@ -1,0 +1,31 @@
+<section class="flex flex-col gap-6">
+  <h1>Weeklies</h1>
+
+  @if (weeklies.isLoading()) {
+    <app-loading-state [rows]="6" label="Loading weeklies" />
+  } @else if (weeklies.error()) {
+    <app-error-state [error]="weeklies.error()" (retry)="weeklies.reload()" />
+  } @else {
+    @if (open().length > 0) {
+      <section class="flex flex-col gap-3">
+        <h2>Open</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          @for (weekly of open(); track weekly.id) {
+            <app-weekly-card [weekly]="weekly" />
+          }
+        </div>
+      </section>
+    }
+
+    <section class="flex flex-col gap-3">
+      <h2>Past</h2>
+      <div class="grid gap-3 md:grid-cols-2">
+        @for (weekly of past(); track weekly.id) {
+          <app-weekly-card [weekly]="weekly" />
+        } @empty {
+          <p>No weeklies yet.</p>
+        }
+      </div>
+    </section>
+  }
+</section>

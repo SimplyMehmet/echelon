@@ -1,0 +1,29 @@
+<section class="flex flex-col gap-4">
+  <h2>Assign a player to a team</h2>
+  <p>
+    Membership is dated. A player joining today keeps every point they earned elsewhere before
+    today.
+  </p>
+
+  @if (teams.isLoading() || players.isLoading()) {
+    <app-loading-state [rows]="4" label="Loading rosters" />
+  } @else if (teams.error()) {
+    <app-error-state [error]="teams.error()" (retry)="teams.reload()" />
+  } @else {
+    <div class="flex flex-col gap-2">
+      <label for="team">Team</label>
+      <select id="team" class="sketch-box max-w-sm p-2" (change)="chooseTeam($event)">
+        <option value="">Choose a team</option>
+        @for (team of teams.value() ?? []; track team.id) {
+          <option [value]="team.id">{{ team.name }} ({{ team.tag }})</option>
+        }
+      </select>
+    </div>
+
+    <app-player-picker [hits]="players.value() ?? []" label="Add player" (selected)="add($event)" />
+
+    @if (note(); as message) {
+      <p role="status">{{ message }}</p>
+    }
+  }
+</section>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "t_ml",
+    "name": "Mad Legends",
+    "tag": "ML",
+    "founded_at": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "t_dnc",
+    "name": "Dance",
+    "tag": "DNC",
+    "founded_at": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "t_pf",
+    "name": "Pressure Frame",
+    "tag": "PF",
+    "founded_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "t_levels",
+    "name": "Levels House",
+    "tag": "LEVELS",
+    "founded_at": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "t_fox",
+    "name": "Foxgang",
+    "tag": "FOX",
+    "founded_at": "2026-04-01T00:00:00Z"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "end_at": "2025-12-30T14:00:00Z",
+    "event_ids": [
+      "1526100",
+      "1526105",
+      "1526109"
+    ],
+    "id": "preseason",
+    "name": "Preseason",
+    "note": "Included because 'Preseason Pilot' matches the agreed 'mentions a season' rule. Drop this season if Levels does not count it.",
+    "scoring": true,
+    "start_at": "2025-12-28T13:00:00Z"
+  },
+  {
+    "end_at": "2026-03-03T18:00:00Z",
+    "event_ids": [
+      "1533539",
+      "1539299",
+      "1543944",
+      "1548536",
+      "1548538",
+      "1548539",
+      "1548540",
+      "1548541"
+    ],
+    "id": "season-1",
+    "name": "Season 1",
+    "scoring": true,
+    "start_at": "2026-01-13T17:30:00Z"
+  },
+  {
+    "end_at": "2026-05-28T17:00:00Z",
+    "event_ids": [
+      "1605184",
+      "1605190",
+      "1605192",
+      "1605186",
+      "1605193",
+      "1605187",
+      "1605196",
+      "1605188"
+    ],
+    "id": "season-2",
+    "name": "Season 2",
+    "note": "Ran as a start.gg League; totalPoints there reconciles exactly with this data.",
+    "scoring": true,
+    "start_at": "2026-04-30T17:00:00Z",
+    "startgg_league_id": "902133"
+  },
+  {
+    "end_at": "2026-08-23T11:00:00Z",
+    "event_ids": [
+      "1671134",
+      "1689341"
+    ],
+    "id": "season-3",
+    "name": "Season 3",
+    "scoring": true,
+    "start_at": "2026-08-16T11:00:00Z"
+  }
+]

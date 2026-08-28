@@ -1,0 +1,35 @@
+{
+  "caveats": [
+    "Points table was reverse-engineered from the Season 2 start.gg league and reproduces all 26 league totals exactly. It is not published by Levels.",
+    "Placements of 25th and below were never held by a scoring player, so their value is extrapolated as 0 rather than proven.",
+    "No attendance points: entrants with no standing score 0. Verified for Season 2 only.",
+    "Season 1 and Season 3 were not run as start.gg leagues, so their points here are computed, not reconciled against start.gg.",
+    "teams and team_memberships are intentionally empty; Levels teams do not exist in start.gg and are assigned manually in-app.",
+    "Unlinked walk-in players are keyed on a normalised gamertag, which merges casing variants like f2/F2 but cannot merge genuinely different spellings."
+  ],
+  "counts": {
+    "entries": 835,
+    "events": 28,
+    "players": 169,
+    "players_linked": 148,
+    "players_unlinked": 21,
+    "scoring_events": 21,
+    "seasons": 4,
+    "tournaments": 11
+  },
+  "generated_at": "2026-08-24T11:56:55Z",
+  "points_table": {
+    "1": 25,
+    "13+": 0,
+    "2": 18,
+    "3": 15,
+    "4": 12,
+    "5": 10,
+    "7": 6,
+    "9": 2
+  },
+  "scope": "all tournaments owned by start.gg user 3073295 (Levels)",
+  "scoring_rule": "An event scores if its own name or its tournament's name mentions a season.",
+  "source": "start.gg GraphQL API (api.start.gg/gql/alpha)",
+  "stats_scope": "player_stats cover scoring (season) events only"
+}

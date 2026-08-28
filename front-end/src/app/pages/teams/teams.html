@@ -1,0 +1,64 @@
+<section class="flex flex-col gap-6">
+  <header class="flex flex-col gap-3">
+    <h1>Teams</h1>
+    <p>
+      A team's score is the sum of what its members earned <em>while they were members</em>, so a
+      mid-season transfer never rewrites either team's past.
+    </p>
+    @if (seasons.value(); as list) {
+      <nav aria-label="Season" class="flex flex-wrap gap-2">
+        @for (s of list; track s.id) {
+          <a
+            class="sketch-box p-2"
+            [routerLink]="['/teams']"
+            [queryParams]="{ season: s.id }"
+            [attr.aria-current]="s.id === activeSeasonId() ? 'page' : null"
+          >
+            {{ s.name }}
+          </a>
+        }
+      </nav>
+    }
+  </header>
+
+  @if (standings.isLoading()) {
+    <app-loading-state [rows]="5" label="Loading team standings" />
+  } @else if (standings.error()) {
+    <app-error-state [error]="standings.error()" (retry)="standings.reload()" />
+  } @else if ((standings.value()?.rows ?? []).length > 0) {
+    <ol class="flex flex-col gap-3">
+      @for (row of standings.value()?.rows ?? []; track row.team.id) {
+        <li class="sketch-box flex flex-col gap-2 p-4">
+          <h2>
+            <app-rank-badge [rank]="row.rank" [tied]="row.isTied" />
+            <a [routerLink]="['/teams', row.team.id]">{{ row.team.name }}</a>
+            <span>({{ row.team.tag }})</span>
+          </h2>
+          <p>{{ row.points }} points · {{ row.currentMemberCount }} current members</p>
+          @if (row.contributors.length > 0) {
+            <ul class="flex flex-wrap gap-3">
+              @for (contribution of row.contributors; track contribution.player.id) {
+                <li>
+                  <app-player-name [player]="contribution.player" />
+                  <span>
+                    {{ contribution.points }} pts over {{ contribution.weekliesCounted }} weeklies
+                  </span>
+                </li>
+              }
+            </ul>
+          } @else {
+            <p>No member scored this season.</p>
+          }
+        </li>
+      }
+    </ol>
+  } @else {
+    <!-- The real day-one state: Levels teams do not exist on start.gg at all. -->
+    <app-empty-state
+      title="No teams yet"
+      message="Teams do not exist on start.gg — an organiser assigns them here."
+    >
+      <a routerLink="/admin/teams">Assign rosters</a>
+    </app-empty-state>
+  }
+</section>

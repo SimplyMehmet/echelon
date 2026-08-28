@@ -13,16 +13,31 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
+ * Proxy the API so the browser and the server both call same-origin /api/v1/...
  *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * Without this the UI is on :3000 and Gin is on :8080, which means cross-origin
+ * requests, a CORS dependency, and an absolute API URL baked into the bundle.
  */
+const apiUrl = process.env['API_URL'] ?? 'http://localhost:8080';
+
+app.use('/api', async (req, res, next) => {
+  try {
+    const upstream = await fetch(`${apiUrl}/api${req.url}`, {
+      method: req.method,
+      headers: { 'content-type': req.headers['content-type'] ?? 'application/json' },
+      body: req.method === 'GET' || req.method === 'HEAD' ? undefined : JSON.stringify(req.body),
+    });
+    res.status(upstream.status);
+    upstream.headers.forEach((value, key) => {
+      if (key !== 'content-encoding' && key !== 'transfer-encoding') {
+        res.setHeader(key, value);
+      }
+    });
+    res.send(Buffer.from(await upstream.arrayBuffer()));
+  } catch (error) {
+    next(error);
+  }
+});
 
 /**
  * Serve static files from /browser
@@ -41,9 +56,7 @@ app.use(
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 
@@ -53,6 +66,9 @@ app.use((req, res, next) => {
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
   const port = process.env['PORT'] || 4000;
+  // Publish it so the SSR app resolves its own relative requests to a port that
+  // is actually reachable from inside this process (see app.config.server.ts).
+  process.env['PORT'] = String(port);
   app.listen(port, (error) => {
     if (error) {
       throw error;

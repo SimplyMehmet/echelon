@@ -1,0 +1,5 @@
+<div [attr.aria-label]="label()" aria-busy="true" role="status" class="flex flex-col gap-2">
+  @for (row of placeholders(); track row) {
+    <div class="sketch-box h-8 w-full"></div>
+  }
+</div>
