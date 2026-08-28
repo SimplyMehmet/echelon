@@ -4,12 +4,13 @@
     "Placements of 25th and below were never held by a scoring player, so their value is extrapolated as 0 rather than proven.",
     "No attendance points: entrants with no standing score 0. Verified for Season 2 only.",
     "Season 1 and Season 3 were not run as start.gg leagues, so their points here are computed, not reconciled against start.gg.",
-    "teams and team_memberships are intentionally empty; Levels teams do not exist in start.gg and are assigned manually in-app.",
-    "Unlinked walk-in players are keyed on a normalised gamertag, which merges casing variants like f2/F2 but cannot merge genuinely different spellings."
+    "Unlinked walk-in players are keyed on a normalised gamertag, which merges casing variants like f2/F2 but cannot merge genuinely different spellings.",
+    "Teams and team memberships are hand-authored for this build. Levels teams do not exist in start.gg at all, so there was nothing to scrape; they use real player ids and the sponsor prefixes that appear in entrant names.",
+    "Season 3 weeks 3-5 are scheduled placeholders, not scraped events. The snapshot ends on 23 August 2026, so without them the app would have no upcoming weeklies to show."
   ],
   "counts": {
     "entries": 835,
-    "events": 28,
+    "events": 31,
     "players": 169,
     "players_linked": 148,
     "players_unlinked": 21,

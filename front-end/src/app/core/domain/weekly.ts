@@ -37,3 +37,16 @@ export interface Venue {
   readonly city: string;
   readonly countryCode: string;
 }
+
+/**
+ * Upcoming means both not-yet-run AND not-yet-happened.
+ *
+ * start.gg event state goes stale: this dataset carries an ACTIVE event from
+ * March and a CREATED one from the March before that, so `status` alone would
+ * advertise them as upcoming months after the fact.
+ *
+ * ISO-8601 UTC strings are fixed-width and Z-suffixed throughout the dataset,
+ * so lexicographic comparison is correct. Same trick as isMemberAt in team.ts.
+ */
+export const isUpcoming = (weekly: Weekly, now: string): boolean =>
+  weekly.status !== 'completed' && weekly.startAt > now;

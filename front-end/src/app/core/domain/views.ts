@@ -1,6 +1,8 @@
 import { Entry } from './entry';
+import { LeaderboardRow } from './leaderboard';
 import { PlayerRef } from './player';
-import { TeamRef } from './team';
+import { Season } from './season';
+import { TeamRef, TeamStanding } from './team';
 import { Weekly } from './weekly';
 
 /** What a weekly's page needs: the placed field and, separately, the no-shows. */
@@ -46,4 +48,18 @@ export interface PlayerTeamSpell {
   readonly joinedAt: string;
   readonly leftAt: string | null;
   readonly current: boolean;
+}
+
+/**
+ * Everything the landing page shows, in one shape.
+ *
+ * A real backend would serve this as a single endpoint rather than making the
+ * homepage issue four round trips, so the seam exposes it that way too.
+ */
+export interface HomeSummary {
+  readonly season: Season;
+  /** Already cut to three by the source, as the endpoint would. */
+  readonly topPlayers: readonly LeaderboardRow[];
+  readonly leadingTeam: TeamStanding | null;
+  readonly upcoming: readonly Weekly[];
 }

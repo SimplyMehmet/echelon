@@ -6,6 +6,7 @@ import {
   PlayerProfile,
   PlayerSearchHit,
   PlayerStats,
+  HomeSummary,
   ScoringMeta,
   Season,
   SeasonId,
@@ -40,6 +41,9 @@ import {
  * network.
  */
 export abstract class EchelonData {
+  /** GET /api/v1/home — everything the landing page shows, in one call. */
+  abstract getHomeSummary(): Promise<HomeSummary | null>;
+
   /** GET /api/v1/meta */
   abstract getScoringMeta(): Promise<ScoringMeta>;
 

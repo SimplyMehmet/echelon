@@ -1,0 +1,72 @@
+@if (summary.isLoading()) {
+  <app-loading-state [rows]="8" label="Loading the season" />
+} @else if (summary.error()) {
+  <app-error-state [error]="summary.error()" (retry)="summary.reload()" />
+} @else if (summary.value(); as home) {
+  <div class="flex flex-col gap-10">
+    <header class="flex flex-col gap-2">
+      <h1>Levels Tekken</h1>
+      <p class="muted">
+        Free-entry weekly tournaments in Rotterdam. {{ home.season.name }} is under way.
+      </p>
+    </header>
+
+    <section class="flex flex-col gap-3">
+      <h2>Top of {{ home.season.name }}</h2>
+      <ol class="grid gap-3 md:grid-cols-3">
+        @for (row of home.topPlayers; track row.player.id) {
+          <li class="card flex flex-col gap-1 p-4">
+            <app-rank-badge [rank]="row.rank" [tied]="row.isTied" />
+            <app-player-name [player]="row.player" />
+            <p class="muted">{{ row.points }} points · {{ row.played }} played</p>
+          </li>
+        } @empty {
+          <li class="muted">Nobody has scored this season yet.</li>
+        }
+      </ol>
+      <a routerLink="/leaderboard">Full leaderboard</a>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2>Next weeklies</h2>
+      <div class="grid gap-3 md:grid-cols-2">
+        @for (weekly of home.upcoming; track weekly.id) {
+          <app-weekly-card [weekly]="weekly" />
+        } @empty {
+          <app-empty-state
+            title="No weekly scheduled yet"
+            message="Levels announces weeklies on start.gg. This build reads a frozen snapshot,
+                     so the schedule fills in once the backend is live."
+          >
+            <a routerLink="/weeklies">Browse past weeklies</a>
+          </app-empty-state>
+        }
+      </div>
+      <a routerLink="/weeklies">All weeklies</a>
+    </section>
+
+    @if (home.leadingTeam; as leader) {
+      <section class="flex flex-col gap-3">
+        <h2>Leading team</h2>
+        <div class="card flex flex-col gap-2 p-4">
+          <h3>
+            <a [routerLink]="['/teams', leader.team.id]">{{ leader.team.name }}</a>
+            <span class="muted">({{ leader.team.tag }})</span>
+          </h3>
+          <p>{{ leader.points }} points · {{ leader.currentMemberCount }} current members</p>
+          @if (leader.contributors.length > 0) {
+            <ul class="flex flex-wrap gap-3">
+              @for (contribution of leader.contributors; track contribution.player.id) {
+                <li>
+                  <app-player-name [player]="contribution.player" />
+                  <span class="muted"> {{ contribution.points }} pts</span>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+        <a routerLink="/teams">All teams</a>
+      </section>
+    }
+  </div>
+}

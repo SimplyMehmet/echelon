@@ -318,5 +318,41 @@
     "start_at": "2026-08-19T16:15:00Z",
     "state": "COMPLETED",
     "tournament_id": "944638"
+  },
+  {
+    "id": "sched_s3w3",
+    "name": "Levels Tekken League Season 3 #3",
+    "num_entrants": 0,
+    "num_standings": 0,
+    "scoring": true,
+    "season_id": "season-3",
+    "start_at": "2026-08-30T11:00:00Z",
+    "state": "CREATED",
+    "tournament_id": "934674",
+    "week_number": 3
+  },
+  {
+    "id": "sched_s3w4",
+    "name": "Levels Tekken League Season 3 #4",
+    "num_entrants": 0,
+    "num_standings": 0,
+    "scoring": true,
+    "season_id": "season-3",
+    "start_at": "2026-09-06T11:00:00Z",
+    "state": "CREATED",
+    "tournament_id": "934674",
+    "week_number": 4
+  },
+  {
+    "id": "sched_s3w5",
+    "name": "Levels Tekken League Season 3 #5",
+    "num_entrants": 0,
+    "num_standings": 0,
+    "scoring": true,
+    "season_id": "season-3",
+    "start_at": "2026-09-13T11:00:00Z",
+    "state": "CREATED",
+    "tournament_id": "934674",
+    "week_number": 5
   }
 ]

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { currentSeasonRedirectGuard } from '@core/routing/current-season.guard';
 import { playerTitle, seasonTitle, teamTitle, weeklyTitle } from '@core/routing/titles';
+import { Home } from '@pages/home/home';
 import { NotFound } from '@pages/not-found/not-found';
 
 /**
@@ -19,7 +20,10 @@ import { NotFound } from '@pages/not-found/not-found';
  *    shareable links. Neither is app state.
  */
 export const routes: Routes = [
-  { path: '', canActivate: [currentSeasonRedirectGuard], children: [] },
+  // Eager, and no title: it is the landing route, so lazy-loading it would only
+  // add a chunk request to the most common first paint, and AppTitleStrategy
+  // renders a title-less route as plain "Edgelon".
+  { path: '', component: Home },
   { path: 'leaderboard', canActivate: [currentSeasonRedirectGuard], children: [] },
   {
     path: 'leaderboard/:seasonId',

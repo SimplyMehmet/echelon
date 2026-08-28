@@ -76,9 +76,12 @@ CSS-first — do not add a `tailwind.config.js`, it would be silently ignored.
 
 Guardrail, should print nothing:
 
+Directional border utilities (`border-b`, `border-t`) are allowed — they set
+width only, and the colour comes from a component class.
+
 ```sh
 grep -rEo 'class="[^"]*"' src/app --include=*.html \
-  | grep -E 'bg-|text-(xs|sm|base|lg|xl)|font-|rounded|shadow|border-'
+  | grep -E 'bg-|text-(xs|sm|base|lg|xl)|font-|rounded|shadow|border-(gray|slate|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|white|black)'
 ```
 
 ## Back end

@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import {
   Entry,
+  HomeSummary,
   Leaderboard,
   LeaderboardMetric,
   LeaderboardRow,
@@ -28,8 +29,10 @@ import {
   WeeklyStanding,
   byStartAtDescending,
   isMemberAt,
+  isUpcoming,
   rankWithTies,
 } from '@core/domain';
+import { NOW } from './clock';
 import { EchelonData } from './echelon-data';
 import { FixtureLoader } from './fixture-loader';
 import {
@@ -94,6 +97,7 @@ function groupBy<T, K>(items: readonly T[], keyOf: (item: T) => K): Map<K, T[]> 
 @Injectable()
 export class MockEchelonData extends EchelonData {
   private readonly loader = inject(FixtureLoader);
+  private readonly now = inject(NOW);
   private fixtures?: Promise<Fixtures>;
   private memberships?: TeamMembership[];
 
@@ -152,6 +156,31 @@ export class MockEchelonData extends EchelonData {
     };
   }
 
+  /** SERVER-SIDE LATER: GET /home */
+  async getHomeSummary(): Promise<HomeSummary | null> {
+    const fixtures = await this.load();
+    const season = fixtures.seasons.at(-1);
+    if (!season) {
+      return null;
+    }
+
+    const [board, teams, weeklies] = await Promise.all([
+      this.getLeaderboard(season.id, 'points'),
+      this.getTeamStandings(season.id),
+      this.listWeeklies(),
+    ]);
+
+    const now = this.now();
+    return {
+      season,
+      // Hard cut at three. Season 3's rank-2 tie sits entirely inside the cut,
+      // so nothing is arbitrarily excluded here.
+      topPlayers: (board?.rows ?? []).slice(0, 3),
+      leadingTeam: teams.rows.at(0) ?? null,
+      upcoming: weeklies.filter((weekly) => isUpcoming(weekly, now)).reverse(),
+    };
+  }
+
   async getScoringMeta(): Promise<ScoringMeta> {
     return (await this.load()).meta;
   }
@@ -187,7 +216,11 @@ export class MockEchelonData extends EchelonData {
       rankingRule: 'standard-competition',
       rows: ordered,
       totalPlayers: rows.length,
-      weekliesCounted: season.weeklyIds.length,
+      // Only weeklies that have actually been played contribute points; a
+      // season with scheduled weeks ahead of it must not claim them.
+      weekliesCounted: season.weeklyIds.filter(
+        (weeklyId) => fixtures.weeklies.get(weeklyId)?.status === 'completed',
+      ).length,
     };
   }
 
