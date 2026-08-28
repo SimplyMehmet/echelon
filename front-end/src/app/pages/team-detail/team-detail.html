@@ -6,7 +6,7 @@
   <article class="flex flex-col gap-6">
     <header class="flex flex-col gap-2">
       <h1>{{ detail.team.name }}</h1>
-      <p>{{ detail.team.tag }} · founded {{ detail.team.foundedAt | date: 'MMMM y' }}</p>
+      <p class="muted">Captain: {{ detail.captain.gamertag }}</p>
     </header>
 
     <section class="flex flex-col gap-2">

@@ -17,7 +17,7 @@ import {
   Season,
   SeasonId,
   Team,
-  TeamContribution,
+  TeamMemberPoints,
   TeamDetail,
   TeamId,
   TeamMembership,
@@ -356,7 +356,7 @@ export class MockEchelonData extends EchelonData {
         }
         return [
           {
-            team: { id: team.id, name: team.name, tag: team.tag },
+            team: { id: team.id, name: team.name },
             joinedAt: m.joinedAt,
             leftAt: m.leftAt,
             current: m.leftAt === null,
@@ -394,7 +394,11 @@ export class MockEchelonData extends EchelonData {
           a.player.gamertag.localeCompare(b.player.gamertag),
       );
 
-    return { team, roster };
+    return {
+      team,
+      captain: this.refFor(fixtures, team.captainId, team.captainId),
+      roster,
+    };
   }
 
   /**
@@ -411,9 +415,11 @@ export class MockEchelonData extends EchelonData {
     const standings = fixtures.teams
       .filter((team) => team.seasonId === seasonId)
       .map((team) => {
-        const contributions = new Map<PlayerId, TeamContribution>();
+        const roster = memberships.filter((m) => m.teamId === team.id && m.leftAt === null);
 
-        for (const membership of memberships.filter((m) => m.teamId === team.id)) {
+        const members: TeamMemberPoints[] = roster.map((membership) => {
+          let points = 0;
+          let weekliesCounted = 0;
           for (const entry of fixtures.entriesByPlayer.get(membership.playerId) ?? []) {
             if (entry.seasonId !== seasonId) {
               continue;
@@ -422,22 +428,25 @@ export class MockEchelonData extends EchelonData {
             if (!weekly || !isMemberAt(membership, weekly.startAt)) {
               continue;
             }
-            const existing = contributions.get(membership.playerId);
-            contributions.set(membership.playerId, {
-              player: this.refFor(fixtures, membership.playerId, membership.playerId),
-              points: (existing?.points ?? 0) + entry.points,
-              weekliesCounted: (existing?.weekliesCounted ?? 0) + 1,
-            });
+            points += entry.points;
+            weekliesCounted += 1;
           }
-        }
+          return {
+            player: this.refFor(fixtures, membership.playerId, membership.playerId),
+            points,
+            weekliesCounted,
+          };
+        });
 
-        const contributors = [...contributions.values()].sort((a, b) => b.points - a.points);
+        members.sort(
+          (a, b) => b.points - a.points || a.player.gamertag.localeCompare(b.player.gamertag),
+        );
+
         return {
-          team: { id: team.id, name: team.name, tag: team.tag },
-          points: contributors.reduce((sum, c) => sum + c.points, 0),
-          currentMemberCount: memberships.filter((m) => m.teamId === team.id && m.leftAt === null)
-            .length,
-          contributors,
+          team: { id: team.id, name: team.name },
+          captain: this.refFor(fixtures, team.captainId, team.captainId),
+          points: members.reduce((sum, member) => sum + member.points, 0),
+          members,
         };
       });
 

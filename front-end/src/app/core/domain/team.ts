@@ -14,14 +14,13 @@ export interface Team {
   readonly id: TeamId;
   readonly seasonId: SeasonId;
   readonly name: string;
-  readonly tag: string;
+  readonly captainId: PlayerId;
   readonly foundedAt: string;
 }
 
 export interface TeamRef {
   readonly id: TeamId;
   readonly name: string;
-  readonly tag: string;
 }
 
 /**
@@ -45,12 +44,17 @@ export interface TeamStanding {
   readonly rank: number;
   readonly isTied: boolean;
   readonly team: TeamRef;
+  readonly captain: PlayerRef;
   readonly points: number;
-  readonly currentMemberCount: number;
-  readonly contributors: readonly TeamContribution[];
+  /**
+   * Every current member, not only those who scored — a team-mate who turned up
+   * and went 0-2 is still on the team, and hiding them would repeat exactly the
+   * omission this app exists to correct.
+   */
+  readonly members: readonly TeamMemberPoints[];
 }
 
-export interface TeamContribution {
+export interface TeamMemberPoints {
   readonly player: PlayerRef;
   readonly points: number;
   readonly weekliesCounted: number;
@@ -58,6 +62,7 @@ export interface TeamContribution {
 
 export interface TeamDetail {
   readonly team: Team;
+  readonly captain: PlayerRef;
   readonly roster: readonly TeamRosterEntry[];
 }
 

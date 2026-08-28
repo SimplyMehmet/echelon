@@ -51,19 +51,9 @@
         <div class="card flex flex-col gap-2 p-4">
           <h3>
             <a [routerLink]="['/teams', leader.team.id]">{{ leader.team.name }}</a>
-            <span class="muted">({{ leader.team.tag }})</span>
           </h3>
-          <p>{{ leader.points }} points · {{ leader.currentMemberCount }} current members</p>
-          @if (leader.contributors.length > 0) {
-            <ul class="flex flex-wrap gap-3">
-              @for (contribution of leader.contributors; track contribution.player.id) {
-                <li>
-                  <app-player-name [player]="contribution.player" />
-                  <span class="muted"> {{ contribution.points }} pts</span>
-                </li>
-              }
-            </ul>
-          }
+          <p>{{ leader.points }} points</p>
+          <p class="muted">Captain: {{ leader.captain.gamertag }}</p>
         </div>
         <a routerLink="/teams">All teams</a>
       </section>

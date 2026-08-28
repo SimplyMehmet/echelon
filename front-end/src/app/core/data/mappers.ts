@@ -170,7 +170,7 @@ export const toTeam = (raw: RawTeam): Team => ({
   id: teamId(raw.id),
   seasonId: seasonId(raw.season_id),
   name: raw.name,
-  tag: raw.tag,
+  captainId: playerId(raw.captain_player_id),
   foundedAt: raw.founded_at,
 });
 

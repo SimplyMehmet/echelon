@@ -118,7 +118,7 @@ export interface RawTeam {
   readonly id: string;
   readonly season_id: string;
   readonly name: string;
-  readonly tag: string;
+  readonly captain_player_id: string;
   readonly founded_at: string;
 }
 
