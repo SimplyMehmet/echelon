@@ -5,6 +5,7 @@ import {
   inject,
   input,
   resource,
+  signal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { EchelonData } from '@core/data/echelon-data';
@@ -57,6 +58,23 @@ export class Leaderboard {
   });
 
   protected readonly activeSeasonId = computed(() => seasonId(this.seasonId()));
+
+  /**
+   * Finding a player happens here now that the separate directory is gone.
+   * Local state rather than a query param: this is a transient filter over what
+   * is already on screen, not a view worth linking someone to.
+   */
+  protected readonly filter = signal('');
+
+  protected readonly rows = computed(() => {
+    const needle = this.filter().trim().toLowerCase();
+    const rows = this.board.value()?.rows ?? [];
+    return needle ? rows.filter((row) => row.player.gamertag.toLowerCase().includes(needle)) : rows;
+  });
+
+  protected onFilter(event: Event): void {
+    this.filter.set((event.target as HTMLInputElement).value);
+  }
 
   /** The product thesis in one row: highest attendance in the scene, near-invisible on start.gg. */
   protected readonly mostAttended = computed<LeaderboardRow | null>(() => {

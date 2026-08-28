@@ -31,11 +31,6 @@ export const routes: Routes = [
     loadComponent: () => import('@pages/leaderboard/leaderboard').then((m) => m.Leaderboard),
   },
   {
-    path: 'players',
-    title: 'Players',
-    loadComponent: () => import('@pages/players/players').then((m) => m.Players),
-  },
-  {
     path: 'players/:playerId',
     title: playerTitle,
     loadComponent: () =>

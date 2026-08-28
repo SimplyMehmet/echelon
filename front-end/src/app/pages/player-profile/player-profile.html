@@ -11,9 +11,6 @@
       }
       @if (p.startggProfileUrl; as url) {
         <a [href]="url" rel="noopener" target="_blank">start.gg profile</a>
-      } @else {
-        <!-- 21 of 169 players. Added by an organiser by name only. -->
-        <p>Walk-in entrant — no start.gg account linked.</p>
       }
     </header>
 
@@ -122,6 +119,6 @@
   </article>
 } @else {
   <app-empty-state title="No such player" message="That player id does not exist.">
-    <a routerLink="/players">Browse players</a>
+    <a routerLink="/leaderboard">Back to the leaderboard</a>
   </app-empty-state>
 }
