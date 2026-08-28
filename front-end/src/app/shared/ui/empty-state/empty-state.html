@@ -1,0 +1,7 @@
+<div class="card flex flex-col gap-2 p-6">
+  <p>{{ title() }}</p>
+  @if (message(); as m) {
+    <p>{{ m }}</p>
+  }
+  <ng-content />
+</div>

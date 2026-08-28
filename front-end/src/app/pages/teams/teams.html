@@ -1,0 +1,65 @@
+<section class="flex flex-col gap-6">
+  <header class="flex flex-col gap-3">
+    <h1>Teams</h1>
+    <p>
+      Teams are drafted fresh each season. A team's score is the sum of what its members earned
+      <em>while they were members</em>, so a mid-season transfer never rewrites either team's past.
+    </p>
+    @if (seasons.value(); as list) {
+      <nav aria-label="Season" class="flex flex-wrap gap-2">
+        @for (s of list; track s.id) {
+          <a
+            class="chip p-2"
+            [routerLink]="['/teams']"
+            [queryParams]="{ season: s.id }"
+            [attr.aria-current]="s.id === activeSeasonId() ? 'page' : null"
+          >
+            {{ s.name }}
+          </a>
+        }
+      </nav>
+    }
+  </header>
+
+  @if (standings.isLoading()) {
+    <app-loading-state [rows]="5" label="Loading team standings" />
+  } @else if (standings.error()) {
+    <app-error-state [error]="standings.error()" (retry)="standings.reload()" />
+  } @else if ((standings.value()?.rows ?? []).length > 0) {
+    <ol class="flex flex-col gap-3">
+      @for (row of standings.value()?.rows ?? []; track row.team.id) {
+        <li class="card flex flex-col gap-2 p-4">
+          <h2>
+            <app-rank-badge [rank]="row.rank" [tied]="row.isTied" />
+            <a [routerLink]="['/teams', row.team.id]">{{ row.team.name }}</a>
+          </h2>
+          <p>{{ row.points }} points</p>
+          <p class="muted">Captain: {{ row.captain.gamertag }}</p>
+
+          <!-- A native <details> rather than a signal-backed toggle: it needs no
+               state, it is keyboard accessible for free, and it works before
+               hydration, which matters on a server-rendered page. -->
+          <details>
+            <summary>{{ row.members.length }} players</summary>
+            <ul class="flex flex-col gap-1 p-2">
+              @for (member of row.members; track member.player.id) {
+                <li class="flex flex-wrap gap-2">
+                  <app-player-name [player]="member.player" />
+                  <span class="muted">{{ member.points }} pts</span>
+                </li>
+              }
+            </ul>
+          </details>
+        </li>
+      }
+    </ol>
+  } @else {
+    <!-- The real day-one state: Levels teams do not exist on start.gg at all. -->
+    <app-empty-state
+      title="No teams for this season"
+      message="Teams do not exist on start.gg — an organiser assigns them here, and they are
+               drafted fresh each season."
+    >
+    </app-empty-state>
+  }
+</section>

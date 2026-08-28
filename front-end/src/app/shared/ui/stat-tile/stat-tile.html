@@ -1,0 +1,7 @@
+<div class="card flex flex-col gap-1 p-3">
+  <dt class="muted">{{ label() }}</dt>
+  <dd class="stat-value">{{ value() }}</dd>
+  @if (hint(); as h) {
+    <p class="muted">{{ h }}</p>
+  }
+</div>

@@ -1,0 +1,121 @@
+@if (player.isLoading()) {
+  <app-loading-state [rows]="8" label="Loading player" />
+} @else if (player.error()) {
+  <app-error-state [error]="player.error()" (retry)="player.reload()" />
+} @else if (player.value(); as p) {
+  <article class="flex flex-col gap-6">
+    <header class="card flex flex-col gap-2 p-4">
+      <h1>{{ p.gamertag }}</h1>
+      @if (p.startggProfileUrl; as url) {
+        <a [href]="url" rel="noopener" target="_blank">start.gg profile</a>
+      }
+    </header>
+
+    <dl class="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <app-stat-tile label="Weeklies played" [value]="p.attendance.played" />
+      @if (stats.value(); as s) {
+        <app-stat-tile label="Season points" [value]="s.totalPoints" hint="Scoring events only" />
+        <app-stat-tile label="Best placement" [value]="s.bestPlacement" />
+        <app-stat-tile label="Set win rate" [value]="s.setWinRate | percent: '1.0-1'" />
+        <app-stat-tile label="Sets" [value]="s.setsWon + '-' + s.setsLost" />
+        <app-stat-tile label="Game win rate" [value]="s.gameWinRate | percent: '1.0-1'" />
+        <app-stat-tile label="Average placement" [value]="s.avgPlacement" />
+      } @else if (!stats.isLoading()) {
+        <app-stat-tile label="Match stats" value="Not tracked" hint="Computed for regulars only" />
+      }
+    </dl>
+
+    @if (profile.value(); as prof) {
+      @if (prof.teams.length > 0) {
+        <section class="flex flex-col gap-2">
+          <h2>Teams</h2>
+          <ul class="flex flex-col gap-1">
+            @for (spell of prof.teams; track spell.team.id + spell.joinedAt) {
+              <li>
+                <a [routerLink]="['/teams', spell.team.id]">{{ spell.team.name }}</a>
+                <span>
+                  — {{ spell.joinedAt | date: 'MMM y' }} to
+                  {{ spell.current ? 'present' : (spell.leftAt | date: 'MMM y') }}
+                </span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      <section class="flex flex-col gap-2">
+        <h2>Season record</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr>
+                <th scope="col">Season</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Points</th>
+                <th scope="col">Played</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (season of prof.seasons; track season.seasonName) {
+                <tr>
+                  <td>{{ season.seasonName }}</td>
+                  <td>{{ season.rank }}</td>
+                  <td>{{ season.points }}</td>
+                  <td>{{ season.played }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="4">No season results yet.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      @defer (on viewport) {
+        <section class="flex flex-col gap-2">
+          <h2>Every weekly</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Weekly</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of prof.history; track row.weekly.id) {
+                  <tr>
+                    <td>
+                      <time [attr.datetime]="row.weekly.startAt">
+                        {{ row.weekly.startAt | date: 'd MMM y' }}
+                      </time>
+                    </td>
+                    <td>
+                      <a [routerLink]="['/weeklies', row.weekly.id]">{{ row.weekly.name }}</a>
+                    </td>
+                    <!-- Never a blank cell: signing up and not playing is a real
+                         outcome, and start.gg drops these rows entirely. -->
+                    <td>
+                      {{ row.entry.played ? row.entry.placement : 'Registered — did not play' }}
+                    </td>
+                    <td>{{ row.entry.points }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      } @placeholder {
+        <p>Scroll for the full record.</p>
+      }
+    }
+  </article>
+} @else {
+  <app-empty-state title="No such player" message="That player id does not exist.">
+    <a routerLink="/leaderboard">Back to the leaderboard</a>
+  </app-empty-state>
+}

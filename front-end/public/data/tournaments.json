@@ -1,0 +1,101 @@
+[
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "799939",
+    "name": "Levels TWT 2025 #1",
+    "num_attendees": 33,
+    "slug": "tournament/levels-twt-2025-1",
+    "start_at": "2025-06-24T17:30:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "863496",
+    "name": "Levels 2025 28-30 Dec",
+    "num_attendees": 22,
+    "slug": "tournament/levels-2025-28-30-dec",
+    "start_at": "2025-12-28T13:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "867324",
+    "name": "Levels Tekken 8 2026 Season 1",
+    "num_attendees": 71,
+    "slug": "tournament/levels-tekken-8-2026-season-1",
+    "start_at": "2026-01-13T17:30:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "884030",
+    "name": "Levels Tekken League Major",
+    "num_attendees": 49,
+    "slug": "tournament/levels-tekken-league-major",
+    "start_at": "2026-03-10T18:00:00Z"
+  },
+  {
+    "city": "Utrecht",
+    "country_code": "NL",
+    "id": "885260",
+    "name": "HMIA X Levels Tekken Tournament",
+    "num_attendees": 46,
+    "slug": "tournament/hmia-x-levels-tekken-tournament",
+    "start_at": "2026-03-20T23:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "877620",
+    "name": "Levels Major",
+    "num_attendees": 0,
+    "slug": "tournament/levels-major",
+    "start_at": "2026-03-31T02:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "902145",
+    "name": "Levels Tekken League Season 2 @ DOX",
+    "num_attendees": 46,
+    "slug": "tournament/levels-tekken-league-season-2-dox",
+    "start_at": "2026-04-29T22:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "902142",
+    "name": "Levels Tekken League Season 2 @ WORM",
+    "num_attendees": 48,
+    "slug": "tournament/levels-tekken-league-season-2-worm",
+    "start_at": "2026-04-29T22:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "909607",
+    "name": "Levels Tekken @ Twitchcon 2026",
+    "num_attendees": 50,
+    "slug": "tournament/levels-tekken-twitchcon-2026",
+    "start_at": "2026-05-31T08:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "934674",
+    "name": "Levels Tekken League Season 3",
+    "num_attendees": 49,
+    "slug": "tournament/levels-tekken-league-season-3",
+    "start_at": "2026-08-16T11:00:00Z"
+  },
+  {
+    "city": "Rotterdam",
+    "country_code": "NL",
+    "id": "944638",
+    "name": "schrijverskamp",
+    "num_attendees": 18,
+    "slug": "tournament/schrijverskamp",
+    "start_at": "2026-08-19T16:15:00Z"
+  }
+]

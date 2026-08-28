@@ -1,0 +1,80 @@
+@if (results.isLoading()) {
+  <app-loading-state [rows]="10" label="Loading results" />
+} @else if (results.error()) {
+  <app-error-state [error]="results.error()" (retry)="results.reload()" />
+} @else if (results.value(); as r) {
+  <article class="flex flex-col gap-6">
+    <header class="flex flex-col gap-2">
+      <h1>{{ r.weekly.name }}</h1>
+      <time [attr.datetime]="r.weekly.startAt">{{
+        r.weekly.startAt | date: 'EEEE d MMMM y, HH:mm'
+      }}</time>
+      <p>{{ r.weekly.venue.label }}, {{ r.weekly.venue.city }}</p>
+      <p>
+        {{ r.weekly.entrantCount }} registered · {{ r.weekly.playedCount }} played ·
+        {{ r.weekly.scoring ? 'counts towards the season' : 'non-scoring' }}
+      </p>
+    </header>
+
+    @if (r.weekly.status !== 'completed') {
+      <section class="card flex flex-col gap-2 p-4">
+        <h2>Registration</h2>
+        <!-- The API cannot register players: registerForTournament exists in the
+             schema but no OAuth scope grants the right. start.gg's own answer for
+             third parties is an iframe embed, which needs DomSanitizer — out of
+             scope for a structural sketch, so v1 deep-links out.
+             <iframe [src]="embedUrl"></iframe> -->
+        <p>Sign-up is handled on start.gg for now.</p>
+        <a href="https://start.gg" rel="noopener" target="_blank">Register on start.gg</a>
+      </section>
+    }
+
+    <section class="flex flex-col gap-2">
+      <h2>Standings</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th scope="col">Place</th>
+              <th scope="col">Player</th>
+              <th scope="col">Entered as</th>
+              <th scope="col">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (standing of r.standings; track standing.player.id) {
+              <tr>
+                <td><app-rank-badge [rank]="standing.placement" [tied]="standing.isTied" /></td>
+                <td><app-player-name [player]="standing.player" /></td>
+                <td>{{ standing.enteredAs }}</td>
+                <td>{{ standing.points }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4">No results yet.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    @if (r.didNotPlay.length > 0) {
+      <section class="flex flex-col gap-2">
+        <h2>Registered, did not play</h2>
+        <!-- numEntrants never equals the number of standings. start.gg silently
+             omits these people; showing them is the point. -->
+        <p>{{ r.didNotPlay.length }} of {{ r.weekly.entrantCount }} signed up and did not play.</p>
+        <ul class="flex flex-wrap gap-3">
+          @for (player of r.didNotPlay; track player.id) {
+            <li><app-player-name [player]="player" /></li>
+          }
+        </ul>
+      </section>
+    }
+  </article>
+} @else {
+  <app-empty-state title="No such weekly" message="That weekly does not exist.">
+    <a routerLink="/weeklies">See all weeklies</a>
+  </app-empty-state>
+}

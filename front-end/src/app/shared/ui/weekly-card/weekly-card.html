@@ -1,0 +1,26 @@
+<article class="card flex flex-col gap-2 p-4">
+  <h3>
+    <a [routerLink]="['/weeklies', weekly().id]">{{ weekly().name }}</a>
+  </h3>
+  <!-- The event's own date. A tournament's startAt is meaningless here: both
+       season-2 tournaments claim the same one. -->
+  <time [attr.datetime]="weekly().startAt">{{ weekly().startAt | date: 'EEE d MMM y' }}</time>
+  <p>{{ weekly().venue.label }}, {{ weekly().venue.city }}</p>
+  <p>
+    {{ weekly().entrantCount }} registered · {{ weekly().playedCount }} played
+    @if (weekly().entrantCount > weekly().playedCount) {
+      <span>({{ weekly().entrantCount - weekly().playedCount }} no-shows)</span>
+    }
+  </p>
+  <p>
+    @if (weekly().scoring) {
+      <span>Counts towards the season</span>
+      @if (weekly().weekNumber; as week) {
+        <span> · week {{ week }}</span>
+      }
+    } @else {
+      <span>Non-scoring</span>
+    }
+    · {{ weekly().status }}
+  </p>
+</article>

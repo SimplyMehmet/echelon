@@ -1,3 +1,316 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+ * Tokens.
+ *
+ * Everything visual is defined here. Component classes below set colour,
+ * border, radius and type only — never spacing or layout, which stays with the
+ * utility classes in the templates. That keeps restyling a change to this file
+ * rather than a sweep through the markup.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface-sunken: #f2f1ed;
+  --border: #e3e0da;
+  --border-strong: #cfcbc2;
+  --text: #1b1a18;
+  --text-muted: #6d6a63;
+  --accent: #b23a24;
+  --accent-hover: #94301d;
+  --accent-contrast: #ffffff;
+  --accent-soft: #fbeeea;
+  --focus: #1d4ed8;
+  --radius: 8px;
+  --shadow: 0 1px 2px rgb(27 26 24 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161618;
+    --surface: #1e1e21;
+    --surface-sunken: #26262a;
+    --border: #32323a;
+    --border-strong: #45454f;
+    --text: #ececee;
+    --text-muted: #9b9ba4;
+    --accent: #ff7a5c;
+    --accent-hover: #ff9179;
+    --accent-contrast: #1b1a18;
+    --accent-soft: #2c211e;
+    --focus: #7aa2ff;
+    --shadow: 0 1px 2px rgb(0 0 0 / 40%);
+  }
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+h2 {
+  font-size: 1.2rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, currentcolor 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: currentcolor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+time,
+dd {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Tables -------------------------------------------------------------- */
+
+table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding-bottom: 0.6rem;
+}
+
+th {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+tbody tr:hover {
+  background: var(--surface-sunken);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Sortable column headers are buttons; strip the browser chrome so they still
+   read as headers. */
+th button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  text-transform: inherit;
+}
+
+th button:hover {
+  color: var(--text);
+}
+
+th[aria-sort='descending'] {
+  color: var(--accent);
+}
+
+th[aria-sort='descending'] button::after {
+  content: ' ↓';
+}
+
+/* --- Components ---------------------------------------------------------- */
+
+/* Any raised surface: cards, callouts, empty and error states, stat tiles. */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.surface {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.btn {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: background-color 120ms ease;
+}
+
+.btn:hover {
+  background: var(--surface-sunken);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* Pill links: season switchers and secondary navigation. */
+.chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.chip[aria-current] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+}
+
+.field {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+.nav-link.is-active {
+  color: var(--accent);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.banner {
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 2.2rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-sunken), var(--surface), var(--surface-sunken));
+  background-size: 200% 100%;
+  border-radius: var(--radius);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}

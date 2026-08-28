@@ -1,0 +1,47 @@
+@if (team.isLoading()) {
+  <app-loading-state [rows]="6" label="Loading team" />
+} @else if (team.error()) {
+  <app-error-state [error]="team.error()" (retry)="team.reload()" />
+} @else if (team.value(); as detail) {
+  <article class="flex flex-col gap-6">
+    <header class="flex flex-col gap-2">
+      <h1>{{ detail.team.name }}</h1>
+      <p class="muted">Captain: {{ detail.captain.gamertag }}</p>
+    </header>
+
+    <section class="flex flex-col gap-2">
+      <h2>Roster</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <caption class="text-left">
+            Membership windows, so points stay with the team the player was on at the time.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Player</th>
+              <th scope="col">Joined</th>
+              <th scope="col">Left</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (member of detail.roster; track member.player.id + member.joinedAt) {
+              <tr>
+                <td><app-player-name [player]="member.player" /></td>
+                <td>{{ member.joinedAt | date: 'd MMM y' }}</td>
+                <td>{{ member.current ? 'Current' : (member.leftAt | date: 'd MMM y') }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3">Nobody on this roster yet.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </article>
+} @else {
+  <app-empty-state title="No such team" message="That team does not exist.">
+    <a routerLink="/teams">See all teams</a>
+  </app-empty-state>
+}

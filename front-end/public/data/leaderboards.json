@@ -1,0 +1,1602 @@
+{
+  "preseason": [
+    {
+      "entered": 3,
+      "gamertag": "ILIAS",
+      "played": 3,
+      "player_id": "p_85206cdd09d3",
+      "points": 68,
+      "rank": 1
+    },
+    {
+      "entered": 3,
+      "gamertag": "BUFFALO SOLDIER",
+      "played": 3,
+      "player_id": "p_544349ebd7e6",
+      "points": 61,
+      "rank": 2
+    },
+    {
+      "entered": 3,
+      "gamertag": "Rahil",
+      "played": 3,
+      "player_id": "p_505c7e8656cc",
+      "points": 32,
+      "rank": 3
+    },
+    {
+      "entered": 3,
+      "gamertag": "Geno",
+      "played": 3,
+      "player_id": "p_605fea925cd2",
+      "points": 30,
+      "rank": 4
+    },
+    {
+      "entered": 2,
+      "gamertag": "Metabyte",
+      "played": 2,
+      "player_id": "p_16cd44f2e716",
+      "points": 27,
+      "rank": 5
+    },
+    {
+      "entered": 2,
+      "gamertag": "Mo",
+      "played": 2,
+      "player_id": "p_cd4b21bb1711",
+      "points": 25,
+      "rank": 6
+    },
+    {
+      "entered": 3,
+      "gamertag": "BigFelixio",
+      "played": 3,
+      "player_id": "p_dbf52f7bcaa2",
+      "points": 18,
+      "rank": 7
+    },
+    {
+      "entered": 3,
+      "gamertag": "Probaze",
+      "played": 2,
+      "player_id": "p_7910fb5eb129",
+      "points": 17,
+      "rank": 8
+    },
+    {
+      "entered": 1,
+      "gamertag": "Tyronz",
+      "played": 1,
+      "player_id": "p_9dae64891a5c",
+      "points": 12,
+      "rank": 9
+    },
+    {
+      "entered": 3,
+      "gamertag": "DivineKai666",
+      "played": 3,
+      "player_id": "p_f9e55c2713df",
+      "points": 10,
+      "rank": 10
+    },
+    {
+      "entered": 3,
+      "gamertag": "Marvious",
+      "played": 3,
+      "player_id": "p_f7e3ce007edc",
+      "points": 8,
+      "rank": 11
+    },
+    {
+      "entered": 2,
+      "gamertag": "Mirrorr77",
+      "played": 2,
+      "player_id": "p_1c9ba81c5366",
+      "points": 8,
+      "rank": 11
+    },
+    {
+      "entered": 3,
+      "gamertag": "Sunkamisama",
+      "played": 3,
+      "player_id": "p_dc3dc4667b9e",
+      "points": 4,
+      "rank": 13
+    },
+    {
+      "entered": 3,
+      "gamertag": "Killord11",
+      "played": 3,
+      "player_id": "p_ef00e0cad8c5",
+      "points": 2,
+      "rank": 14
+    },
+    {
+      "entered": 3,
+      "gamertag": "Shanq",
+      "played": 3,
+      "player_id": "p_cd38613b45f4",
+      "points": 2,
+      "rank": 14
+    },
+    {
+      "entered": 1,
+      "gamertag": "JWatramang",
+      "played": 1,
+      "player_id": "p_726826a2a26e",
+      "points": 2,
+      "rank": 14
+    },
+    {
+      "entered": 2,
+      "gamertag": "Jerryclaws",
+      "played": 1,
+      "player_id": "p_fa6380baf366",
+      "points": 2,
+      "rank": 14
+    },
+    {
+      "entered": 1,
+      "gamertag": "Leveling",
+      "played": 1,
+      "player_id": "p_895a5440a5e1",
+      "points": 2,
+      "rank": 14
+    },
+    {
+      "entered": 3,
+      "gamertag": "TheAlmightyDuck",
+      "played": 2,
+      "player_id": "p_240e49e316e1",
+      "points": 0,
+      "rank": 19
+    },
+    {
+      "entered": 3,
+      "gamertag": "Sakujo",
+      "played": 1,
+      "player_id": "p_a91817ae29fc",
+      "points": 0,
+      "rank": 19
+    },
+    {
+      "entered": 2,
+      "gamertag": "Watramang",
+      "played": 1,
+      "player_id": "p_cd256c0641f8",
+      "points": 0,
+      "rank": 19
+    },
+    {
+      "entered": 1,
+      "gamertag": "MontellPresent",
+      "played": 0,
+      "player_id": "p_fa02d13b990a",
+      "points": 0,
+      "rank": 19
+    }
+  ],
+  "season-1": [
+    {
+      "entered": 8,
+      "gamertag": "ILIAS",
+      "played": 7,
+      "player_id": "p_85206cdd09d3",
+      "points": 168,
+      "rank": 1
+    },
+    {
+      "entered": 8,
+      "gamertag": "BUFFALO SOLDIER",
+      "played": 8,
+      "player_id": "p_544349ebd7e6",
+      "points": 150,
+      "rank": 2
+    },
+    {
+      "entered": 8,
+      "gamertag": "Tsuno",
+      "played": 7,
+      "player_id": "p_54eed9451cf7",
+      "points": 80,
+      "rank": 3
+    },
+    {
+      "entered": 8,
+      "gamertag": "Metabyte",
+      "played": 8,
+      "player_id": "p_16cd44f2e716",
+      "points": 79,
+      "rank": 4
+    },
+    {
+      "entered": 4,
+      "gamertag": "Rahil",
+      "played": 4,
+      "player_id": "p_505c7e8656cc",
+      "points": 49,
+      "rank": 5
+    },
+    {
+      "entered": 4,
+      "gamertag": "Sin",
+      "played": 3,
+      "player_id": "p_c190ac577a4e",
+      "points": 48,
+      "rank": 6
+    },
+    {
+      "entered": 4,
+      "gamertag": "KarmaKens",
+      "played": 4,
+      "player_id": "p_d8ef19783134",
+      "points": 47,
+      "rank": 7
+    },
+    {
+      "entered": 8,
+      "gamertag": "BigFelixio",
+      "played": 8,
+      "player_id": "p_dbf52f7bcaa2",
+      "points": 40,
+      "rank": 8
+    },
+    {
+      "entered": 6,
+      "gamertag": "OATS",
+      "played": 5,
+      "player_id": "p_f242246e928e",
+      "points": 38,
+      "rank": 9
+    },
+    {
+      "entered": 8,
+      "gamertag": "Tyronz",
+      "played": 8,
+      "player_id": "p_9dae64891a5c",
+      "points": 32,
+      "rank": 10
+    },
+    {
+      "entered": 7,
+      "gamertag": "Probaze",
+      "played": 7,
+      "player_id": "p_7910fb5eb129",
+      "points": 31,
+      "rank": 11
+    },
+    {
+      "entered": 4,
+      "gamertag": "Rey",
+      "played": 4,
+      "player_id": "p_94ebf3cf3517",
+      "points": 24,
+      "rank": 12
+    },
+    {
+      "entered": 3,
+      "gamertag": "El Armooty",
+      "played": 3,
+      "player_id": "p_6fa6277a5763",
+      "points": 14,
+      "rank": 13
+    },
+    {
+      "entered": 3,
+      "gamertag": "Lazy45",
+      "played": 2,
+      "player_id": "p_83f2aabc9753",
+      "points": 14,
+      "rank": 13
+    },
+    {
+      "entered": 5,
+      "gamertag": "Mo",
+      "played": 2,
+      "player_id": "p_cd4b21bb1711",
+      "points": 14,
+      "rank": 13
+    },
+    {
+      "entered": 8,
+      "gamertag": "Geno",
+      "played": 8,
+      "player_id": "p_605fea925cd2",
+      "points": 12,
+      "rank": 16
+    },
+    {
+      "entered": 1,
+      "gamertag": "Jason",
+      "played": 1,
+      "player_id": "p_c573b4d2168f",
+      "points": 10,
+      "rank": 17
+    },
+    {
+      "entered": 8,
+      "gamertag": "DivineKai666",
+      "played": 8,
+      "player_id": "p_f9e55c2713df",
+      "points": 6,
+      "rank": 18
+    },
+    {
+      "entered": 1,
+      "gamertag": "Brewey",
+      "played": 1,
+      "player_id": "p_9311d900cd83",
+      "points": 6,
+      "rank": 18
+    },
+    {
+      "entered": 7,
+      "gamertag": "Ta_rekt",
+      "played": 6,
+      "player_id": "p_80c81376d148",
+      "points": 4,
+      "rank": 20
+    },
+    {
+      "entered": 3,
+      "gamertag": "Babymaker",
+      "played": 3,
+      "player_id": "p_62b587e7c352",
+      "points": 4,
+      "rank": 20
+    },
+    {
+      "entered": 7,
+      "gamertag": "J U L",
+      "played": 7,
+      "player_id": "p_86b5b9ddd2c5",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 3,
+      "gamertag": "A-D-EiGHT",
+      "played": 3,
+      "player_id": "p_722109d20015",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 4,
+      "gamertag": "TGA",
+      "played": 3,
+      "player_id": "p_fb4bfd12a421",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 2,
+      "gamertag": "SwavyTheFox",
+      "played": 2,
+      "player_id": "p_20f63d7dcfe4",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 2,
+      "gamertag": "Whytebar",
+      "played": 2,
+      "player_id": "p_a46ab57e2d63",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 7,
+      "gamertag": "Sunkamisama",
+      "played": 6,
+      "player_id": "p_dc3dc4667b9e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 6,
+      "gamertag": "Henbro",
+      "played": 5,
+      "player_id": "p_1180916e3c42",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "AT",
+      "played": 4,
+      "player_id": "p_29c464ab3f88",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Aphyda",
+      "played": 4,
+      "player_id": "p_c0f84b19f74d",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 5,
+      "gamertag": "Killord11",
+      "played": 4,
+      "player_id": "p_ef00e0cad8c5",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Marvious",
+      "played": 4,
+      "player_id": "p_f7e3ce007edc",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 5,
+      "gamertag": "JWatramang",
+      "played": 3,
+      "player_id": "p_726826a2a26e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Mirrorr77",
+      "played": 3,
+      "player_id": "p_1c9ba81c5366",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 3,
+      "gamertag": "Shanq",
+      "played": 3,
+      "player_id": "p_cd38613b45f4",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "ASIX",
+      "played": 2,
+      "player_id": "p_79f325a0102e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Barkonkel",
+      "played": 2,
+      "player_id": "p_59e08398859a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Violinisart",
+      "played": 2,
+      "player_id": "p_d13fbf6f3ad0",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Alex",
+      "played": 1,
+      "player_id": "p_0c169cbfbd28",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Annunaki",
+      "played": 1,
+      "player_id": "p_7c8ee6e6df77",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Dmv",
+      "played": 1,
+      "player_id": "p_812fc4a0825b",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Dsv",
+      "played": 1,
+      "player_id": "p_29e0062716bf",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "F2",
+      "played": 1,
+      "player_id": "p_3e53bdbfd8b3",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Flawlessbawz",
+      "played": 1,
+      "player_id": "p_920c3d73757a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Guts",
+      "played": 1,
+      "player_id": "p_b6dc2228de7b",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Jo Jostar",
+      "played": 1,
+      "player_id": "p_6d0b977cf83a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Leveling",
+      "played": 1,
+      "player_id": "p_895a5440a5e1",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "MRctje",
+      "played": 1,
+      "player_id": "p_bd6a4ea9619e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 5,
+      "gamertag": "MontellPresent",
+      "played": 1,
+      "player_id": "p_fa02d13b990a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "RiggedSam",
+      "played": 1,
+      "player_id": "p_0dca1b80d178",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Rishi",
+      "played": 1,
+      "player_id": "p_f78024ee90d6",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Samuraiiij",
+      "played": 1,
+      "player_id": "p_eedea8d0dd45",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 3,
+      "gamertag": "Tnt2521",
+      "played": 1,
+      "player_id": "p_c94a3fa3bbe0",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Zenurix",
+      "played": 1,
+      "player_id": "p_f38f8f5be439",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "babydaddy",
+      "played": 1,
+      "player_id": "p_22e4a589374d",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "raw",
+      "played": 1,
+      "player_id": "p_764109b3e8cb",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Colorall",
+      "played": 0,
+      "player_id": "p_4f209ad476db",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Giraudog2005",
+      "played": 0,
+      "player_id": "p_da50b7312b22",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Hydro",
+      "played": 0,
+      "player_id": "p_6fdf2e07f36e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "IMPERIALISTICO",
+      "played": 0,
+      "player_id": "p_be68a7cdf79d",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 5,
+      "gamertag": "Jejo",
+      "played": 0,
+      "player_id": "p_cf9786c94ea8",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Jerryclaws",
+      "played": 0,
+      "player_id": "p_fa6380baf366",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Jessy",
+      "played": 0,
+      "player_id": "p_a76a9d48f1e5",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "MindOfRez",
+      "played": 0,
+      "player_id": "p_8cea9a63f2d9",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Q-gamer3",
+      "played": 0,
+      "player_id": "p_4dc5018fbf12",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "REByS94",
+      "played": 0,
+      "player_id": "p_ac750ae9879a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "ReliktuS",
+      "played": 0,
+      "player_id": "p_a1734da36636",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Smile_King",
+      "played": 0,
+      "player_id": "p_d5ef93cf3cd0",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Tofu",
+      "played": 0,
+      "player_id": "p_795302c47519",
+      "points": 0,
+      "rank": 27
+    }
+  ],
+  "season-2": [
+    {
+      "entered": 8,
+      "gamertag": "BUFFALO SOLDIER",
+      "played": 8,
+      "player_id": "p_544349ebd7e6",
+      "points": 127,
+      "rank": 1
+    },
+    {
+      "entered": 8,
+      "gamertag": "ILIAS",
+      "played": 5,
+      "player_id": "p_85206cdd09d3",
+      "points": 125,
+      "rank": 2
+    },
+    {
+      "entered": 6,
+      "gamertag": "Sin",
+      "played": 5,
+      "player_id": "p_c190ac577a4e",
+      "points": 104,
+      "rank": 3
+    },
+    {
+      "entered": 6,
+      "gamertag": "Malekith",
+      "played": 6,
+      "player_id": "p_d75b4408d427",
+      "points": 62,
+      "rank": 4
+    },
+    {
+      "entered": 8,
+      "gamertag": "Rahil",
+      "played": 7,
+      "player_id": "p_505c7e8656cc",
+      "points": 60,
+      "rank": 5
+    },
+    {
+      "entered": 5,
+      "gamertag": "OATS",
+      "played": 5,
+      "player_id": "p_f242246e928e",
+      "points": 55,
+      "rank": 6
+    },
+    {
+      "entered": 8,
+      "gamertag": "Kevtexgaming",
+      "played": 8,
+      "player_id": "p_3d8199cf4122",
+      "points": 54,
+      "rank": 7
+    },
+    {
+      "entered": 8,
+      "gamertag": "Tsuno",
+      "played": 6,
+      "player_id": "p_54eed9451cf7",
+      "points": 42,
+      "rank": 8
+    },
+    {
+      "entered": 8,
+      "gamertag": "BigFelixio",
+      "played": 8,
+      "player_id": "p_dbf52f7bcaa2",
+      "points": 36,
+      "rank": 9
+    },
+    {
+      "entered": 8,
+      "gamertag": "Probaze",
+      "played": 6,
+      "player_id": "p_7910fb5eb129",
+      "points": 36,
+      "rank": 9
+    },
+    {
+      "entered": 8,
+      "gamertag": "Metabyte",
+      "played": 8,
+      "player_id": "p_16cd44f2e716",
+      "points": 33,
+      "rank": 11
+    },
+    {
+      "entered": 8,
+      "gamertag": "Tyronz",
+      "played": 8,
+      "player_id": "p_9dae64891a5c",
+      "points": 32,
+      "rank": 12
+    },
+    {
+      "entered": 5,
+      "gamertag": "faccboi",
+      "played": 5,
+      "player_id": "p_64de9640de5b",
+      "points": 26,
+      "rank": 13
+    },
+    {
+      "entered": 3,
+      "gamertag": "KarmaKens",
+      "played": 3,
+      "player_id": "p_d8ef19783134",
+      "points": 22,
+      "rank": 14
+    },
+    {
+      "entered": 6,
+      "gamertag": "YonderPonderer",
+      "played": 6,
+      "player_id": "p_9fb563d10710",
+      "points": 18,
+      "rank": 15
+    },
+    {
+      "entered": 3,
+      "gamertag": "Scorpion",
+      "played": 2,
+      "player_id": "p_cc0bbcf848ba",
+      "points": 10,
+      "rank": 16
+    },
+    {
+      "entered": 1,
+      "gamertag": "SwavyTheFox",
+      "played": 1,
+      "player_id": "p_20f63d7dcfe4",
+      "points": 10,
+      "rank": 16
+    },
+    {
+      "entered": 5,
+      "gamertag": "Brewey",
+      "played": 1,
+      "player_id": "p_9311d900cd83",
+      "points": 6,
+      "rank": 18
+    },
+    {
+      "entered": 8,
+      "gamertag": "Cosmix",
+      "played": 8,
+      "player_id": "p_394653395f8e",
+      "points": 4,
+      "rank": 19
+    },
+    {
+      "entered": 8,
+      "gamertag": "DivineKai666",
+      "played": 7,
+      "player_id": "p_f9e55c2713df",
+      "points": 4,
+      "rank": 19
+    },
+    {
+      "entered": 4,
+      "gamertag": "Mo",
+      "played": 3,
+      "player_id": "p_cd4b21bb1711",
+      "points": 4,
+      "rank": 19
+    },
+    {
+      "entered": 8,
+      "gamertag": "Geno",
+      "played": 8,
+      "player_id": "p_605fea925cd2",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 7,
+      "gamertag": "Sakujo",
+      "played": 6,
+      "player_id": "p_a91817ae29fc",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 4,
+      "gamertag": "Sosa",
+      "played": 4,
+      "player_id": "p_9e89b21ddfd1",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 3,
+      "gamertag": "Butthash",
+      "played": 2,
+      "player_id": "p_937265749ba5",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 2,
+      "gamertag": "ArtofAce",
+      "played": 1,
+      "player_id": "p_76545e398ac7",
+      "points": 2,
+      "rank": 22
+    },
+    {
+      "entered": 8,
+      "gamertag": "Aphyda",
+      "played": 8,
+      "player_id": "p_c0f84b19f74d",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 8,
+      "gamertag": "Jerryclaws",
+      "played": 8,
+      "player_id": "p_fa6380baf366",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 8,
+      "gamertag": "J U L",
+      "played": 7,
+      "player_id": "p_86b5b9ddd2c5",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 7,
+      "gamertag": "Shanq",
+      "played": 7,
+      "player_id": "p_cd38613b45f4",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 8,
+      "gamertag": "Whytebar",
+      "played": 7,
+      "player_id": "p_a46ab57e2d63",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 8,
+      "gamertag": "Henbro",
+      "played": 5,
+      "player_id": "p_1180916e3c42",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 7,
+      "gamertag": "Mirrorr77",
+      "played": 5,
+      "player_id": "p_1c9ba81c5366",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 6,
+      "gamertag": "EL PUMA LOCO",
+      "played": 4,
+      "player_id": "p_992068661edb",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Ta_rekt",
+      "played": 4,
+      "player_id": "p_80c81376d148",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 5,
+      "gamertag": "AT",
+      "played": 3,
+      "player_id": "p_29c464ab3f88",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Ruwhel007",
+      "played": 2,
+      "player_id": "p_d93f70599cc4",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 3,
+      "gamertag": "Shadow!*",
+      "played": 2,
+      "player_id": "p_602a6d71d510",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "4DH8",
+      "played": 1,
+      "player_id": "p_c7f1d10e1a15",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "AT",
+      "played": 1,
+      "player_id": "p_2719abe0aaad",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Babymaker",
+      "played": 1,
+      "player_id": "p_62b587e7c352",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Barkonkel",
+      "played": 1,
+      "player_id": "p_59e08398859a",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Dimmamba",
+      "played": 1,
+      "player_id": "p_d77796a06aef",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Etimaestro",
+      "played": 1,
+      "player_id": "p_447f54b723d3",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "Kaiyiu",
+      "played": 1,
+      "player_id": "p_5604b76235a2",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Marvious",
+      "played": 1,
+      "player_id": "p_f7e3ce007edc",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Masakado",
+      "played": 1,
+      "player_id": "p_a7ca7abadc05",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "MomGoSky",
+      "played": 1,
+      "player_id": "p_0f7fb1b6aa46",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "RiggedSam",
+      "played": 1,
+      "player_id": "p_0dca1b80d178",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Rishi",
+      "played": 1,
+      "player_id": "p_f78024ee90d6",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Ruwhel",
+      "played": 1,
+      "player_id": "p_671f1d3ad1a2",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 4,
+      "gamertag": "Sunkamisama",
+      "played": 1,
+      "player_id": "p_dc3dc4667b9e",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "TGA",
+      "played": 1,
+      "player_id": "p_fb4bfd12a421",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "TheAlmightyDuck",
+      "played": 1,
+      "player_id": "p_240e49e316e1",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Yuukoo",
+      "played": 1,
+      "player_id": "p_2a1c51e15cce",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "Zenurix",
+      "played": 1,
+      "player_id": "p_f38f8f5be439",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 1,
+      "gamertag": "shumaiz09",
+      "played": 1,
+      "player_id": "p_370cc252feed",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 3,
+      "gamertag": "Karmakai",
+      "played": 0,
+      "player_id": "p_2f7a04aeb113",
+      "points": 0,
+      "rank": 27
+    },
+    {
+      "entered": 2,
+      "gamertag": "YubiiDoinTooMuch",
+      "played": 0,
+      "player_id": "p_7090aa1218ca",
+      "points": 0,
+      "rank": 27
+    }
+  ],
+  "season-3": [
+    {
+      "entered": 2,
+      "gamertag": "Sin",
+      "played": 2,
+      "player_id": "p_c190ac577a4e",
+      "points": 43,
+      "rank": 1
+    },
+    {
+      "entered": 2,
+      "gamertag": "Malekith",
+      "played": 2,
+      "player_id": "p_d75b4408d427",
+      "points": 25,
+      "rank": 2
+    },
+    {
+      "entered": 1,
+      "gamertag": "ILIAS",
+      "played": 1,
+      "player_id": "p_85206cdd09d3",
+      "points": 25,
+      "rank": 2
+    },
+    {
+      "entered": 2,
+      "gamertag": "faccboi",
+      "played": 2,
+      "player_id": "p_64de9640de5b",
+      "points": 20,
+      "rank": 4
+    },
+    {
+      "entered": 2,
+      "gamertag": "OATS",
+      "played": 2,
+      "player_id": "p_f242246e928e",
+      "points": 15,
+      "rank": 5
+    },
+    {
+      "entered": 2,
+      "gamertag": "Guvgang",
+      "played": 2,
+      "player_id": "p_65c5efcc7756",
+      "points": 14,
+      "rank": 6
+    },
+    {
+      "entered": 2,
+      "gamertag": "BUFFALO SOLDIER",
+      "played": 1,
+      "player_id": "p_544349ebd7e6",
+      "points": 12,
+      "rank": 7
+    },
+    {
+      "entered": 2,
+      "gamertag": "Rahil",
+      "played": 2,
+      "player_id": "p_505c7e8656cc",
+      "points": 10,
+      "rank": 8
+    },
+    {
+      "entered": 2,
+      "gamertag": "Mo",
+      "played": 1,
+      "player_id": "p_cd4b21bb1711",
+      "points": 10,
+      "rank": 8
+    },
+    {
+      "entered": 1,
+      "gamertag": "Tsuno",
+      "played": 1,
+      "player_id": "p_54eed9451cf7",
+      "points": 10,
+      "rank": 8
+    },
+    {
+      "entered": 2,
+      "gamertag": "Kevtexgaming",
+      "played": 2,
+      "player_id": "p_3d8199cf4122",
+      "points": 6,
+      "rank": 11
+    },
+    {
+      "entered": 2,
+      "gamertag": "Scorpion",
+      "played": 2,
+      "player_id": "p_cc0bbcf848ba",
+      "points": 6,
+      "rank": 11
+    },
+    {
+      "entered": 2,
+      "gamertag": "Yuukoo",
+      "played": 2,
+      "player_id": "p_2a1c51e15cce",
+      "points": 6,
+      "rank": 11
+    },
+    {
+      "entered": 1,
+      "gamertag": "KarmaKens",
+      "played": 1,
+      "player_id": "p_d8ef19783134",
+      "points": 6,
+      "rank": 11
+    },
+    {
+      "entered": 2,
+      "gamertag": "Darkmgm",
+      "played": 2,
+      "player_id": "p_b8a87cddb342",
+      "points": 4,
+      "rank": 15
+    },
+    {
+      "entered": 2,
+      "gamertag": "Geno",
+      "played": 2,
+      "player_id": "p_605fea925cd2",
+      "points": 2,
+      "rank": 16
+    },
+    {
+      "entered": 2,
+      "gamertag": "Kneel_For_Yoshi",
+      "played": 2,
+      "player_id": "p_f3bca1bb698f",
+      "points": 2,
+      "rank": 16
+    },
+    {
+      "entered": 2,
+      "gamertag": "Tyronz",
+      "played": 2,
+      "player_id": "p_9dae64891a5c",
+      "points": 2,
+      "rank": 16
+    },
+    {
+      "entered": 1,
+      "gamertag": "Brahim",
+      "played": 1,
+      "player_id": "p_40b4c83397ca",
+      "points": 2,
+      "rank": 16
+    },
+    {
+      "entered": 2,
+      "gamertag": "APHROD1S1A",
+      "played": 2,
+      "player_id": "p_f1ff481a42bd",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Andoza",
+      "played": 2,
+      "player_id": "p_8dce8a153d36",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "BigFelixio",
+      "played": 2,
+      "player_id": "p_dbf52f7bcaa2",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Black-Jin",
+      "played": 2,
+      "player_id": "p_487208218502",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "CLINT EASTWOOD",
+      "played": 2,
+      "player_id": "p_a7c36920aff9",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "DivineKai666",
+      "played": 2,
+      "player_id": "p_f9e55c2713df",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Henbro",
+      "played": 2,
+      "player_id": "p_1180916e3c42",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "J U L",
+      "played": 2,
+      "player_id": "p_86b5b9ddd2c5",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Metabyte",
+      "played": 2,
+      "player_id": "p_16cd44f2e716",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Mirrorr77",
+      "played": 2,
+      "player_id": "p_1c9ba81c5366",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Probaze",
+      "played": 2,
+      "player_id": "p_7910fb5eb129",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Sakujo",
+      "played": 2,
+      "player_id": "p_a91817ae29fc",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Shanq",
+      "played": 2,
+      "player_id": "p_cd38613b45f4",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "SwavyTheFox",
+      "played": 2,
+      "player_id": "p_20f63d7dcfe4",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Ta_rekt",
+      "played": 2,
+      "player_id": "p_80c81376d148",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "AT",
+      "played": 1,
+      "player_id": "p_2719abe0aaad",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Aphyda",
+      "played": 1,
+      "player_id": "p_c0f84b19f74d",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Barkonkel",
+      "played": 1,
+      "player_id": "p_59e08398859a",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "FinnEatsCandy",
+      "played": 1,
+      "player_id": "p_ab332994c620",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Haags Hopje",
+      "played": 1,
+      "player_id": "p_8d21309f8cb6",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Joost69",
+      "played": 1,
+      "player_id": "p_e7115ea0a58b",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Lil Mayo",
+      "played": 1,
+      "player_id": "p_1db071de748b",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "LordRuud",
+      "played": 1,
+      "player_id": "p_b01ccd25ac05",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Magnu",
+      "played": 1,
+      "player_id": "p_3cecff9325d2",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "MontellPresent",
+      "played": 1,
+      "player_id": "p_fa02d13b990a",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "ViezeShiitan",
+      "played": 1,
+      "player_id": "p_71f88faf817d",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Wenk67",
+      "played": 1,
+      "player_id": "p_b80a2880c48f",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "Whytebar",
+      "played": 1,
+      "player_id": "p_a46ab57e2d63",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 2,
+      "gamertag": "Jerryclaws",
+      "played": 0,
+      "player_id": "p_fa6380baf366",
+      "points": 0,
+      "rank": 20
+    },
+    {
+      "entered": 1,
+      "gamertag": "QGamer",
+      "played": 0,
+      "player_id": "p_034256cfbdeb",
+      "points": 0,
+      "rank": 20
+    }
+  ]
+}

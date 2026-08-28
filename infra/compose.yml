@@ -36,6 +36,8 @@ services:
       context: ../front-end
     ports:
       - 3000:80
+    depends_on:
+      - back-end
 
 volumes:
   sqldb:

@@ -1,0 +1,128 @@
+<section class="flex flex-col gap-6">
+  <header class="flex flex-col gap-4">
+    <h1>Leaderboard</h1>
+    @if (seasons.value(); as list) {
+      <app-season-switcher [seasons]="list" [activeSeasonId]="activeSeasonId()" />
+    }
+    <div class="flex flex-col gap-2">
+      <label for="player-filter">Find a player</label>
+      <input
+        id="player-filter"
+        [value]="filter()"
+        (input)="onFilter($event)"
+        type="search"
+        class="field max-w-sm p-2"
+        placeholder="Gamertag"
+      />
+    </div>
+  </header>
+
+  @if (board.isLoading()) {
+    <app-loading-state [rows]="12" label="Loading the leaderboard" />
+  } @else if (board.error()) {
+    <app-error-state [error]="board.error()" (retry)="board.reload()" />
+  } @else if (board.value(); as table) {
+    <p>
+      {{ table.totalPlayers }} players over {{ table.weekliesCounted }} weeklies.
+      <!-- The whole reason this app exists: start.gg's league table lists only
+           players who scored, so everyone below is simply absent there. -->
+      {{ zeroPointCount() }} of them have not scored yet and are still ranked.
+    </p>
+
+    @if (mostAttended(); as loyal) {
+      <aside class="card flex flex-col gap-1 p-4">
+        <h2>Most weeklies played</h2>
+        <p>
+          <app-player-name [player]="loyal.player" /> — {{ loyal.played }} played,
+          {{ loyal.points }} points, ranked {{ loyal.rank }} of {{ table.totalPlayers }}.
+        </p>
+      </aside>
+    }
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <caption class="text-left">
+          Ranked by
+          {{
+            table.metric
+          }}. Ties share a rank ({{
+            table.rankingRule
+          }}).
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Player</th>
+            <th scope="col" [attr.aria-sort]="ariaSort('points')">
+              <button type="button" (click)="sortBy('points')">Points</button>
+            </th>
+            <th scope="col" [attr.aria-sort]="ariaSort('attendance')">
+              <button type="button" (click)="sortBy('attendance')">Played</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of rows(); track row.player.id) {
+            <tr>
+              <td><app-rank-badge [rank]="row.rank" [tied]="row.isTied" /></td>
+              <td><app-player-name [player]="row.player" /></td>
+              <td>{{ row.points }}</td>
+              <td>{{ row.played }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">
+                {{
+                  filter()
+                    ? 'No player matches "' + filter() + '".'
+                    : 'Nobody has entered this season yet.'
+                }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (meta.value(); as m) {
+      <details class="card p-4">
+        <summary>How points are calculated</summary>
+        <div class="flex flex-col gap-3 p-2">
+          <p>{{ m.scoringRule }}</p>
+          <table>
+            <caption class="text-left">
+              Points table (version
+              {{
+                m.pointsTable.version
+              }})
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Placement</th>
+                <th scope="col">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of m.pointsTable.rows; track row.label) {
+                <tr>
+                  <td>{{ row.label }}</td>
+                  <td>{{ row.points }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <!-- The honesty is the feature: this table was reverse-engineered, not published. -->
+          <ul class="flex flex-col gap-1">
+            @for (caveat of m.caveats; track caveat) {
+              <li>{{ caveat }}</li>
+            }
+          </ul>
+        </div>
+      </details>
+    }
+  } @else {
+    <app-empty-state title="No such season" message="That season id does not exist.">
+      <a routerLink="/leaderboard">See the current season</a>
+    </app-empty-state>
+  }
+</section>

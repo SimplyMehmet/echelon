@@ -1,0 +1,30 @@
+[
+  {
+    "id": "t_s3_1",
+    "season_id": "season-3",
+    "name": "Dragon",
+    "founded_at": "2026-08-16T11:00:00Z",
+    "captain_player_id": "p_16cd44f2e716"
+  },
+  {
+    "id": "t_s3_2",
+    "season_id": "season-3",
+    "name": "Tarantula",
+    "founded_at": "2026-08-16T11:00:00Z",
+    "captain_player_id": "p_c190ac577a4e"
+  },
+  {
+    "id": "t_s3_3",
+    "season_id": "season-3",
+    "name": "Mantis",
+    "founded_at": "2026-08-16T11:00:00Z",
+    "captain_player_id": "p_85206cdd09d3"
+  },
+  {
+    "id": "t_s3_4",
+    "season_id": "season-3",
+    "name": "Phoenix",
+    "founded_at": "2026-08-16T11:00:00Z",
+    "captain_player_id": "p_544349ebd7e6"
+  }
+]
