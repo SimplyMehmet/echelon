@@ -23,7 +23,7 @@ export const routes: Routes = [
   // Eager, and no title: it is the landing route, so lazy-loading it would only
   // add a chunk request to the most common first paint, and AppTitleStrategy
   // renders a title-less route as plain "Edgelon".
-  { path: '', component: Home },
+  { path: '', component: Home, pathMatch: 'full' },
   { path: 'leaderboard', canActivate: [currentSeasonRedirectGuard], children: [] },
   {
     path: 'leaderboard/:seasonId',

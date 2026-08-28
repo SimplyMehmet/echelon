@@ -1,4 +1,5 @@
 import { SeasonId, WeeklyId } from './ids';
+import { byStartAtAscending } from './ranking';
 
 /**
  * A weekly is a start.gg *event*, not a tournament — `startAt` here is the real
@@ -50,3 +51,10 @@ export interface Venue {
  */
 export const isUpcoming = (weekly: Weekly, now: string): boolean =>
   weekly.status !== 'completed' && weekly.startAt > now;
+
+/**
+ * The upcoming weeklies, soonest first — the opposite order to listWeeklies(),
+ * which is newest first because it is a history rather than a schedule.
+ */
+export const upcomingWeeklies = (weeklies: readonly Weekly[], now: string): Weekly[] =>
+  weeklies.filter((weekly) => isUpcoming(weekly, now)).sort(byStartAtAscending);

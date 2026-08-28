@@ -6,16 +6,25 @@
   } @else if (weeklies.error()) {
     <app-error-state [error]="weeklies.error()" (retry)="weeklies.reload()" />
   } @else {
-    @if (open().length > 0) {
-      <section class="flex flex-col gap-3">
-        <h2>Open</h2>
+    <!-- Always rendered, even when empty: a returning player who knows Levels
+         runs weekly reads a missing section as a broken page. "Upcoming", not
+         "Open" — open is start.gg's word for registration being open, which is
+         a different claim from not having happened yet. -->
+    <section class="flex flex-col gap-3">
+      <h2>Upcoming</h2>
+      @if (upcoming().length > 0) {
         <div class="grid gap-3 md:grid-cols-2">
-          @for (weekly of open(); track weekly.id) {
+          @for (weekly of upcoming(); track weekly.id) {
             <app-weekly-card [weekly]="weekly" />
           }
         </div>
-      </section>
-    }
+      } @else {
+        <app-empty-state
+          title="No weekly on the calendar yet"
+          message="Levels announces each weekly on start.gg a few days ahead."
+        />
+      }
+    </section>
 
     <section class="flex flex-col gap-3">
       <h2>Past</h2>

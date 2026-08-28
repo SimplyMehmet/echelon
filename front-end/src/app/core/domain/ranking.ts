@@ -31,3 +31,7 @@ export function rankWithTies<T>(items: readonly T[], scoreOf: (item: T) => numbe
 /** Newest first. Weeklies interleave across seasons, so never order by week number. */
 export const byStartAtDescending = <T extends { startAt: string }>(a: T, b: T): number =>
   b.startAt.localeCompare(a.startAt);
+
+/** Soonest first. A schedule reads forwards; a history reads backwards. */
+export const byStartAtAscending = <T extends { startAt: string }>(a: T, b: T): number =>
+  a.startAt.localeCompare(b.startAt);

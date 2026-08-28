@@ -29,7 +29,7 @@ import {
   WeeklyStanding,
   byStartAtDescending,
   isMemberAt,
-  isUpcoming,
+  upcomingWeeklies,
   rankWithTies,
 } from '@core/domain';
 import { NOW } from './clock';
@@ -177,7 +177,7 @@ export class MockEchelonData extends EchelonData {
       // so nothing is arbitrarily excluded here.
       topPlayers: (board?.rows ?? []).slice(0, 3),
       leadingTeam: teams.rows.at(0) ?? null,
-      upcoming: weeklies.filter((weekly) => isUpcoming(weekly, now)).reverse(),
+      upcoming: upcomingWeeklies(weeklies, now),
     };
   }
 
