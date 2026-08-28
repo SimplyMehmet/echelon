@@ -61,12 +61,6 @@
   },
   {
     "team_id": "t_dnc",
-    "player_id": "p_544349ebd7e6",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_dnc",
     "player_id": "p_505c7e8656cc",
     "joined_at": "2025-12-01T00:00:00Z",
     "left_at": "2026-05-15T00:00:00Z"
@@ -90,12 +84,6 @@
     "left_at": null
   },
   {
-    "team_id": "t_pf",
-    "player_id": "p_85206cdd09d3",
-    "joined_at": "2026-01-01T00:00:00Z",
-    "left_at": null
-  },
-  {
     "team_id": "t_levels",
     "player_id": "p_b01ccd25ac05",
     "joined_at": "2025-12-01T00:00:00Z",
@@ -109,12 +97,6 @@
   },
   {
     "team_id": "t_levels",
-    "player_id": "p_605fea925cd2",
-    "joined_at": "2025-12-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_levels",
     "player_id": "p_d93f70599cc4",
     "joined_at": "2026-08-18T00:00:00Z",
     "left_at": null
@@ -122,12 +104,6 @@
   {
     "team_id": "t_fox",
     "player_id": "p_c190ac577a4e",
-    "joined_at": "2026-04-01T00:00:00Z",
-    "left_at": null
-  },
-  {
-    "team_id": "t_fox",
-    "player_id": "p_cd38613b45f4",
     "joined_at": "2026-04-01T00:00:00Z",
     "left_at": null
   }

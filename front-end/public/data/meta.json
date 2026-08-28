@@ -5,8 +5,8 @@
     "No attendance points: entrants with no standing score 0. Verified for Season 2 only.",
     "Season 1 and Season 3 were not run as start.gg leagues, so their points here are computed, not reconciled against start.gg.",
     "Unlinked walk-in players are keyed on a normalised gamertag, which merges casing variants like f2/F2 but cannot merge genuinely different spellings.",
-    "Teams and team memberships are hand-authored for this build. Levels teams do not exist in start.gg at all, so there was nothing to scrape; they use real player ids and the sponsor prefixes that appear in entrant names.",
-    "Season 3 weeks 3-5 are scheduled placeholders, not scraped events. The snapshot ends on 23 August 2026, so without them the app would have no upcoming weeklies to show."
+    "Season 3 weeks 3-5 are scheduled placeholders, not scraped events. The snapshot ends on 23 August 2026, so without them the app would have no upcoming weeklies to show.",
+    "Team names and tags are real, and rosters are derived from the sponsor prefixes players actually used in their entrant names. Join dates are invented, as is Rahil moving from Do Not Compete to Man Like mid-Season 2 \u2014 that transfer exists to show that points stay with the team a player was on at the time."
   ],
   "counts": {
     "entries": 835,
