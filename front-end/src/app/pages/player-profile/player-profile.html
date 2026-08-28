@@ -4,7 +4,7 @@
   <app-error-state [error]="player.error()" (retry)="player.reload()" />
 } @else if (player.value(); as p) {
   <article class="flex flex-col gap-6">
-    <header class="sketch-box flex flex-col gap-2 p-4">
+    <header class="card flex flex-col gap-2 p-4">
       <h1>{{ p.gamertag }}</h1>
       @if (p.aliases.length > 0) {
         <p>Formerly {{ p.aliases.join(', ') }}</p>

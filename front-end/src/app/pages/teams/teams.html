@@ -9,7 +9,7 @@
       <nav aria-label="Season" class="flex flex-wrap gap-2">
         @for (s of list; track s.id) {
           <a
-            class="sketch-box p-2"
+            class="chip p-2"
             [routerLink]="['/teams']"
             [queryParams]="{ season: s.id }"
             [attr.aria-current]="s.id === activeSeasonId() ? 'page' : null"
@@ -28,7 +28,7 @@
   } @else if ((standings.value()?.rows ?? []).length > 0) {
     <ol class="flex flex-col gap-3">
       @for (row of standings.value()?.rows ?? []; track row.team.id) {
-        <li class="sketch-box flex flex-col gap-2 p-4">
+        <li class="card flex flex-col gap-2 p-4">
           <h2>
             <app-rank-badge [rank]="row.rank" [tied]="row.isTied" />
             <a [routerLink]="['/teams', row.team.id]">{{ row.team.name }}</a>

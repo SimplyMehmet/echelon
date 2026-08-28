@@ -2,10 +2,10 @@
   <header class="flex flex-col gap-2">
     <h1>Organiser</h1>
     <!-- The mock mutates in memory only. -->
-    <p class="sketch-box p-2">Demo data — changes reset on reload.</p>
+    <p class="banner p-2">Demo data — changes reset on reload.</p>
     <nav aria-label="Organiser" class="flex flex-wrap gap-3">
-      <a routerLink="teams" routerLinkActive="sketch-box">Team rosters</a>
-      <a routerLink="players/merge" routerLinkActive="sketch-box">Merge players</a>
+      <a routerLink="teams" class="nav-link" routerLinkActive="is-active">Team rosters</a>
+      <a routerLink="players/merge" class="nav-link" routerLinkActive="is-active">Merge players</a>
     </nav>
   </header>
   <router-outlet />

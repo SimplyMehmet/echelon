@@ -19,7 +19,7 @@
     </p>
 
     @if (mostAttended(); as loyal) {
-      <aside class="sketch-box flex flex-col gap-1 p-4">
+      <aside class="card flex flex-col gap-1 p-4">
         <h2>Most weeklies played</h2>
         <p>
           <app-player-name [player]="loyal.player" /> — {{ loyal.played }} played,
@@ -70,7 +70,7 @@
     </div>
 
     @if (meta.value(); as m) {
-      <details class="sketch-box p-4">
+      <details class="card p-4">
         <summary>How points are calculated</summary>
         <div class="flex flex-col gap-3 p-2">
           <p>{{ m.scoringRule }}</p>

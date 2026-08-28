@@ -12,7 +12,7 @@
   } @else {
     <div class="flex flex-col gap-2">
       <label for="team">Team</label>
-      <select id="team" class="sketch-box max-w-sm p-2" (change)="chooseTeam($event)">
+      <select id="team" class="field max-w-sm p-2" (change)="chooseTeam($event)">
         <option value="">Choose a team</option>
         @for (team of teams.value() ?? []; track team.id) {
           <option [value]="team.id">{{ team.name }} ({{ team.tag }})</option>

@@ -1,3 +1,3 @@
-<span [attr.title]="tied() ? 'Tied for ' + rank() : null"
+<span class="badge" [attr.title]="tied() ? 'Tied for ' + rank() : null"
   >{{ tied() ? 'T-' : '' }}{{ rank() }}</span
 >
