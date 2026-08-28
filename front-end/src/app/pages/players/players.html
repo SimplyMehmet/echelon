@@ -34,7 +34,6 @@
             <th scope="col">Player</th>
             <th scope="col">Account</th>
             <th scope="col">Played</th>
-            <th scope="col">Entered</th>
           </tr>
         </thead>
         <tbody>
@@ -48,11 +47,10 @@
               </td>
               <td>{{ hit.player.origin === 'walk-in' ? 'Walk-in' : 'start.gg' }}</td>
               <td>{{ hit.player.attendance.played }}</td>
-              <td>{{ hit.player.attendance.entered }}</td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="4">No players match "{{ query() }}".</td>
+              <td colspan="3">No players match "{{ query() }}".</td>
             </tr>
           }
         </tbody>

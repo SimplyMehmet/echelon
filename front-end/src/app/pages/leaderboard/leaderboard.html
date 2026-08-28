@@ -48,7 +48,6 @@
             <th scope="col" [attr.aria-sort]="ariaSort('attendance')">
               <button type="button" (click)="sortBy('attendance')">Played</button>
             </th>
-            <th scope="col">Entered</th>
           </tr>
         </thead>
         <tbody>
@@ -58,11 +57,10 @@
               <td><app-player-name [player]="row.player" /></td>
               <td>{{ row.points }}</td>
               <td>{{ row.played }}</td>
-              <td>{{ row.entered }}</td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="5">Nobody has entered this season yet.</td>
+              <td colspan="4">Nobody has entered this season yet.</td>
             </tr>
           }
         </tbody>
