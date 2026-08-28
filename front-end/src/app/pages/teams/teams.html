@@ -45,10 +45,7 @@
               @for (member of row.members; track member.player.id) {
                 <li class="flex flex-wrap gap-2">
                   <app-player-name [player]="member.player" />
-                  <span class="muted">
-                    {{ member.points }} pts over {{ member.weekliesCounted }}
-                    {{ member.weekliesCounted === 1 ? 'weekly' : 'weeklies' }}
-                  </span>
+                  <span class="muted">{{ member.points }} pts</span>
                 </li>
               }
             </ul>
