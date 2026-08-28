@@ -2,29 +2,29 @@
   {
     "id": "t_s3_1",
     "season_id": "season-3",
-    "name": "Team 1",
-    "tag": "T1",
+    "name": "Dragon",
+    "tag": "DRG",
     "founded_at": "2026-08-16T11:00:00Z"
   },
   {
     "id": "t_s3_2",
     "season_id": "season-3",
-    "name": "Team 2",
-    "tag": "T2",
+    "name": "Tarantula",
+    "tag": "TAR",
     "founded_at": "2026-08-16T11:00:00Z"
   },
   {
     "id": "t_s3_3",
     "season_id": "season-3",
-    "name": "Team 3",
-    "tag": "T3",
+    "name": "Mantis",
+    "tag": "MNT",
     "founded_at": "2026-08-16T11:00:00Z"
   },
   {
     "id": "t_s3_4",
     "season_id": "season-3",
-    "name": "Team 4",
-    "tag": "T4",
+    "name": "Phoenix",
+    "tag": "PHX",
     "founded_at": "2026-08-16T11:00:00Z"
   }
 ]
