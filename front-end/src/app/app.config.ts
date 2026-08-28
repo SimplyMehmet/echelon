@@ -6,7 +6,7 @@ import {
   withComponentInputBinding,
   withInMemoryScrolling,
 } from '@angular/router';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withNoHttpTransferCache } from '@angular/platform-browser';
 import { EchelonData } from '@core/data/echelon-data';
 import { MockEchelonData } from '@core/data/mock-echelon-data';
 import { baseUrlInterceptor } from '@core/data/base-url.interceptor';
@@ -23,7 +23,10 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
     ),
-    provideClientHydration(),
+    // No transfer cache: every page is prerendered, so the cache would inline the
+    // entire fixture set into all 212 of them (185 kB each, 43 MB total). The
+    // browser fetches /data/*.json once instead and the CDN caches it.
+    provideClientHydration(withNoHttpTransferCache()),
     provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
     { provide: TitleStrategy, useClass: AppTitleStrategy },
     // The one line that swaps the whole app onto the real API.

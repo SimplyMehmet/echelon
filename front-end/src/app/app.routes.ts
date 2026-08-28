@@ -62,11 +62,6 @@ export const routes: Routes = [
     title: teamTitle,
     loadComponent: () => import('@pages/team-detail/team-detail').then((m) => m.TeamDetail),
   },
-  {
-    path: 'admin',
-    title: 'Organiser',
-    loadChildren: () => import('@pages/admin/admin.routes').then((m) => m.adminRoutes),
-  },
   // Eager: it must render even when a lazy chunk 404s after a deploy.
   { path: '**', title: 'Not found', component: NotFound },
 ];

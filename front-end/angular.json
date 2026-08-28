@@ -29,16 +29,13 @@
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
-            "outputMode": "server",
+            "outputMode": "static",
             "security": {
               "allowedHosts": [
                 "localhost",
                 "127.0.0.1",
                 "ui"
               ]
-            },
-            "ssr": {
-              "entry": "src/server.ts"
             }
           },
           "configurations": {

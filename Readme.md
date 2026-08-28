@@ -17,6 +17,29 @@ make
 The UI proxies `/api/*` through to the backend, so the browser only ever talks
 to one origin.
 
+## Deploying
+
+The front end is a **fully static site**. Every route is prerendered to its own
+`index.html` at build time — 212 of them — so there is no server to run and no
+database to reach. That works because the dataset is a frozen snapshot; when the
+Go backend becomes the source of truth this goes back to SSR.
+
+Point Cloudflare Pages, Netlify or any static host at the GitHub repo with:
+
+| Setting | Value |
+|---|---|
+| Root directory | `front-end` |
+| Build command | `npm run build` |
+| Output directory | `dist/front-end/browser` |
+| Node version | from `front-end/.nvmrc` (24.20.0) |
+
+The Node version matters: the Angular CLI refuses to run below 24.15.0, and most
+hosts still default to something older. `.nvmrc` covers Netlify and Cloudflare
+Pages; elsewhere set `NODE_VERSION=24.20.0`.
+
+`npm run build` also writes `404.html` (a copy of the client shell), which those
+hosts serve for unmatched URLs so the app renders its own not-found page.
+
 ## Front end
 
 ```sh

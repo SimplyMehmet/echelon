@@ -35,13 +35,9 @@ services:
     build:
       context: ../front-end
     ports:
-      - 3000:4000
+      - 3000:80
     depends_on:
       - back-end
-    environment:
-      PORT: 4000
-      # Same-origin /api/... from the browser; the SSR server proxies to Gin.
-      API_URL: http://back-end:8080
 
 volumes:
   sqldb:
