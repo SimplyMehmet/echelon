@@ -1,0 +1,12 @@
+{
+  // Static-assets-only Worker: there is no server-side code, because every route
+  // is prerendered to a file at build time. See Readme.md > Deploying.
+  "name": "echelon",
+  "compatibility_date": "2026-08-28",
+  "assets": {
+    "directory": "./dist/front-end/browser",
+    // Serves our own 404.html with a real 404 status for unmatched URLs, which
+    // boots the app and renders its NotFound page.
+    "not_found_handling": "404-page"
+  }
+}
