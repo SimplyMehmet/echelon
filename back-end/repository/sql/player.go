@@ -13,7 +13,8 @@ func (r *Repository) CreatePlayer(model models.Player) error {
 
 func (r *Repository) GetAllPlayers() ([]models.Player, error) {
 	var model []models.Player
-	db := r.db.Model(&models.Player{}).Limit(10).Find(&model)
+	// do not forget should be paginated
+	db := r.db.Model(&models.Player{}).Limit(1000).Find(&model)
 	if db.Error != nil && !errors.Is(gorm.ErrRecordNotFound, db.Error) {
 		return nil, db.Error
 	}

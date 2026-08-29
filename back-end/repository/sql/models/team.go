@@ -6,12 +6,16 @@ import (
 )
 
 type Team struct {
-	ID   uuid.UUID `gorm:"primaryKey;type:uuid;"`
-	Name string    `gorm:"check:length(name) >= 2"`
+	ID      uuid.UUID `gorm:"primaryKey;type:uuid;"`
+	Name    string    `gorm:"check:length(name) >= 2"`
+	Players []Player
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
 func (t *Team) BeforeCreate(tx *gorm.DB) error {
-	t.ID = uuid.New()
+	if t.ID == uuid.Nil {
+		t.ID = uuid.New()
+	}
+
 	return nil
 }

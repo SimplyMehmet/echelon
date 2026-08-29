@@ -11,13 +11,16 @@ type Player struct {
 	Attended     int64
 	ScoreTotal   int64
 	ScoreCurrent int64
-	TeamID       uuid.UUID `gorm:"type:uuid;primary_key"`
-	StartGGID		 int64
-	Team
+	Team         *Team
+	TeamID       *uuid.UUID
+	StartGGID    int64
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
 func (p *Player) BeforeCreate(tx *gorm.DB) error {
-	p.ID = uuid.New()
+	if p.ID == uuid.Nil {
+		p.ID = uuid.New()
+	}
+
 	return nil
 }
