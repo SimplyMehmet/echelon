@@ -6,8 +6,14 @@ import (
 )
 
 type Player struct {
-	ID   uuid.UUID `gorm:"type:uuid;primary_key"`
-	Name string    `gorm:"check:length(name) >= 2"`
+	ID           uuid.UUID `gorm:"type:uuid;primary_key"`
+	Name         string    `gorm:"check:length(name) >= 2"`
+	Attended     int64
+	ScoreTotal   int64
+	ScoreCurrent int64
+	TeamID       uuid.UUID `gorm:"type:uuid;primary_key"`
+	StartGGID		 int64
+	Team
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
