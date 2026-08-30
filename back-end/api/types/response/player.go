@@ -6,7 +6,7 @@ import (
 )
 
 type GetAllPlayerResponse struct {
-	Players []PlayerResponse
+	Players []PlayerResponse `json:"players"`
 }
 
 type PlayerResponse struct {

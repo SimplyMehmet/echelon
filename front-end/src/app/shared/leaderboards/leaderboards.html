@@ -1,0 +1,27 @@
+<div class="grid grid-flow-col w-full gap-4">
+  <!-- () => 0 prevents sorting -->
+  @for (category of categories() | keyvalue: () => 0; track category.key) {
+    <div class="col-span-2 text-white border border-white/25 leaderboard-wrapper">
+      <div class="border-b border-white/25 uppercase text-[18px] leaderboard-header">
+        <div>{{ category.value.title }}</div>
+        <div class="text-white/50 text-[12px]">
+          {{ category.value.subTitle }}
+        </div>
+      </div>
+      <div
+        class="h-[26px] flex items-center text-white/50 text-[11px] uppercase px-4 border-b border-white/25"
+      >
+        <div>Standing</div>
+        <div class="ml-auto">Amount</div>
+      </div>
+
+      @for (entry of category.value.entries; track entry.displayPoints; let placing = $index) {
+        <div class="flex placing-wrapper border-b text-white border-white/25 p-4">
+          <div class="placing placing-{{ placing }}">{{ placing + 1 }}</div>
+          <div class="mr-auto ml-4">{{ entry.name }}</div>
+          <div>{{ entry.displayPoints }}</div>
+        </div>
+      }
+    </div>
+  }
+</div>

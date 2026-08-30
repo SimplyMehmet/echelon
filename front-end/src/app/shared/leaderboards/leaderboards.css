@@ -1,0 +1,40 @@
+.leaderboard-wrapper {
+  background-color: #111117;
+}
+
+.leaderboard-header {
+  padding: 18px 15px;
+}
+
+.placing {
+  height: 24px;
+  width: 24px;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  color: rgba(240, 240, 240, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placing-0 {
+  border-color: rgba(253, 199, 0, 0.8);
+  color: rgba(253, 199, 0, 0.5);
+}
+
+.placing-1 {
+  border-color: rgba(202, 213, 226, 0.8);
+  color: rgba(202, 213, 226, 0.5);
+}
+
+.placing-2 {
+  border-color: rgba(255, 137, 4, 0.8);
+  color: rgba(255, 137, 4, 0.5);
+}
+
+.placing-wrapper {
+  font-size: 14px;
+  background-color: #111117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

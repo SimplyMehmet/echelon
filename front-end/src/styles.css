@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import 'tailwindcss';
+
+:root {
+  --black: #0a0a0c;
+}
+
+body {
+  background-color: var(--black);
+  margin-top: 77px;
+  font-family: 'Oswald';
+  font-weight: 400;
+}

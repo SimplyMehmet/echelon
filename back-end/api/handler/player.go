@@ -14,7 +14,7 @@ func (h *Handler) CreatePlayer(ctx *gin.Context) {
 		return
 	}
 
-	err := h.services.PlayerService.CreatePlayer(req.Name)
+	err := h.services.PlayerService.CreatePlayer(req)
 	if err != nil {
 		ctx.Status(http.StatusInternalServerError)
 		ctx.Abort()

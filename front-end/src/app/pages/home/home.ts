@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TwitchStream } from '@app/shared/twitch-stream/twitch-stream';
+import { SharedModule } from '@app/shared/shared-module';
 
 @Component({
-  imports: [TwitchStream],
+  imports: [SharedModule],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
