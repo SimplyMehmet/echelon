@@ -32,6 +32,9 @@ services:
 
   ui:
     container_name: ui
+    depends_on:
+      db:
+        condition: service_healthy
     build:
       context: ../front-end
     ports:
