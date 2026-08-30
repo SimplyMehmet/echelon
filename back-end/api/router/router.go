@@ -10,4 +10,5 @@ func SetupRouterV1(r *gin.RouterGroup, services *services.Services) {
 	h := handler.New(services)
 	SetupHealthRoutes(r, h)
 	SetupPlayerRoutes(r, h)
+	SetupTeamRoutes(r, h)
 }
