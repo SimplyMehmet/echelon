@@ -1,0 +1,31 @@
+<div class="min-h-screen">
+  <div class="flex pt-4">
+    <h1 class="text-[24px]">Leaderboards</h1>
+    <div class="ml-auto">
+      <button class="filter-button active">All Time</button>
+      <button class="filter-button">Preseason</button>
+      <button class="filter-button">Season 1</button>
+      <button class="filter-button">Season 2</button>
+      <button class="filter-button">Season 3</button>
+    </div>
+  </div>
+  <div class="table-body-wrapper mt-5">
+    <div class="table-body-header p-4 py-2 flex">
+      <div class="flex">
+        <span class="mr-4">Placement</span>
+        <span>Player</span>
+      </div>
+      <div class="ml-auto">
+        <span class="mr-4">Team</span>
+        <span>Points</span>
+      </div>
+    </div>
+
+    @for (player of players(); track player.id) {
+      <div class="flex">
+        <div>{{ player.name }}</div>
+        <div class="ml-auto">{{ player.scoreCurrent }}</div>
+      </div>
+    }
+  </div>
+</div>

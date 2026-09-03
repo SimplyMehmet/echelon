@@ -1,3 +1,7 @@
 .header-bg {
   background-color: var(--black);
 }
+
+.active-link {
+  border-color: var(--red);
+}

@@ -1,9 +1,33 @@
 <div
   class="w-full flex flex-col fixed top-0 left-0 right-0 h-[77px] border-b header-bg border-white/50"
 >
-  <div class="max-w-7xl w-full m-auto h-[80%]">
+  <div class="max-w-7xl flex w-full m-auto h-[80%]">
     <div class="px-4 h-full">
       <img class="h-full" src="/img/levels-logo.png" />
+    </div>
+
+    <div class="ml-auto my-auto px-4">
+      <a
+        routerLink="/"
+        routerLinkActive="border-b border-b-2 active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="uppercase text-white px-4 py-2 text-[12px]"
+        >Home</a
+      >
+      <a
+        routerLink="/events"
+        routerLinkActive="border-b border-b-2 active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="uppercase text-white px-4 py-2 text-[12px]"
+        >Events</a
+      >
+      <a
+        routerLink="/leaderboards"
+        routerLinkActive="border-b border-b-2 active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="uppercase text-white px-4 py-2 text-[12px]"
+        >Leaderboards</a
+      >
     </div>
   </div>
 </div>

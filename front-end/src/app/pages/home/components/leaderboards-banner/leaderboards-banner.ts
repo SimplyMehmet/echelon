@@ -1,10 +1,8 @@
 import { KeyValuePipe } from '@angular/common';
-import { Component, computed, inject, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TeamResponse } from '@app/api/responses/team';
 import { Player } from '@app/api/services/player';
 import { Team } from '@app/api/services/team';
-import { forkJoin, Observable, Subscription } from 'rxjs';
 
 type categoryEntry = {
   displayPoints: number;
@@ -28,11 +26,11 @@ type mappedCategory = Record<LeaderboardsTypes, categoryDisplay>;
 
 @Component({
   imports: [KeyValuePipe],
-  selector: 'app-leaderboards',
-  styleUrl: './leaderboards.css',
-  templateUrl: './leaderboards.html',
+  selector: 'app-leaderboards-banner',
+  styleUrl: './leaderboards-banner.css',
+  templateUrl: './leaderboards-banner.html',
 })
-export class Leaderboards {
+export class LeaderboardsBanner {
   private teamService = inject(Team);
   private playerService = inject(Player);
   private teamsData = toSignal(this.teamService.getAllTeams(), { initialValue: null });
