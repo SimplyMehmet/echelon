@@ -5,9 +5,11 @@
 
 :root {
   --black: #0a0a0c;
+  --red: #e8002d;
 }
 
 body {
+  color: white;
   background-color: var(--black);
   margin-top: 77px;
   font-family: 'Oswald';

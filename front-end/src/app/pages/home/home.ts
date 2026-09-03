@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '@app/shared/shared-module';
+import { LeaderboardsBanner } from './components/leaderboards-banner/leaderboards-banner';
+import { TwitchStream } from './components/twitch-stream/twitch-stream';
 
 @Component({
-  imports: [SharedModule],
+  imports: [LeaderboardsBanner, TwitchStream],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',

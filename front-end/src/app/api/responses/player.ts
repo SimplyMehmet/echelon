@@ -8,4 +8,5 @@ export type PlayerResponse = {
   attended: number;
   scoreTotal: number;
   scoreCurrent: number;
+  team: string;
 };
