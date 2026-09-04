@@ -3,11 +3,13 @@ package team
 import (
 	"echelon.com/api/types/response"
 	"echelon.com/repository/sql"
+	"echelon.com/repository/startgg"
 )
 
-func New(sqlRepository *sql.Repository) *Team {
+func New(sqlRepository *sql.Repository, startGGRepository *startgg.Repository) *Team {
 	return &Team{
-		sqlRepository: sqlRepository,
+		sqlRepository:     sqlRepository,
+		startGGRepository: startGGRepository,
 	}
 }
 

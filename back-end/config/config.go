@@ -14,6 +14,8 @@ type Config struct {
 	MariaDBHost         string `envconfig:"MARIADB_HOST" default:"db"`
 	MariaDBPort         string `envconfig:"MARIADB_PORT" default:"3306"`
 	MariaDBDatabase     string `envconfig:"MARIADB_DATABASE" default:"echelon"`
+	StartGGAPIKey       string `envconfig:"STARTGG_API_KEY"`
+	StartGGAPIUrl       string `default:"https://api.start.gg/gql/alpha"`
 }
 
 var once sync.Once

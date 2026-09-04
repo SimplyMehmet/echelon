@@ -1,0 +1,54 @@
+query LeagueEvents($slug: String!) {
+  league(slug: $slug) {
+    id
+    name
+    events {
+      nodes {
+        id
+        name
+        tournament {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+query TournamentEvents($slug: String!) {
+  tournament(slug: $slug) {
+    id
+    name
+    events {
+      id
+      name
+    }
+  }
+}
+
+query EventResults($eventId: ID!, $page: Int!) {
+  event(id: $eventId) {
+    id
+    name
+
+    standings(query: {
+      page: $page
+      perPage: 100
+    }) {
+      nodes {
+        placement
+
+        entrant {
+          participants {
+            gamerTag
+
+            player {
+              id
+              gamerTag
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"echelon.com/repository/startgg"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
@@ -13,7 +14,7 @@ type Player struct {
 	ScoreCurrent int64
 	Team         *Team
 	TeamID       *uuid.UUID
-	StartGGID    int64
+	StartGGID    int64 `gorm:"unique"`
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
@@ -23,4 +24,13 @@ func (p *Player) BeforeCreate(tx *gorm.DB) error {
 	}
 
 	return nil
+}
+
+func (p *Player) MapStartGGDataIntoStruct(data startgg.MappedPlayer, teamID *uuid.UUID) {
+	p.StartGGID = data.StartGGID
+	p.TeamID = teamID
+	p.Name = data.Name
+	p.Attended = data.Attended
+	p.ScoreTotal = data.ScoreTotal
+	p.ScoreCurrent = data.ScoreCurr
 }

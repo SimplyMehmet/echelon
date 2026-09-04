@@ -15,4 +15,5 @@ RUN  --mount=type=cache,target="/root/.cache/go-build" CGO_ENABLED=0 go build -v
 FROM scratch AS production
 WORKDIR /app
 COPY --from=build /bin/echelon .
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 ENTRYPOINT ["/app/echelon"]
