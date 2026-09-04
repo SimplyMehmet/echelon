@@ -7,5 +7,5 @@ export type getAllTeamsResponse = {
 export type TeamResponse = {
   id: string;
   name: string;
-  players: PlayerResponse[] | null;
+  players: PlayerResponse[];
 };

@@ -1,10 +1,9 @@
 import { KeyValuePipe } from '@angular/common';
-import { Component, computed, inject, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TeamResponse } from '@app/api/responses/team';
 import { Player } from '@app/api/services/player';
 import { Team } from '@app/api/services/team';
-import { forkJoin, Observable, Subscription } from 'rxjs';
+import { LeaderboardsType } from '@constants/enums/leaderboards';
 
 type categoryEntry = {
   displayPoints: number;
@@ -17,22 +16,15 @@ type categoryDisplay = {
   entries: categoryEntry[];
 };
 
-enum LeaderboardsTypes {
-  MostLoyal = 'Most loyal',
-  AllTime = 'All time',
-  CurrentSeason = 'Current season',
-  Teams = 'Team standings',
-}
-
-type mappedCategory = Record<LeaderboardsTypes, categoryDisplay>;
+type mappedCategory = Record<LeaderboardsType, categoryDisplay>;
 
 @Component({
   imports: [KeyValuePipe],
-  selector: 'app-leaderboards',
-  styleUrl: './leaderboards.css',
-  templateUrl: './leaderboards.html',
+  selector: 'app-leaderboards-banner',
+  styleUrl: './leaderboards-banner.css',
+  templateUrl: './leaderboards-banner.html',
 })
-export class Leaderboards {
+export class LeaderboardsBanner {
   private teamService = inject(Team);
   private playerService = inject(Player);
   private teamsData = toSignal(this.teamService.getAllTeams(), { initialValue: null });
@@ -44,24 +36,24 @@ export class Leaderboards {
 
     if (!teamsData || !playersData) {
       return {
-        [LeaderboardsTypes.MostLoyal]: {
-          title: LeaderboardsTypes.MostLoyal,
-          subTitle: 'Top 8 - Events joined',
-          entries: [],
-        },
-        [LeaderboardsTypes.AllTime]: {
-          title: LeaderboardsTypes.AllTime,
-          subTitle: 'Top 8 - All time',
-          entries: [],
-        },
-        [LeaderboardsTypes.CurrentSeason]: {
-          title: LeaderboardsTypes.CurrentSeason,
+        [LeaderboardsType.CurrentSeason]: {
+          title: LeaderboardsType.CurrentSeason,
           subTitle: 'Top 8 - Current season',
           entries: [],
         },
-        [LeaderboardsTypes.Teams]: {
-          title: LeaderboardsTypes.Teams,
+        [LeaderboardsType.Teams]: {
+          title: LeaderboardsType.Teams,
           subTitle: 'Teams standings',
+          entries: [],
+        },
+        [LeaderboardsType.AllTime]: {
+          title: LeaderboardsType.AllTime,
+          subTitle: 'Top 8 - All time',
+          entries: [],
+        },
+        [LeaderboardsType.MostLoyal]: {
+          title: LeaderboardsType.MostLoyal,
+          subTitle: 'Top 8 - Events joined',
           entries: [],
         },
       };
@@ -88,25 +80,25 @@ export class Leaderboards {
     }));
 
     return {
-      [LeaderboardsTypes.MostLoyal]: {
-        title: LeaderboardsTypes.MostLoyal,
-        subTitle: 'Top 8 - Events joined',
-        entries: mostLoyal.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
-      },
-      [LeaderboardsTypes.AllTime]: {
-        title: LeaderboardsTypes.AllTime,
-        subTitle: 'Top 8 - All time',
-        entries: allTime.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
-      },
-      [LeaderboardsTypes.CurrentSeason]: {
-        title: LeaderboardsTypes.CurrentSeason,
+      [LeaderboardsType.CurrentSeason]: {
+        title: LeaderboardsType.CurrentSeason,
         subTitle: 'Top 8 - Current season',
         entries: currentSeason.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
       },
-      [LeaderboardsTypes.Teams]: {
-        title: LeaderboardsTypes.Teams,
+      [LeaderboardsType.Teams]: {
+        title: LeaderboardsType.Teams,
         subTitle: 'Teams standings',
         entries: teams.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
+      },
+      [LeaderboardsType.AllTime]: {
+        title: LeaderboardsType.AllTime,
+        subTitle: 'Top 8 - All time',
+        entries: allTime.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
+      },
+      [LeaderboardsType.MostLoyal]: {
+        title: LeaderboardsType.MostLoyal,
+        subTitle: 'Top 8 - Events joined',
+        entries: mostLoyal.sort((a, b) => b.displayPoints - a.displayPoints).slice(0, 8),
       },
     };
   });
