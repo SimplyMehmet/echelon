@@ -3,6 +3,7 @@ package main
 import (
 	"echelon.com/api"
 	"echelon.com/repository/sql"
+	"echelon.com/repository/startgg"
 	"echelon.com/services"
 	"fmt"
 )
@@ -13,6 +14,7 @@ func main() {
 		panic(fmt.Errorf("failed to connect database %v", err))
 	}
 
-	serviceCollection := services.New(sqlRepository)
+	startGGRepository := startgg.New()
+	serviceCollection := services.New(sqlRepository, startGGRepository)
 	api.RunServer(serviceCollection)
 }
