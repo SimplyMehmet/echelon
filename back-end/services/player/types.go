@@ -1,6 +1,6 @@
 package player
 
-import "echelon.com/repository/sql"
+import "github.com/SimplyMehmet/echelon/back-end/repository/sql"
 
 type Player struct {
 	sqlRepository *sql.Repository

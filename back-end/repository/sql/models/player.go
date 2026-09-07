@@ -1,7 +1,7 @@
 package models
 
 import (
-	"echelon.com/repository/startgg"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

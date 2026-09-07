@@ -1,6 +1,6 @@
 package handler
 
-import "echelon.com/services"
+import "github.com/SimplyMehmet/echelon/back-end/services"
 
 type Handler struct {
 	services *services.Services

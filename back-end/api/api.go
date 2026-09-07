@@ -1,9 +1,9 @@
 package api
 
 import (
-	"echelon.com/api/router"
-	"echelon.com/services"
 	"fmt"
+	"github.com/SimplyMehmet/echelon/back-end/api/router"
+	"github.com/SimplyMehmet/echelon/back-end/services"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

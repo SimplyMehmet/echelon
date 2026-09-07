@@ -43,7 +43,7 @@ var AllActivityState = []ActivityState{
 //
 // An event in a tournament
 type EventResultsEvent struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// Title of event set by organizer
 	Name string `json:"name"`
 	// How much it costs to enter this event
@@ -62,7 +62,7 @@ type EventResultsEvent struct {
 }
 
 // GetId returns EventResultsEvent.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetId() int64 { return v.Id }
+func (v *EventResultsEvent) GetId() ID { return v.Id }
 
 // GetName returns EventResultsEvent.Name, and is useful for accessing the field via an interface.
 func (v *EventResultsEvent) GetName() string { return v.Name }
@@ -105,7 +105,7 @@ func (v *EventResultsEventSetsSetConnection) GetNodes() []EventResultsEventSetsS
 //
 // A set
 type EventResultsEventSetsSetConnectionNodesSet struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// Full round text of this set.
 	FullRoundText string `json:"fullRoundText"`
 	// The round number of the set. Negative numbers are losers bracket
@@ -117,7 +117,7 @@ type EventResultsEventSetsSetConnectionNodesSet struct {
 }
 
 // GetId returns EventResultsEventSetsSetConnectionNodesSet.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetId() int64 { return v.Id }
+func (v *EventResultsEventSetsSetConnectionNodesSet) GetId() ID { return v.Id }
 
 // GetFullRoundText returns EventResultsEventSetsSetConnectionNodesSet.FullRoundText, and is useful for accessing the field via an interface.
 func (v *EventResultsEventSetsSetConnectionNodesSet) GetFullRoundText() string {
@@ -163,13 +163,13 @@ func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot) GetStanding() E
 //
 // An entrant in an event
 type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// The entrant name as it appears in bracket: gamerTag of the participant or team name
 	Name string `json:"name"`
 }
 
 // GetId returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetId() int64 { return v.Id }
+func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetId() ID { return v.Id }
 
 // GetName returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Name, and is useful for accessing the field via an interface.
 func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetName() string {
@@ -285,12 +285,12 @@ func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantPartici
 //
 // A player
 type EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer struct {
-	Id       int64  `json:"id"`
+	Id       ID     `json:"id"`
 	GamerTag string `json:"gamerTag"`
 }
 
 // GetId returns EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetId() int64 {
+func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetId() ID {
 	return v.Id
 }
 
@@ -328,7 +328,7 @@ func (v *EventResultsResponse) GetEvent() EventResultsEvent { return v.Event }
 //
 // A league
 type LeagueEventsLeague struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// The tournament name
 	Name string `json:"name"`
 	// Paginated list of events in a league
@@ -336,7 +336,7 @@ type LeagueEventsLeague struct {
 }
 
 // GetId returns LeagueEventsLeague.Id, and is useful for accessing the field via an interface.
-func (v *LeagueEventsLeague) GetId() int64 { return v.Id }
+func (v *LeagueEventsLeague) GetId() ID { return v.Id }
 
 // GetName returns LeagueEventsLeague.Name, and is useful for accessing the field via an interface.
 func (v *LeagueEventsLeague) GetName() string { return v.Name }
@@ -359,14 +359,14 @@ func (v *LeagueEventsLeagueEventsEventConnection) GetNodes() []LeagueEventsLeagu
 //
 // An event in a tournament
 type LeagueEventsLeagueEventsEventConnectionNodesEvent struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// Title of event set by organizer
 	Name       string                                                      `json:"name"`
 	Tournament LeagueEventsLeagueEventsEventConnectionNodesEventTournament `json:"tournament"`
 }
 
 // GetId returns LeagueEventsLeagueEventsEventConnectionNodesEvent.Id, and is useful for accessing the field via an interface.
-func (v *LeagueEventsLeagueEventsEventConnectionNodesEvent) GetId() int64 { return v.Id }
+func (v *LeagueEventsLeagueEventsEventConnectionNodesEvent) GetId() ID { return v.Id }
 
 // GetName returns LeagueEventsLeagueEventsEventConnectionNodesEvent.Name, and is useful for accessing the field via an interface.
 func (v *LeagueEventsLeagueEventsEventConnectionNodesEvent) GetName() string { return v.Name }
@@ -381,13 +381,13 @@ func (v *LeagueEventsLeagueEventsEventConnectionNodesEvent) GetTournament() Leag
 //
 // A tournament
 type LeagueEventsLeagueEventsEventConnectionNodesEventTournament struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// The tournament name
 	Name string `json:"name"`
 }
 
 // GetId returns LeagueEventsLeagueEventsEventConnectionNodesEventTournament.Id, and is useful for accessing the field via an interface.
-func (v *LeagueEventsLeagueEventsEventConnectionNodesEventTournament) GetId() int64 { return v.Id }
+func (v *LeagueEventsLeagueEventsEventConnectionNodesEventTournament) GetId() ID { return v.Id }
 
 // GetName returns LeagueEventsLeagueEventsEventConnectionNodesEventTournament.Name, and is useful for accessing the field via an interface.
 func (v *LeagueEventsLeagueEventsEventConnectionNodesEventTournament) GetName() string { return v.Name }
@@ -415,14 +415,14 @@ func (v *TournamentEventsResponse) GetTournament() TournamentEventsTournament { 
 //
 // A tournament
 type TournamentEventsTournament struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// The tournament name
 	Name   string                                  `json:"name"`
 	Events []TournamentEventsTournamentEventsEvent `json:"events"`
 }
 
 // GetId returns TournamentEventsTournament.Id, and is useful for accessing the field via an interface.
-func (v *TournamentEventsTournament) GetId() int64 { return v.Id }
+func (v *TournamentEventsTournament) GetId() ID { return v.Id }
 
 // GetName returns TournamentEventsTournament.Name, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournament) GetName() string { return v.Name }
@@ -437,25 +437,25 @@ func (v *TournamentEventsTournament) GetEvents() []TournamentEventsTournamentEve
 //
 // An event in a tournament
 type TournamentEventsTournamentEventsEvent struct {
-	Id int64 `json:"id"`
+	Id ID `json:"id"`
 	// Title of event set by organizer
 	Name string `json:"name"`
 }
 
 // GetId returns TournamentEventsTournamentEventsEvent.Id, and is useful for accessing the field via an interface.
-func (v *TournamentEventsTournamentEventsEvent) GetId() int64 { return v.Id }
+func (v *TournamentEventsTournamentEventsEvent) GetId() ID { return v.Id }
 
 // GetName returns TournamentEventsTournamentEventsEvent.Name, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournamentEventsEvent) GetName() string { return v.Name }
 
 // __EventResultsInput is used internally by genqlient
 type __EventResultsInput struct {
-	EventId int64 `json:"eventId"`
-	Page    int   `json:"page"`
+	EventId ID  `json:"eventId"`
+	Page    int `json:"page"`
 }
 
 // GetEventId returns __EventResultsInput.EventId, and is useful for accessing the field via an interface.
-func (v *__EventResultsInput) GetEventId() int64 { return v.EventId }
+func (v *__EventResultsInput) GetEventId() ID { return v.EventId }
 
 // GetPage returns __EventResultsInput.Page, and is useful for accessing the field via an interface.
 func (v *__EventResultsInput) GetPage() int { return v.Page }
@@ -533,7 +533,7 @@ query EventResults ($eventId: ID!, $page: Int!) {
 func EventResults(
 	ctx_ context.Context,
 	client_ graphql.Client,
-	eventId int64,
+	eventId ID,
 	page int,
 ) (data_ *EventResultsResponse, err_ error) {
 	req_ := &graphql.Request{

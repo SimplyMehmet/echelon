@@ -2,7 +2,7 @@ package startgg
 
 import (
 	"context"
-	"echelon.com/repository/startgg/client"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg/client"
 )
 
 func (r *Repository) GetTournamentEvents(slug string) ([]TournamentEvent, error) {
@@ -14,7 +14,7 @@ func (r *Repository) GetTournamentEvents(slug string) ([]TournamentEvent, error)
 
 	for _, event := range events.Tournament.Events {
 		var tournamentEvent TournamentEvent
-		tournamentEvent.ID = event.Id
+		tournamentEvent.ID = int64(event.Id)
 		tournamentEvent.Name = event.Name
 		resp = append(resp, tournamentEvent)
 	}
@@ -31,7 +31,7 @@ func (r *Repository) GetLeagueTournaments(slug string) ([]TournamentEvent, error
 
 	for _, event := range events.League.Events.Nodes {
 		var tournamentEvent TournamentEvent
-		tournamentEvent.ID = event.Id
+		tournamentEvent.ID = int64(event.Id)
 		tournamentEvent.Name = event.Tournament.Name
 		resp = append(resp, tournamentEvent)
 	}

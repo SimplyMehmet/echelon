@@ -2,12 +2,12 @@ package startgg
 
 import (
 	"context"
-	"echelon.com/repository/startgg/client"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg/client"
 )
 
-func (r *Repository) GetPlayersOfEvent(id int64) ([]Player, error) {
+func (r *Repository) GetEventAndParticipants(id int64) ([]Player, error) {
 	var resp []Player
-	data, err := client.EventResults(context.Background(), r.client, id, 1)
+	data, err := client.EventResults(context.Background(), r.client, client.ID(id), 1)
 	if err != nil {
 		return nil, err
 	}
@@ -15,7 +15,7 @@ func (r *Repository) GetPlayersOfEvent(id int64) ([]Player, error) {
 	for _, node := range data.Event.Standings.Nodes {
 		for _, participant := range node.Entrant.Participants {
 			var entry Player
-			entry.ID = participant.Player.Id
+			entry.ID = int64(participant.Player.Id)
 			entry.Name = participant.Player.GamerTag
 			entry.Placements = append(entry.Placements, PlacementInEvent{
 				EventID:   id,

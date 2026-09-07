@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"echelon.com/api/types/request"
+	"github.com/SimplyMehmet/echelon/back-end/api/types/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

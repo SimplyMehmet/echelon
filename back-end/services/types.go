@@ -1,8 +1,8 @@
 package services
 
 import (
-	"echelon.com/services/player"
-	"echelon.com/services/team"
+	"github.com/SimplyMehmet/echelon/back-end/services/player"
+	"github.com/SimplyMehmet/echelon/back-end/services/team"
 )
 
 type Services struct {

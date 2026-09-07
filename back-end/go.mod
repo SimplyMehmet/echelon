@@ -1,4 +1,4 @@
-module echelon.com
+module github.com/SimplyMehmet/echelon/back-end
 
 go 1.25.1
 

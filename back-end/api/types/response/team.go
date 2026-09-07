@@ -1,7 +1,7 @@
 package response
 
 import (
-	"echelon.com/repository/sql/models"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql/models"
 	"github.com/google/uuid"
 )
 
