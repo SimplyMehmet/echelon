@@ -1,8 +1,8 @@
 package team
 
 import (
-	"echelon.com/repository/sql"
-	"echelon.com/repository/startgg"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
 )
 
 type Team struct {

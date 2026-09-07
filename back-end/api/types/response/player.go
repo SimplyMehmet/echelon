@@ -1,7 +1,7 @@
 package response
 
 import (
-	"echelon.com/repository/sql/models"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql/models"
 	"github.com/google/uuid"
 )
 
@@ -15,7 +15,7 @@ type PlayerResponse struct {
 	Attended     int64     `json:"attended"`
 	ScoreTotal   int64     `json:"scoreTotal"`
 	ScoreCurrent int64     `json:"scoreCurrent"`
-	Team 				string			`json:"team"`
+	Team         string    `json:"team"`
 }
 
 func (r *PlayerResponse) MapModelIntoStruct(model models.Player) {

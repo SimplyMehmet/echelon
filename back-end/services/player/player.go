@@ -1,10 +1,10 @@
 package player
 
 import (
-	"echelon.com/api/types/request"
-	"echelon.com/api/types/response"
-	"echelon.com/repository/sql"
-	"echelon.com/repository/sql/models"
+	"github.com/SimplyMehmet/echelon/back-end/api/types/request"
+	"github.com/SimplyMehmet/echelon/back-end/api/types/response"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql/models"
 )
 
 func New(sqlRepository *sql.Repository) *Player {

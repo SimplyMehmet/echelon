@@ -1,11 +1,11 @@
 package main
 
 import (
-	"echelon.com/api"
-	"echelon.com/repository/sql"
-	"echelon.com/repository/startgg"
-	"echelon.com/services"
 	"fmt"
+	"github.com/SimplyMehmet/echelon/back-end/api"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
+	"github.com/SimplyMehmet/echelon/back-end/services"
 )
 
 func main() {

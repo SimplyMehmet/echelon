@@ -1,9 +1,9 @@
 package team
 
 import (
-	"echelon.com/api/types/response"
-	"echelon.com/repository/sql"
-	"echelon.com/repository/startgg"
+	"github.com/SimplyMehmet/echelon/back-end/api/types/response"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
 )
 
 func New(sqlRepository *sql.Repository, startGGRepository *startgg.Repository) *Team {

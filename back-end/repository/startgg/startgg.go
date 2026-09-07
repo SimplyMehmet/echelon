@@ -1,8 +1,8 @@
 package startgg
 
 import (
-	"echelon.com/config"
 	"github.com/Khan/genqlient/graphql"
+	"github.com/SimplyMehmet/echelon/back-end/config"
 	"net/http"
 )
 
@@ -90,7 +90,7 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 
 	var AllPlayers []Player
 	for _, event := range tournaments {
-		players, err := r.GetPlayersOfEvent(event.ID)
+		players, err := r.GetEventAndParticipants(event.ID)
 		if err != nil {
 			return nil, err
 		}

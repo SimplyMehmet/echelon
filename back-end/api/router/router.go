@@ -1,8 +1,8 @@
 package router
 
 import (
-	"echelon.com/api/handler"
-	"echelon.com/services"
+	"github.com/SimplyMehmet/echelon/back-end/api/handler"
+	"github.com/SimplyMehmet/echelon/back-end/services"
 	"github.com/gin-gonic/gin"
 )
 
