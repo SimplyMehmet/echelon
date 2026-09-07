@@ -33,7 +33,7 @@ func New() *Repository {
 }
 
 func (r *Repository) Start() ([]MappedPlayer, error) {
-	combinedMappedPlayers := map[int64]MappedPlayer{}
+	combinedMappedPlayers := map[string]MappedPlayer{}
 	for _, season := range Seasons {
 		mappedPlayers, err := r.buildLeaderboardForSeason(season)
 		if err != nil {
@@ -98,7 +98,7 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 		AllPlayers = append(AllPlayers, players...)
 	}
 
-	filteredPlayers := map[int64]Player{}
+	filteredPlayers := map[string]Player{}
 	for _, player := range AllPlayers {
 		filteredPlayer, exists := filteredPlayers[player.ID]
 		if !exists {

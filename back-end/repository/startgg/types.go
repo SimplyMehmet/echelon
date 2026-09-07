@@ -10,18 +10,18 @@ type Repository struct {
 
 type TournamentEvent struct {
 	Name string
-	ID   int64
+	ID   string
 }
 
 type Player struct {
-	ID                      int64
+	ID                      string
 	Name                    string
 	Placements              []PlacementInEvent
 	PlacementsCurrentSeason []PlacementInEvent
 }
 
 type PlacementInEvent struct {
-	EventID   int64
+	EventID   string
 	Placement int64
 }
 
@@ -31,5 +31,5 @@ type MappedPlayer struct {
 	ScoreTotal int64
 	ScoreCurr  int64
 	Team       string
-	StartGGID  int64
+	StartGGID  string
 }

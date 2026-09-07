@@ -14,7 +14,7 @@ type Player struct {
 	ScoreCurrent int64
 	Team         *Team
 	TeamID       *uuid.UUID
-	StartGGID    int64 `gorm:"unique"`
+	StartGGID    string `gorm:"unique"`
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
