@@ -32,12 +32,13 @@ func New() *Repository {
 	}
 }
 
-func (r *Repository) Start() ([]MappedPlayer, error) {
+func (r *Repository) ImportStartGGData() ([]MappedPlayer, []MappedSeason, error) {
 	combinedMappedPlayers := map[string]MappedPlayer{}
+	var allSeason []MappedSeason
 	for _, season := range Seasons {
-		mappedPlayers, err := r.buildLeaderboardForSeason(season)
+		mappedPlayers, events, err := r.buildLeaderboardForSeason(season)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		// Might need to defer if we want to do season by season
@@ -46,8 +47,7 @@ func (r *Repository) Start() ([]MappedPlayer, error) {
 			if !exists {
 				combined = mappedPlayer
 			} else {
-				combined.ScoreTotal = combined.ScoreTotal + mappedPlayer.ScoreTotal
-				combined.ScoreCurr = combined.ScoreCurr + mappedPlayer.ScoreCurr
+				combined.Placements = append(combined.Placements, mappedPlayer.Placements...)
 				combined.Attended = combined.Attended + mappedPlayer.Attended
 
 				if season.CurrentSeason {
@@ -57,6 +57,15 @@ func (r *Repository) Start() ([]MappedPlayer, error) {
 
 			combinedMappedPlayers[mappedPlayer.StartGGID] = combined
 		}
+
+		mappedSeason := MappedSeason{
+			StartGGSourceSeason: season.StartGGSource,
+			Events:              events,
+			Name:                season.Name,
+			Current:             season.CurrentSeason,
+		}
+
+		allSeason = append(allSeason, mappedSeason)
 	}
 
 	players := make([]MappedPlayer, 0, len(combinedMappedPlayers))
@@ -65,15 +74,15 @@ func (r *Repository) Start() ([]MappedPlayer, error) {
 		players = append(players, player)
 	}
 
-	return players, nil
+	return players, allSeason, nil
 }
 
-func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfiguration) ([]MappedPlayer, error) {
+func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfiguration) ([]MappedPlayer, []Event, error) {
 	var tournaments []TournamentEvent
 	if season.Type == League {
 		events, err := r.GetLeagueTournaments(season.StartGGSource)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		tournaments = events
@@ -82,19 +91,21 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 	if season.Type == Tournament {
 		events, err := r.GetTournamentEvents(season.StartGGSource)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		tournaments = events
 	}
 
 	var AllPlayers []Player
+	var eventDetailCollection []Event
 	for _, event := range tournaments {
-		players, err := r.GetEventAndParticipants(event.ID)
+		players, eventDetails, err := r.GetEventAndParticipants(event.ID, season.StartGGSource)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
+		eventDetailCollection = append(eventDetailCollection, eventDetails)
 		AllPlayers = append(AllPlayers, players...)
 	}
 
@@ -107,17 +118,12 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 			filteredPlayer.Placements = append(filteredPlayer.Placements, player.Placements...)
 		}
 
-		if season.CurrentSeason {
-			filteredPlayer.PlacementsCurrentSeason = append(filteredPlayer.PlacementsCurrentSeason, player.Placements...)
-		}
-
 		filteredPlayers[player.ID] = filteredPlayer
 	}
 
 	var mappedPlayers []MappedPlayer
 	for _, player := range filteredPlayers {
 		var totalPoints int64
-		var currentPoints int64
 		for _, placement := range player.Placements {
 			doublePoints, exists := season.DoubleXPEventIDs[placement.EventID]
 			points := PointsByPlacement[placement.Placement]
@@ -128,20 +134,9 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 			totalPoints += points
 		}
 
-		for _, placement := range player.PlacementsCurrentSeason {
-			doublePoints, exists := season.DoubleXPEventIDs[placement.EventID]
-			points := PointsByPlacement[placement.Placement]
-			if exists && doublePoints {
-				points += points
-			}
-
-			currentPoints += points
-		}
-
 		playerEntry := MappedPlayer{
 			Name:       player.Name,
-			ScoreTotal: totalPoints,
-			ScoreCurr:  currentPoints,
+			Placements: player.Placements,
 			Attended:   int64(len(player.Placements)),
 			Team:       season.Teams[player.ID],
 			StartGGID:  player.ID,
@@ -150,5 +145,5 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 		mappedPlayers = append(mappedPlayers, playerEntry)
 	}
 
-	return mappedPlayers, nil
+	return mappedPlayers, eventDetailCollection, nil
 }

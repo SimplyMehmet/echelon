@@ -2,6 +2,7 @@ package startgg
 
 import (
 	"github.com/Khan/genqlient/graphql"
+	"time"
 )
 
 type Repository struct {
@@ -14,10 +15,25 @@ type TournamentEvent struct {
 }
 
 type Player struct {
-	ID                      string
-	Name                    string
-	Placements              []PlacementInEvent
-	PlacementsCurrentSeason []PlacementInEvent
+	ID         string
+	Name       string
+	Placements []PlacementInEvent
+}
+
+type Event struct {
+	ID       string
+	Name     string
+	StartsAt time.Time
+	Entrants int64
+	Location string
+	DoubleXP bool
+}
+
+type MappedSeason struct {
+	StartGGSourceSeason string
+	Events              []Event
+	Current             bool
+	Name                string
 }
 
 type PlacementInEvent struct {
@@ -28,8 +44,7 @@ type PlacementInEvent struct {
 type MappedPlayer struct {
 	Name       string
 	Attended   int64
-	ScoreTotal int64
-	ScoreCurr  int64
+	Placements []PlacementInEvent
 	Team       string
 	StartGGID  string
 }

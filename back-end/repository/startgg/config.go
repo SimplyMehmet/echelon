@@ -64,8 +64,8 @@ var PlayerIDsByName = map[string]string{
 }
 
 var Seasons = map[string]TournamentSeasonConfiguration{
-	"S0": {
-		Name:             "Tekken League Season 0",
+	"levels-2025-28-30-dec": {
+		Name:             "Preseason",
 		StartGGSource:    "levels-2025-28-30-dec",
 		Type:             "tournament",
 		CurrentSeason:    false,
@@ -73,8 +73,8 @@ var Seasons = map[string]TournamentSeasonConfiguration{
 		Teams:            map[string]string{},
 	},
 
-	"S1": {
-		Name:             "Tekken League Season 1",
+	"levels-tekken-8-2026-season-1": {
+		Name:             "Season 1",
 		StartGGSource:    "levels-tekken-8-2026-season-1",
 		Type:             "tournament",
 		CurrentSeason:    false,
@@ -82,8 +82,8 @@ var Seasons = map[string]TournamentSeasonConfiguration{
 		Teams:            map[string]string{},
 	},
 
-	"S2": {
-		Name:             "Tekken League Season 2",
+	"levels-tekken-league-season-2": {
+		Name:             "Season 2",
 		StartGGSource:    "levels-tekken-league-season-2",
 		Type:             "league",
 		CurrentSeason:    false,
@@ -91,8 +91,8 @@ var Seasons = map[string]TournamentSeasonConfiguration{
 		Teams:            map[string]string{},
 	},
 
-	"S3": {
-		Name:          "Tekken League Season 3",
+	"levels-tekken-league-season-3": {
+		Name:          "Season 3",
 		StartGGSource: "levels-tekken-league-season-3",
 		Type:          "tournament",
 		CurrentSeason: true,

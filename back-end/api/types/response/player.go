@@ -12,19 +12,32 @@ type GetAllPlayerResponse struct {
 type PlayerResponse struct {
 	ID           uuid.UUID `json:"id"`
 	Name         string    `json:"name"`
+	Team         string    `json:"team"`
 	Attended     int64     `json:"attended"`
 	ScoreTotal   int64     `json:"scoreTotal"`
 	ScoreCurrent int64     `json:"scoreCurrent"`
-	Team         string    `json:"team"`
 }
 
-func (r *PlayerResponse) MapModelIntoStruct(model models.Player) {
+func (r *PlayerResponse) MapModelIntoStruct(model models.Player, playerEvents []models.PlayerEvent) {
 	r.ID = model.ID
 	r.Name = model.Name
-	r.Attended = model.Attended
-	r.ScoreTotal = model.ScoreTotal
-	r.ScoreCurrent = model.ScoreCurrent
+
 	if model.Team != nil {
 		r.Team = model.Team.Name
+	}
+
+	for _, playerEvent := range playerEvents {
+		points := models.PointsByPlacement[playerEvent.Placement]
+
+		if playerEvent.Event.DoublePoints {
+			points *= 2
+		}
+
+		if playerEvent.Event.Season.Current {
+			r.ScoreCurrent += points
+		}
+
+		r.Attended++
+		r.ScoreTotal += points
 	}
 }

@@ -60,7 +60,7 @@ export class LeaderboardsBanner {
     }
 
     const teams = teamsData.teams.map((team) => ({
-      displayPoints: team.players?.reduce((total, player) => total + player.scoreCurrent, 0) ?? 0,
+      displayPoints: team.score,
       name: team.name,
     }));
 

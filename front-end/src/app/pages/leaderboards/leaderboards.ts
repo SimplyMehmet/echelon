@@ -85,10 +85,7 @@ export class Leaderboards {
       case LeaderboardsType.Teams:
         data = this.teamsData().teams.reduce((prev, curr) => {
           prev.push({
-            displayValue: curr.players.reduce((prev, curr) => {
-              prev += curr.scoreCurrent;
-              return prev;
-            }, 0),
+            displayValue: curr.score,
             name: curr.name,
             team: null,
           });
