@@ -3,9 +3,9 @@ import { LeaderboardsBanner } from '@app/shared/leaderboards-banner/leaderboards
 import { TwitchStream } from '@app/shared/twitch-stream/twitch-stream';
 
 @Component({
-  imports: [LeaderboardsBanner, TwitchStream],
-  selector: 'app-home',
-  styleUrl: './home.css',
-  templateUrl: './home.html',
+  imports: [TwitchStream, LeaderboardsBanner],
+  selector: 'app-full-screen',
+  styleUrl: './full-screen.css',
+  templateUrl: './full-screen.html',
 })
-export class Home {}
+export class FullScreen {}

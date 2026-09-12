@@ -1,0 +1,20 @@
+<div class="flex flex-col fixed left-0 right-0 top-0 bottom-0 z-10 bg-black">
+  <div class="flex h-full">
+    <div class="w-[60%]">
+      <app-twitch-stream />
+    </div>
+    <div class="w-[40%]">
+      <app-leaderboards-banner [fullscreen]="true" />
+    </div>
+  </div>
+  <div class="h-full flex">
+    <div class="w-[60%] flex flex-col items-center justify-center text-center">
+      <span class="text-6xl uppercase block">Get ready</span>
+      <span class="text-4xl uppercase block">for the</span>
+      <span class="text-6xl uppercase block">next battle</span>
+    </div>
+    <div class="w-[40%] flex items-center justify-center">
+      <img class="h-full py-20" src="/img/levels-logo.png" />
+    </div>
+  </div>
+</div>
