@@ -3,13 +3,12 @@ package team
 import (
 	"github.com/SimplyMehmet/echelon/back-end/api/types/response"
 	"github.com/SimplyMehmet/echelon/back-end/repository/sql"
-	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
+	"github.com/SimplyMehmet/echelon/back-end/repository/sql/models"
 )
 
-func New(sqlRepository *sql.Repository, startGGRepository *startgg.Repository) *Team {
+func New(sqlRepository *sql.Repository) *Team {
 	return &Team{
-		sqlRepository:     sqlRepository,
-		startGGRepository: startGGRepository,
+		sqlRepository: sqlRepository,
 	}
 }
 
@@ -22,7 +21,28 @@ func (t *Team) GetAllTeams() (response.GetAllTeamsResponse, error) {
 
 	for _, team := range teams {
 		var teamResponse response.TeamResponse
-		teamResponse.MapModelIntoStruct(team)
+		var totalScore int64
+		for _, player := range team.Players {
+			playerEvents, queryErr := t.sqlRepository.GetPLayerEventsByPlayerID(player.ID)
+			if queryErr != nil {
+				return result, err
+			}
+
+			for _, playerEvent := range playerEvents {
+				if !playerEvent.Event.Season.Current {
+					continue
+				}
+
+				points := models.PointsByPlacement[playerEvent.Placement]
+				if playerEvent.Event.DoublePoints {
+					points *= 2
+				}
+
+				totalScore += points
+			}
+		}
+
+		teamResponse.MapModelIntoStruct(team, totalScore)
 		result.Teams = append(result.Teams, teamResponse)
 	}
 

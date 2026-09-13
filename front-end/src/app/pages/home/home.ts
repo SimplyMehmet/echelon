@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LeaderboardsBanner } from './components/leaderboards-banner/leaderboards-banner';
-import { TwitchStream } from './components/twitch-stream/twitch-stream';
+import { LeaderboardsBanner } from '@app/shared/leaderboards-banner/leaderboards-banner';
+import { TwitchStream } from '@app/shared/twitch-stream/twitch-stream';
 
 @Component({
   imports: [LeaderboardsBanner, TwitchStream],

@@ -10,17 +10,13 @@ type GetAllTeamsResponse struct {
 }
 
 type TeamResponse struct {
-	ID      uuid.UUID        `json:"id"`
-	Name    string           `json:"name"`
-	Players []PlayerResponse `json:"players"`
+	ID    uuid.UUID `json:"id"`
+	Name  string    `json:"name"`
+	Score int64     `json:"score"`
 }
 
-func (r *TeamResponse) MapModelIntoStruct(team models.Team) {
+func (r *TeamResponse) MapModelIntoStruct(team models.Team, score int64) {
 	r.ID = team.ID
 	r.Name = team.Name
-	for _, player := range team.Players {
-		var playerResponse PlayerResponse
-		playerResponse.MapModelIntoStruct(player)
-		r.Players = append(r.Players, playerResponse)
-	}
+	r.Score = score
 }

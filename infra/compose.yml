@@ -14,6 +14,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-admin}
       STARTGG_API_KEY: ${STARTGG_API_KEY}
+      MIGRATE_DATABASE: ${MIGRATE_DATABASE:-false}
 
   db:
     container_name: db

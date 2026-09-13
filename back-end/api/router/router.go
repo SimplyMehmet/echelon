@@ -11,4 +11,6 @@ func SetupRouterV1(r *gin.RouterGroup, services *services.Services) {
 	SetupHealthRoutes(r, h)
 	SetupPlayerRoutes(r, h)
 	SetupTeamRoutes(r, h)
+	SetupEventRoutes(r, h)
+	SetupSeasonRoutes(r, h)
 }

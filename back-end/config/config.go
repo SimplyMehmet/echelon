@@ -16,6 +16,7 @@ type Config struct {
 	MariaDBDatabase     string `envconfig:"MARIADB_DATABASE" default:"echelon"`
 	StartGGAPIKey       string `envconfig:"STARTGG_API_KEY"`
 	StartGGAPIUrl       string `default:"https://api.start.gg/gql/alpha"`
+	MigrateDatabase     bool   `envconfig:"MIGRATE_DATABASE" default:"false"`
 }
 
 var once sync.Once
