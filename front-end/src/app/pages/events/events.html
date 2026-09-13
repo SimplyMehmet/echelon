@@ -21,17 +21,17 @@
         </div>
         <div class="grid grid-cols-2 p-4 pt-0">
           <div class="col-span-1 my-2">
-            <span class="block text-[10px]"> Date </span>
+            <span class="block text-[10px] uppercase"> Date </span>
             <span class="block text-[12px] card-display">
-              {{ event.startsAt | date: 'dd-MM-yyyy HH:mm' }}
+              {{ event.startsAt | date: 'dd MMM yyyy - HH:mm' }}
             </span>
           </div>
           <div class="col-span-1 my-2">
-            <span class="block text-[10px]">Players</span>
+            <span class="block text-[10px] uppercase">Players</span>
             <span class="block text-[12px] card-display">{{ event.entrants }}</span>
           </div>
           <div class="col-span-2 my-2">
-            <span class="block text-[10px]">Location</span>
+            <span class="block text-[10px] uppercase">Location</span>
             <span class="block text-[12px] card-display">{{ event.location }}</span>
           </div>
         </div>
