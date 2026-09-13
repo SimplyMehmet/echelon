@@ -89,7 +89,6 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 				SeasonID:     seasonModel.ID,
 				StartsAt:     event.StartsAt,
 				Location:     event.Location,
-				Entrants:     event.Entrants,
 				StartGGID:    event.ID,
 				DoublePoints: event.DoubleXP,
 			}
@@ -99,7 +98,6 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 				Assign(map[string]interface{}{
 					"starts_at": eventModel.StartsAt,
 					"season_id": eventModel.SeasonID,
-					"entrants":  eventModel.Entrants,
 					"location":  eventModel.Location,
 					"name":      eventModel.Name,
 				}).FirstOrCreate(&eventModel)

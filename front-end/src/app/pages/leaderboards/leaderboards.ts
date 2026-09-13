@@ -1,11 +1,10 @@
 import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { PlayerResponse } from '@app/api/responses/player';
 import { Player } from '@app/api/services/player';
 import { LeaderboardsType } from '@constants/enums/leaderboards';
 import { Team } from '@app/api/services/team';
-import { TeamResponse } from '@app/api/responses/team';
 import { NgClass } from '@angular/common';
+import { map } from 'rxjs';
 
 type LeaderboardPageConfig = {
   name: string;
@@ -25,27 +24,11 @@ export class Leaderboards {
 
   private playerService = inject(Player);
   private teamService = inject(Team);
-  private playersData = toSignal(this.playerService.getAllPlayers(), {
-    initialValue: { players: [] },
+  public playersData = toSignal(this.playerService.getAllPlayers().pipe(map((p) => p.players)), {
+    initialValue: [],
   });
-  private teamsData = toSignal(this.teamService.getAllTeams(), { initialValue: { teams: [] } });
-
-  public players: Signal<PlayerResponse[]> = computed(() => {
-    const data = this.playersData();
-    if (!data.players.length) {
-      return [];
-    }
-
-    return data.players;
-  });
-
-  public teams: Signal<TeamResponse[]> = computed(() => {
-    const data = this.teamsData();
-    if (!data.teams.length) {
-      return [];
-    }
-
-    return data.teams;
+  public teamsData = toSignal(this.teamService.getAllTeams().pipe(map((t) => t.teams)), {
+    initialValue: [],
   });
 
   public leaderboardData: Signal<LeaderboardPageConfig[]> = computed(() => {
@@ -53,7 +36,7 @@ export class Leaderboards {
     let data: LeaderboardPageConfig[] = [];
     switch (filter) {
       case LeaderboardsType.AllTime:
-        data = this.playersData().players.reduce((prev, curr) => {
+        data = this.playersData().reduce((prev, curr) => {
           prev.push({
             displayValue: curr.scoreTotal,
             name: curr.name,
@@ -63,7 +46,7 @@ export class Leaderboards {
         }, [] as LeaderboardPageConfig[]);
         break;
       case LeaderboardsType.CurrentSeason:
-        data = this.playersData().players.reduce((prev, curr) => {
+        data = this.playersData().reduce((prev, curr) => {
           prev.push({
             displayValue: curr.scoreCurrent,
             name: curr.name,
@@ -73,7 +56,7 @@ export class Leaderboards {
         }, [] as LeaderboardPageConfig[]);
         break;
       case LeaderboardsType.MostLoyal:
-        data = this.playersData().players.reduce((prev, curr) => {
+        data = this.playersData().reduce((prev, curr) => {
           prev.push({
             displayValue: curr.attended,
             name: curr.name,
@@ -83,7 +66,7 @@ export class Leaderboards {
         }, [] as LeaderboardPageConfig[]);
         break;
       case LeaderboardsType.Teams:
-        data = this.teamsData().teams.reduce((prev, curr) => {
+        data = this.teamsData().reduce((prev, curr) => {
           prev.push({
             displayValue: curr.score,
             name: curr.name,

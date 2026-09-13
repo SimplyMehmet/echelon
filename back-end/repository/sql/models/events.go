@@ -10,11 +10,10 @@ type Event struct {
 	ID           uuid.UUID `gorm:"type:uuid;primary_key"`
 	Name         string
 	StartsAt     time.Time
-	Entrants     int64
 	Location     string
 	DoublePoints bool
 	StartGGID    string   `gorm:"unique"`
-	Players      []Player `gorm:"many2many:player_event;"`
+	Players      []Player `gorm:"many2many:player_events;"`
 	Season       Season
 	SeasonID     uuid.UUID
 }
