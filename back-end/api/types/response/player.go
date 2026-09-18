@@ -28,7 +28,6 @@ func (r *PlayerResponse) MapModelIntoStruct(model models.Player, playerEvents []
 
 	for _, playerEvent := range playerEvents {
 		points := models.PointsByPlacement[playerEvent.Placement]
-
 		if playerEvent.Event.DoublePoints {
 			points *= 2
 		}

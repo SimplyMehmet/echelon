@@ -123,22 +123,11 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 
 	var mappedPlayers []MappedPlayer
 	for _, player := range filteredPlayers {
-		var totalPoints int64
-		for _, placement := range player.Placements {
-			doublePoints, exists := season.DoubleXPEventIDs[placement.EventID]
-			points := PointsByPlacement[placement.Placement]
-			if exists && doublePoints {
-				points += points
-			}
-
-			totalPoints += points
-		}
-
 		playerEntry := MappedPlayer{
 			Name:       player.Name,
 			Placements: player.Placements,
 			Attended:   int64(len(player.Placements)),
-			Team:       season.Teams[player.ID],
+			Team:       player.Team,
 			StartGGID:  player.ID,
 		}
 

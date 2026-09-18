@@ -323,6 +323,109 @@ type EventResultsResponse struct {
 // GetEvent returns EventResultsResponse.Event, and is useful for accessing the field via an interface.
 func (v *EventResultsResponse) GetEvent() EventResultsEvent { return v.Event }
 
+// GetUserEventsResponse is returned by GetUserEvents on success.
+type GetUserEventsResponse struct {
+	// Returns a user given a user slug of the form user/abc123, or id
+	User GetUserEventsUser `json:"user"`
+}
+
+// GetUser returns GetUserEventsResponse.User, and is useful for accessing the field via an interface.
+func (v *GetUserEventsResponse) GetUser() GetUserEventsUser { return v.User }
+
+// GetUserEventsUser includes the requested fields of the GraphQL type User.
+// The GraphQL type's documentation follows.
+//
+// A user
+type GetUserEventsUser struct {
+	Id ID `json:"id"`
+	// Public facing user name that respects user publishing settings
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+	// Tournaments this user is organizing or competing in
+	Tournaments GetUserEventsUserTournamentsTournamentConnection `json:"tournaments"`
+}
+
+// GetId returns GetUserEventsUser.Id, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUser) GetId() ID { return v.Id }
+
+// GetName returns GetUserEventsUser.Name, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUser) GetName() string { return v.Name }
+
+// GetSlug returns GetUserEventsUser.Slug, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUser) GetSlug() string { return v.Slug }
+
+// GetTournaments returns GetUserEventsUser.Tournaments, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUser) GetTournaments() GetUserEventsUserTournamentsTournamentConnection {
+	return v.Tournaments
+}
+
+// GetUserEventsUserTournamentsTournamentConnection includes the requested fields of the GraphQL type TournamentConnection.
+type GetUserEventsUserTournamentsTournamentConnection struct {
+	Nodes []GetUserEventsUserTournamentsTournamentConnectionNodesTournament `json:"nodes"`
+}
+
+// GetNodes returns GetUserEventsUserTournamentsTournamentConnection.Nodes, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnection) GetNodes() []GetUserEventsUserTournamentsTournamentConnectionNodesTournament {
+	return v.Nodes
+}
+
+// GetUserEventsUserTournamentsTournamentConnectionNodesTournament includes the requested fields of the GraphQL type Tournament.
+// The GraphQL type's documentation follows.
+//
+// A tournament
+type GetUserEventsUserTournamentsTournamentConnectionNodesTournament struct {
+	Id ID `json:"id"`
+	// The tournament name
+	Name string `json:"name"`
+	// The slug used to form the url
+	Slug   string                                                                       `json:"slug"`
+	Events []GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent `json:"events"`
+}
+
+// GetId returns GetUserEventsUserTournamentsTournamentConnectionNodesTournament.Id, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournament) GetId() ID { return v.Id }
+
+// GetName returns GetUserEventsUserTournamentsTournamentConnectionNodesTournament.Name, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournament) GetName() string {
+	return v.Name
+}
+
+// GetSlug returns GetUserEventsUserTournamentsTournamentConnectionNodesTournament.Slug, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournament) GetSlug() string {
+	return v.Slug
+}
+
+// GetEvents returns GetUserEventsUserTournamentsTournamentConnectionNodesTournament.Events, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournament) GetEvents() []GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent {
+	return v.Events
+}
+
+// GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent includes the requested fields of the GraphQL type Event.
+// The GraphQL type's documentation follows.
+//
+// An event in a tournament
+type GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent struct {
+	Id ID `json:"id"`
+	// Title of event set by organizer
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+}
+
+// GetId returns GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent.Id, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent) GetId() ID {
+	return v.Id
+}
+
+// GetName returns GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent.Name, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent) GetName() string {
+	return v.Name
+}
+
+// GetSlug returns GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent.Slug, and is useful for accessing the field via an interface.
+func (v *GetUserEventsUserTournamentsTournamentConnectionNodesTournamentEventsEvent) GetSlug() string {
+	return v.Slug
+}
+
 // LeagueEventsLeague includes the requested fields of the GraphQL type League.
 // The GraphQL type's documentation follows.
 //
@@ -417,7 +520,9 @@ func (v *TournamentEventsResponse) GetTournament() TournamentEventsTournament { 
 type TournamentEventsTournament struct {
 	Id ID `json:"id"`
 	// The tournament name
-	Name   string                                  `json:"name"`
+	Name string `json:"name"`
+	// The user who created the tournament
+	Owner  TournamentEventsTournamentOwnerUser     `json:"owner"`
 	Events []TournamentEventsTournamentEventsEvent `json:"events"`
 }
 
@@ -426,6 +531,9 @@ func (v *TournamentEventsTournament) GetId() ID { return v.Id }
 
 // GetName returns TournamentEventsTournament.Name, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournament) GetName() string { return v.Name }
+
+// GetOwner returns TournamentEventsTournament.Owner, and is useful for accessing the field via an interface.
+func (v *TournamentEventsTournament) GetOwner() TournamentEventsTournamentOwnerUser { return v.Owner }
 
 // GetEvents returns TournamentEventsTournament.Events, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournament) GetEvents() []TournamentEventsTournamentEventsEvent {
@@ -448,6 +556,26 @@ func (v *TournamentEventsTournamentEventsEvent) GetId() ID { return v.Id }
 // GetName returns TournamentEventsTournamentEventsEvent.Name, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournamentEventsEvent) GetName() string { return v.Name }
 
+// TournamentEventsTournamentOwnerUser includes the requested fields of the GraphQL type User.
+// The GraphQL type's documentation follows.
+//
+// A user
+type TournamentEventsTournamentOwnerUser struct {
+	Id   ID     `json:"id"`
+	Slug string `json:"slug"`
+	// Public facing user name that respects user publishing settings
+	Name string `json:"name"`
+}
+
+// GetId returns TournamentEventsTournamentOwnerUser.Id, and is useful for accessing the field via an interface.
+func (v *TournamentEventsTournamentOwnerUser) GetId() ID { return v.Id }
+
+// GetSlug returns TournamentEventsTournamentOwnerUser.Slug, and is useful for accessing the field via an interface.
+func (v *TournamentEventsTournamentOwnerUser) GetSlug() string { return v.Slug }
+
+// GetName returns TournamentEventsTournamentOwnerUser.Name, and is useful for accessing the field via an interface.
+func (v *TournamentEventsTournamentOwnerUser) GetName() string { return v.Name }
+
 // __EventResultsInput is used internally by genqlient
 type __EventResultsInput struct {
 	EventId ID  `json:"eventId"`
@@ -459,6 +587,14 @@ func (v *__EventResultsInput) GetEventId() ID { return v.EventId }
 
 // GetPage returns __EventResultsInput.Page, and is useful for accessing the field via an interface.
 func (v *__EventResultsInput) GetPage() int { return v.Page }
+
+// __GetUserEventsInput is used internally by genqlient
+type __GetUserEventsInput struct {
+	Slug string `json:"slug"`
+}
+
+// GetSlug returns __GetUserEventsInput.Slug, and is useful for accessing the field via an interface.
+func (v *__GetUserEventsInput) GetSlug() string { return v.Slug }
 
 // __LeagueEventsInput is used internally by genqlient
 type __LeagueEventsInput struct {
@@ -557,6 +693,54 @@ func EventResults(
 	return data_, err_
 }
 
+// The query executed by GetUserEvents.
+const GetUserEvents_Operation = `
+query GetUserEvents ($slug: String!) {
+	user(slug: $slug) {
+		id
+		name
+		slug
+		tournaments {
+			nodes {
+				id
+				name
+				slug
+				events {
+					id
+					name
+					slug
+				}
+			}
+		}
+	}
+}
+`
+
+func GetUserEvents(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	slug string,
+) (data_ *GetUserEventsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetUserEvents",
+		Query:  GetUserEvents_Operation,
+		Variables: &__GetUserEventsInput{
+			Slug: slug,
+		},
+	}
+
+	data_ = &GetUserEventsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by LeagueEvents.
 const LeagueEvents_Operation = `
 query LeagueEvents ($slug: String!) {
@@ -608,6 +792,11 @@ query TournamentEvents ($slug: String!) {
 	tournament(slug: $slug) {
 		id
 		name
+		owner {
+			id
+			slug
+			name
+		}
 		events {
 			id
 			name

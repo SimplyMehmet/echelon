@@ -18,6 +18,7 @@ type Player struct {
 	ID         string
 	Name       string
 	Placements []PlacementInEvent
+	Team       string
 }
 
 type Event struct {
@@ -27,6 +28,7 @@ type Event struct {
 	Entrants int64
 	Location string
 	DoubleXP bool
+	State    string
 }
 
 type MappedSeason struct {

@@ -7,7 +7,6 @@ type TournamentSeasonConfiguration struct {
 	Type             SeasonType
 	CurrentSeason    bool
 	DoubleXPEventIDs map[string]bool
-	Teams            map[string]string
 }
 
 const (
@@ -15,18 +14,7 @@ const (
 	League     SeasonType = "league"
 )
 
-var PointsByPlacement = map[int64]int64{
-	1:  25,
-	2:  18,
-	3:  15,
-	4:  12,
-	5:  10,
-	6:  8,
-	7:  6,
-	8:  4,
-	9:  2,
-	10: 1,
-}
+const levelsOrganizerID = "user/a26b409d"
 
 var PlayerIDsByName = map[string]string{
 	"metabyte":        "706123",
@@ -64,31 +52,33 @@ var PlayerIDsByName = map[string]string{
 }
 
 var Seasons = map[string]TournamentSeasonConfiguration{
-	"levels-2025-28-30-dec": {
-		Name:             "Preseason",
-		StartGGSource:    "levels-2025-28-30-dec",
-		Type:             "tournament",
-		CurrentSeason:    false,
-		DoubleXPEventIDs: map[string]bool{},
-		Teams:            map[string]string{},
-	},
+	//"levels-2025-28-30-dec": {
+	//	Name:             "Preseason",
+	//	StartGGSource:    "levels-2025-28-30-dec",
+	//	Type:             "tournament",
+	//	CurrentSeason:    false,
+	//	DoubleXPEventIDs: map[string]bool{},
+	//	Teams:            map[string]string{},
+	//},
 
 	"levels-tekken-8-2026-season-1": {
-		Name:             "Season 1",
-		StartGGSource:    "levels-tekken-8-2026-season-1",
-		Type:             "tournament",
-		CurrentSeason:    false,
-		DoubleXPEventIDs: map[string]bool{},
-		Teams:            map[string]string{},
+		Name:          "Season 1",
+		StartGGSource: "levels-tekken-8-2026-season-1",
+		Type:          "tournament",
+		CurrentSeason: false,
+		DoubleXPEventIDs: map[string]bool{
+			"1548541": true,
+		},
 	},
 
 	"levels-tekken-league-season-2": {
-		Name:             "Season 2",
-		StartGGSource:    "levels-tekken-league-season-2",
-		Type:             "league",
-		CurrentSeason:    false,
-		DoubleXPEventIDs: map[string]bool{},
-		Teams:            map[string]string{},
+		Name:          "Season 2",
+		StartGGSource: "levels-tekken-league-season-2",
+		Type:          "league",
+		CurrentSeason: false,
+		DoubleXPEventIDs: map[string]bool{
+			"1605188": true,
+		},
 	},
 
 	"levels-tekken-league-season-3": {
@@ -103,42 +93,43 @@ var Seasons = map[string]TournamentSeasonConfiguration{
 			"1696416": true,
 			"1696417": true,
 		},
-		Teams: map[string]string{
-			PlayerIDsByName["metabyte"]: "Dragon",
-			PlayerIDsByName["darkmgm"]:  "Dragon",
-			PlayerIDsByName["tyronz"]:   "Dragon",
-			PlayerIDsByName["oats"]:     "Dragon",
-			PlayerIDsByName["faccboi"]:  "Dragon",
-			PlayerIDsByName["tarekt"]:   "Dragon",
-			PlayerIDsByName["aphyda"]:   "Dragon",
-			PlayerIDsByName["whytebar"]: "Dragon",
-
-			PlayerIDsByName["sin"]:           "Tarantula",
-			PlayerIDsByName["karmakens"]:     "Tarantula",
-			PlayerIDsByName["lilmayo"]:       "Tarantula",
-			PlayerIDsByName["scorpion"]:      "Tarantula",
-			PlayerIDsByName["yuukoo"]:        "Tarantula",
-			PlayerIDsByName["kneelforyoshi"]: "Tarantula",
-			PlayerIDsByName["divinekai666"]:  "Tarantula",
-			PlayerIDsByName["henbro"]:        "Tarantula",
-
-			PlayerIDsByName["ilias"]:       "Mantis",
-			PlayerIDsByName["probaze"]:     "Mantis",
-			PlayerIDsByName["rahil"]:       "Mantis",
-			PlayerIDsByName["tsuno"]:       "Mantis",
-			PlayerIDsByName["shanq"]:       "Mantis",
-			PlayerIDsByName["geno"]:        "Mantis",
-			PlayerIDsByName["swavythefox"]: "Mantis",
-			PlayerIDsByName["andoza"]:      "Mantis",
-
-			PlayerIDsByName["buffalo_soldier"]: "Phoenix",
-			PlayerIDsByName["kevtexgaming"]:    "Phoenix",
-			PlayerIDsByName["malekith"]:        "Phoenix",
-			PlayerIDsByName["bigfelixio"]:      "Phoenix",
-			PlayerIDsByName["aphrod1s1a"]:      "Phoenix",
-			PlayerIDsByName["jul"]:             "Phoenix",
-			PlayerIDsByName["sakujo"]:          "Phoenix",
-			PlayerIDsByName["wenk67"]:          "Phoenix",
-		},
 	},
+}
+
+var hardcodedTeams = map[string]string{
+	PlayerIDsByName["metabyte"]: "Dragon",
+	PlayerIDsByName["darkmgm"]:  "Dragon",
+	PlayerIDsByName["tyronz"]:   "Dragon",
+	PlayerIDsByName["oats"]:     "Dragon",
+	PlayerIDsByName["faccboi"]:  "Dragon",
+	PlayerIDsByName["tarekt"]:   "Dragon",
+	PlayerIDsByName["aphyda"]:   "Dragon",
+	PlayerIDsByName["whytebar"]: "Dragon",
+
+	PlayerIDsByName["sin"]:           "Tarantula",
+	PlayerIDsByName["karmakens"]:     "Tarantula",
+	PlayerIDsByName["lilmayo"]:       "Tarantula",
+	PlayerIDsByName["scorpion"]:      "Tarantula",
+	PlayerIDsByName["yuukoo"]:        "Tarantula",
+	PlayerIDsByName["kneelforyoshi"]: "Tarantula",
+	PlayerIDsByName["divinekai666"]:  "Tarantula",
+	PlayerIDsByName["henbro"]:        "Tarantula",
+
+	PlayerIDsByName["ilias"]:       "Mantis",
+	PlayerIDsByName["probaze"]:     "Mantis",
+	PlayerIDsByName["rahil"]:       "Mantis",
+	PlayerIDsByName["tsuno"]:       "Mantis",
+	PlayerIDsByName["shanq"]:       "Mantis",
+	PlayerIDsByName["geno"]:        "Mantis",
+	PlayerIDsByName["swavythefox"]: "Mantis",
+	PlayerIDsByName["andoza"]:      "Mantis",
+
+	PlayerIDsByName["buffalo_soldier"]: "Phoenix",
+	PlayerIDsByName["kevtexgaming"]:    "Phoenix",
+	PlayerIDsByName["malekith"]:        "Phoenix",
+	PlayerIDsByName["bigfelixio"]:      "Phoenix",
+	PlayerIDsByName["aphrod1s1a"]:      "Phoenix",
+	PlayerIDsByName["jul"]:             "Phoenix",
+	PlayerIDsByName["sakujo"]:          "Phoenix",
+	PlayerIDsByName["wenk67"]:          "Phoenix",
 }
