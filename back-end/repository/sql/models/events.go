@@ -12,6 +12,7 @@ type Event struct {
 	StartsAt     time.Time
 	Location     string
 	DoublePoints bool
+	Status       string
 	StartGGID    string   `gorm:"unique"`
 	Players      []Player `gorm:"many2many:player_events;"`
 	Season       Season

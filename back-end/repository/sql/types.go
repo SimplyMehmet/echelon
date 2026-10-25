@@ -7,7 +7,8 @@ import (
 )
 
 type Repository struct {
-	db *gorm.DB
+	db            *gorm.DB
+	teamIDsByName map[string]uuid.UUID
 }
 
 type PlayerWithPlacement struct {

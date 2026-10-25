@@ -15,10 +15,35 @@ query LeagueEvents($slug: String!) {
   }
 }
 
+query GetUserEvents($slug: String!) {
+  user(slug: $slug) {
+    id
+    name
+    slug
+    tournaments {
+      nodes {
+        id
+        name
+        slug
+        events {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+
 query TournamentEvents($slug: String!) {
   tournament(slug: $slug) {
     id
     name
+    owner {
+      id
+      slug
+      name
+    }
     events {
       id
       name
@@ -27,52 +52,52 @@ query TournamentEvents($slug: String!) {
 }
 
 query EventResults($eventId: ID!, $page: Int!) {
-    event(id: $eventId) {
-        id
-        name
-        entryFee
-        numEntrants
-        startAt
-        tournament {
-            venueName
-            venueAddress
-        }
-        state
-        sets(page: $page, perPage: 10) {
-            nodes {
-                id
-                fullRoundText
-                round
-                state
-                winnerId
-                slots {
-                    entrant {
-                        id
-                        name
-                    }
-                    standing {
-                        stats {
-                            score {
-                                value
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        standings(query: {page: $page, perPage: 100}) {
-            nodes {
-                placement
-                entrant {
-                    participants {
-                        gamerTag
-                        player {
-                            id
-                            gamerTag
-                        }
-                    }
-                }
-            }
-        }
+  event(id: $eventId) {
+    id
+    name
+    entryFee
+    numEntrants
+    startAt
+    tournament {
+      venueName
+      venueAddress
     }
+    state
+    sets(page: $page, perPage: 10) {
+      nodes {
+        id
+        fullRoundText
+        round
+        state
+        winnerId
+        slots {
+          entrant {
+            id
+            name
+          }
+          standing {
+            stats {
+              score {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+    standings(query: { page: $page, perPage: 100 }) {
+      nodes {
+        placement
+        entrant {
+          participants {
+            gamerTag
+            player {
+              id
+              gamerTag
+            }
+          }
+        }
+      }
+    }
+  }
 }

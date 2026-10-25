@@ -30,7 +30,8 @@ func New() (*Repository, error) {
 	}
 
 	repository := &Repository{
-		db: db,
+		db:            db,
+		teamIDsByName: map[string]uuid.UUID{},
 	}
 
 	return repository, nil
@@ -53,7 +54,7 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 		return fmt.Errorf("could not automigrate db models err %v", err)
 	}
 	teams := []string{"Dragon", "Mantis", "Phoenix", "Tarantula"}
-	teamIdsByName := map[string]uuid.UUID{}
+
 	for _, team := range teams {
 		var model models.Team
 		db.FirstOrCreate(&model, models.Team{Name: team})
@@ -61,7 +62,7 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 			return fmt.Errorf("could not create Team %s err: %v", team, db.Error)
 		}
 
-		teamIdsByName[team] = model.ID
+		r.teamIDsByName[team] = model.ID
 	}
 
 	var events []models.Event
@@ -91,15 +92,17 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 				Location:     event.Location,
 				StartGGID:    event.ID,
 				DoublePoints: event.DoubleXP,
+				Status:       event.State,
 			}
 
 			db.Model(&models.Event{}).
 				Where("start_gg_id = ?", eventModel.StartGGID).
 				Assign(map[string]interface{}{
-					"starts_at": eventModel.StartsAt,
-					"season_id": eventModel.SeasonID,
-					"location":  eventModel.Location,
-					"name":      eventModel.Name,
+					"starts_at":     eventModel.StartsAt,
+					"double_points": eventModel.DoublePoints,
+					"season_id":     eventModel.SeasonID,
+					"location":      eventModel.Location,
+					"name":          eventModel.Name,
 				}).FirstOrCreate(&eventModel)
 
 			if db.Error != nil {
@@ -111,63 +114,14 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 	}
 
 	for _, player := range startGGPlayerData {
-		var playerModel models.Player
-		teamID, teamExists := teamIdsByName[player.Team]
-		if !teamExists {
-			playerModel.MapStartGGDataIntoStruct(player, nil)
-		} else {
-			playerModel.MapStartGGDataIntoStruct(player, &teamID)
-		}
-
-		db.Model(&models.Player{}).
-			Where("start_gg_id = ?", playerModel.StartGGID).
-			Assign(map[string]interface{}{
-				"team_id": playerModel.TeamID,
-				"name":    playerModel.Name,
-			}).FirstOrCreate(&playerModel)
-
-		if db.Error != nil {
+		playerModel, err := r.UpsertStartGGPlayer(player)
+		if err != nil {
 			return fmt.Errorf("could not create Player %s err: %v", player.Team, db.Error)
 		}
 
-		err = r.createPlayerEventRelations(player.Placements, playerModel, events)
+		err = r.CreatePlayerEventRelations(player.Placements, playerModel, events)
 		if err != nil {
 			return fmt.Errorf("could not create Player event relations err: %v", err)
-		}
-	}
-
-	return nil
-}
-
-func (r *Repository) createPlayerEventRelations(
-	placements []startgg.PlacementInEvent,
-	playerModel models.Player,
-	events []models.Event,
-) error {
-	db := r.db
-	attendedStartGGEvents := map[string]int64{}
-	for _, placement := range placements {
-		attendedStartGGEvents[placement.EventID] = placement.Placement
-	}
-
-	if len(attendedStartGGEvents) > 0 {
-		for _, event := range events {
-			if _, eventExists := attendedStartGGEvents[event.StartGGID]; eventExists {
-				var playerEventModel models.PlayerEvent
-				playerEventModel.PlayerID = playerModel.ID
-				playerEventModel.EventID = event.ID
-				playerEventModel.Placement = attendedStartGGEvents[event.StartGGID]
-
-				db.Model(&models.PlayerEvent{}).Clauses(clause.OnConflict{
-					Columns: []clause.Column{{Name: "player_id"}, {Name: "event_id"}},
-					DoUpdates: clause.AssignmentColumns([]string{
-						"placement",
-					}),
-				}).Create(&playerEventModel)
-				if db.Error != nil {
-					return db.Error
-				}
-			}
 		}
 	}
 

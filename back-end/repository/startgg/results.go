@@ -23,6 +23,7 @@ func (r *Repository) GetEventAndParticipants(id string, StartGGSource string) ([
 				EventID:   id,
 				Placement: int64(node.Placement),
 			})
+			entry.Team = hardcodedTeams[entry.ID]
 			respPlayer = append(respPlayer, entry)
 		}
 	}
@@ -34,6 +35,7 @@ func (r *Repository) GetEventAndParticipants(id string, StartGGSource string) ([
 		Location: data.Event.Tournament.VenueAddress,
 		StartsAt: time.Unix(data.Event.StartAt, 0),
 		DoubleXP: Seasons[StartGGSource].DoubleXPEventIDs[string(data.Event.Id)],
+		State:    string(data.Event.State),
 	}
 
 	return respPlayer, respEvent, nil

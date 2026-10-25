@@ -3,7 +3,7 @@ name: echelon
 services:
   back-end:
     container_name: back-end
-    restart: no
+    restart: always
     build:
       context: ../back-end
     ports:
