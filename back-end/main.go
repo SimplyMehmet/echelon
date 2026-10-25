@@ -37,10 +37,13 @@ func main() {
 }
 
 func checkDBForInProgressEvents(sqlRepository *sql.Repository, startGGRepository *startgg.Repository) {
-	ticker := time.NewTicker(time.Minute * 1)
+	ticker := time.NewTicker(time.Second * 10)
 
+	fmt.Println("start ticker")
 	for range ticker.C {
+		fmt.Println("fetch events")
 		events, err := sqlRepository.GetEventsOfToday()
+
 		if err != nil {
 			panic(err)
 		}

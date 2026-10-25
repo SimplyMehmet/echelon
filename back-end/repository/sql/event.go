@@ -36,8 +36,8 @@ func (r *Repository) GetEventsOfToday() ([]models.Event, error) {
 	var model []models.Event
 	r.db.Model(&models.Event{}).Where(
 		"starts_at >= ? AND starts_at < ? AND status != ?",
-		startOfDay.Unix(),
-		endOfDay.Unix(),
+		startOfDay,
+		endOfDay,
 		completedStatus,
 	).Preload("Season").Find(&model)
 

@@ -1,13 +1,13 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getAllTeamsResponse } from '../responses/team';
-import { HttpClient } from '@angular/common/http';
+import { ApiClient } from '../api';
 
 @Service()
 export class Team {
-  private http = inject(HttpClient);
+  private http = inject(ApiClient);
 
   public getAllTeams(): Observable<getAllTeamsResponse> {
-    return this.http.get<getAllTeamsResponse>('http://localhost:8080/api/v1/team');
+    return this.http.get<getAllTeamsResponse>('/team');
   }
 }
