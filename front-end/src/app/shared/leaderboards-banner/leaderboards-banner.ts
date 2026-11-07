@@ -1,11 +1,13 @@
 import { KeyValuePipe, NgClass } from '@angular/common';
-import { Component, computed, inject, input, Signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, input, signal, Signal } from '@angular/core';
+import { toRequestState } from '@app/api/request-state';
 import { Player } from '@app/api/services/player';
 import { Team } from '@app/api/services/team';
+import { StatusMessage, StatusMessageType } from '@app/shared/status-message/status-message';
 import { LeaderboardsType } from '@constants/enums/leaderboards';
 
 type categoryEntry = {
+  id: string;
   displayPoints: number;
   name: string;
 };
@@ -20,7 +22,7 @@ type categoryDisplay = {
 type mappedCategory = Record<LeaderboardsType, categoryDisplay>;
 
 @Component({
-  imports: [KeyValuePipe, NgClass],
+  imports: [KeyValuePipe, NgClass, StatusMessage],
   selector: 'app-leaderboards-banner',
   styleUrl: './leaderboards-banner.css',
   templateUrl: './leaderboards-banner.html',
@@ -29,14 +31,25 @@ export class LeaderboardsBanner {
   public fullscreen = input(false);
   private teamService = inject(Team);
   private playerService = inject(Player);
-  private teamsData = toSignal(this.teamService.getAllTeams(), { initialValue: null });
-  private playersData = toSignal(this.playerService.getAllPlayers(), { initialValue: null });
+  private teamsState = toRequestState(this.teamService.getAllTeams());
+  private playersState = toRequestState(this.playerService.getAllPlayers());
+
+  public activeCategory = signal<LeaderboardsType>(LeaderboardsType.CurrentSeason);
+
+  // Applies to a category with no entries, so 'ready' means the list really is empty.
+  public emptyStatus: Signal<StatusMessageType> = computed(() => {
+    const statuses = [this.teamsState().status, this.playersState().status];
+    if (statuses.includes('error')) {
+      return 'error';
+    }
+    return statuses.includes('loading') ? 'loading' : 'empty';
+  });
 
   public categories: Signal<mappedCategory> = computed(() => {
-    const teamsData = this.teamsData();
-    const playersData = this.playersData();
+    const teamsState = this.teamsState();
+    const playersState = this.playersState();
 
-    if (!teamsData || !playersData) {
+    if (teamsState.status !== 'ready' || playersState.status !== 'ready') {
       return {
         [LeaderboardsType.CurrentSeason]: {
           title: LeaderboardsType.CurrentSeason,
@@ -65,22 +78,26 @@ export class LeaderboardsBanner {
       };
     }
 
-    const teams = teamsData.teams.map((team) => ({
+    const teams = teamsState.data.teams.map((team) => ({
+      id: team.id,
       displayPoints: team.score,
       name: team.name,
     }));
 
-    const mostLoyal = playersData.players.map((player) => ({
+    const mostLoyal = playersState.data.players.map((player) => ({
+      id: player.id,
       name: player.name,
       displayPoints: player.attended,
     }));
 
-    const allTime = playersData.players.map((player) => ({
+    const allTime = playersState.data.players.map((player) => ({
+      id: player.id,
       name: player.name,
       displayPoints: player.scoreTotal,
     }));
 
-    const currentSeason = playersData.players.map((player) => ({
+    const currentSeason = playersState.data.players.map((player) => ({
+      id: player.id,
       name: player.name,
       displayPoints: player.scoreCurrent,
     }));

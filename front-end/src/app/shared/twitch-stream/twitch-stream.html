@@ -1,1 +1,14 @@
-<iframe [src]="twitchChannelUrl" allowfullscreen class="responsive-iframe"> </iframe>
+<div class="stream">
+  <div #playerHost class="stream-layer"></div>
+  @if (embedFailed()) {
+    <iframe [src]="twitchChannelUrl" allowfullscreen class="stream-layer responsive-iframe">
+    </iframe>
+  }
+  @if (offline()) {
+    <div class="stream-layer offline-panel">
+      <img class="offline-logo" src="/img/levels-logo.png" alt="" />
+      <span class="uppercase text-[18px]">Stream offline</span>
+      <a class="offline-link" [href]="channelPageUrl" target="_blank">Follow us on Twitch</a>
+    </div>
+  }
+</div>
