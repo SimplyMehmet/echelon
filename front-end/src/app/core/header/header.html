@@ -3,10 +3,10 @@
 >
   <div class="max-w-7xl flex w-full m-auto h-[80%]">
     <div class="px-4 h-full">
-      <img class="h-full" src="/img/levels-logo.png" />
+      <img class="h-full" src="/img/levels-logo.png" alt="Levels Gaming" />
     </div>
 
-    <div class="ml-auto my-auto px-4">
+    <div class="hidden lg:block ml-auto my-auto px-4">
       <a
         class="uppercase text-white opacity-50 px-4 py-2 text-[12px]"
         routerLink="/"
@@ -26,6 +26,51 @@
         routerLinkActive="border-b border-b-2 active-link opacity-100"
         >Leaderboards</a
       >
+    </div>
+
+    <button
+      type="button"
+      class="menu-toggle ml-auto my-auto mr-1"
+      [class.open]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      (click)="toggleMenu()"
+    >
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+  </div>
+
+  <div class="mobile-backdrop" [class.open]="menuOpen()" (click)="closeMenu()"></div>
+
+  <div id="mobile-menu" class="mobile-menu header-bg" [class.open]="menuOpen()">
+    <div class="mobile-menu-clip">
+      <nav class="mobile-menu-links border-b border-white/50">
+        <a
+          class="mobile-link"
+          routerLink="/"
+          routerLinkActive="mobile-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+          >Home</a
+        >
+        <a
+          class="mobile-link"
+          routerLink="/events"
+          routerLinkActive="mobile-link-active"
+          (click)="closeMenu()"
+          >Events</a
+        >
+        <a
+          class="mobile-link"
+          routerLink="/leaderboards"
+          routerLinkActive="mobile-link-active"
+          (click)="closeMenu()"
+          >Leaderboards</a
+        >
+      </nav>
     </div>
   </div>
 </div>

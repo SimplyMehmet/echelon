@@ -1,7 +1,7 @@
 <div class="min-h-screen">
-  <div class="flex pt-4">
+  <div class="flex flex-col gap-4 pt-4 lg:flex-row lg:gap-0">
     <h1 class="text-[24px]">Leaderboards</h1>
-    <div class="ml-auto">
+    <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap lg:ml-auto lg:block">
       @for (type of leaderBoardFilters; track type) {
         <button
           (click)="onClickFilter(type)"
@@ -14,23 +14,37 @@
     </div>
   </div>
   <div class="table-body-wrapper mt-5">
-    <div class="table-body-header grid grid-cols-12 border-b border-white/25 px-4 py-2">
-      <span class="col-span-1">Placement</span>
-      <span class="col-span-5">Player</span>
-      <span class="col-span-5 text-end">
+    <div class="table-body-header flex border-b border-white/25 px-4 py-2 md:grid md:grid-cols-12">
+      <span class="hidden md:block md:col-span-1">Placement</span>
+      <!-- On phones the rank column has no label, so this lines up with the names below it -->
+      <span class="ml-9 mr-auto md:ml-0 md:mr-0 md:col-span-5">Player</span>
+      <span class="hidden md:block md:col-span-5 md:text-end">
         @if (!!leaderboardData().find((v) => v.team !== null)) {
           Team
         }
       </span>
-      <span class="col-span-1 text-end">Points</span>
+      <span class="md:col-span-1 text-end">Points</span>
     </div>
 
     @for (entry of leaderboardData(); track entry.name; let placing = $index) {
-      <div class="placing-wrapper border-b border-white/25 p-4 grid grid-cols-12 text-[14px]">
-        <span class="placing placing-{{ placing }} col-span-1">{{ placing + 1 }}</span>
-        <span class="col-span-5">{{ entry.name }}</span>
-        <span class="col-span-5 text-end">{{ entry.team }}</span>
-        <span class="col-span-1 text-end">{{ entry.displayValue }}</span>
+      <div
+        class="placing-wrapper border-b border-white/25 p-4 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 text-[14px] md:grid-cols-12 md:items-stretch md:gap-x-0"
+      >
+        <span class="placing placing-{{ placing }} row-span-2 md:row-span-1 md:col-span-1">{{
+          placing + 1
+        }}</span>
+        <span
+          class="col-start-2 text-[16px] wrap-anywhere md:col-start-auto md:col-span-5 md:text-[14px]"
+          >{{ entry.name }}</span
+        >
+        <span
+          class="col-start-2 text-[12px] team-name wrap-anywhere md:col-start-auto md:col-span-5 md:text-[14px] md:text-end"
+          >{{ entry.team }}</span
+        >
+        <span
+          class="col-start-3 row-start-1 row-span-2 text-[18px] text-end md:col-start-auto md:row-start-auto md:row-span-1 md:col-span-1 md:text-[14px]"
+          >{{ entry.displayValue }}</span
+        >
       </div>
     }
   </div>
