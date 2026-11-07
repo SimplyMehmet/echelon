@@ -1,0 +1,31 @@
+name: Front-end
+
+on:
+  pull_request:
+    paths:
+      - 'front-end/**'
+      - '.github/workflows/front-end.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front-end
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: front-end/package-lock.json
+      - run: npm ci
+      - run: npx ng test --watch=false
+      # Same environment step as the Dockerfile
+      - run: envsubst '${API_DOMAIN_URL},${HOSTED_DOMAIN}' < src/environments/environment.template.ts > src/environments/environment.ts
+        env:
+          API_DOMAIN_URL: http://localhost:8080/api/v1
+          HOSTED_DOMAIN: localhost
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

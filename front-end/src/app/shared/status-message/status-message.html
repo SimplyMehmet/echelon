@@ -1,0 +1,13 @@
+<div class="status-message" role="status">
+  @switch (status()) {
+    @case ('loading') {
+      Loading…
+    }
+    @case ('error') {
+      Couldn't load this right now. Please refresh the page.
+    }
+    @case ('empty') {
+      {{ emptyText() }}
+    }
+  }
+</div>

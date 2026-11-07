@@ -20,7 +20,10 @@
         class="lg:col-span-3 card border-white/25 mt-5"
       >
         <div class="uppercase text-white text-[16px] font-bold p-4 wrap-anywhere">
-          {{ event.name }}
+          @if (event.id === nextEventId()) {
+            <span class="next-badge">Next up</span>
+          }
+          <span class="block">{{ event.name }}</span>
         </div>
         <div class="grid grid-cols-2 gap-x-3 p-4 pt-0 lg:gap-x-0">
           <div class="col-span-1 my-2">
@@ -43,4 +46,7 @@
       </div>
     }
   </div>
+  @if (listStatus(); as status) {
+    <app-status-message [status]="status" emptyText="No events yet." />
+  }
 </div>

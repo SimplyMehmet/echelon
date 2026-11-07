@@ -1,3 +1,18 @@
+@if (!fullscreen()) {
+  <div class="grid grid-cols-2 gap-2 mb-4 sm:hidden">
+    @for (category of categories() | keyvalue: () => 0; track category.key) {
+      <button
+        type="button"
+        class="filter-button"
+        [ngClass]="{ active: activeCategory() === category.key }"
+        [attr.aria-pressed]="activeCategory() === category.key"
+        (click)="activeCategory.set(category.key)"
+      >
+        {{ category.value.title }}
+      </button>
+    }
+  </div>
+}
 <div
   [ngClass]="{
     'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-flow-col lg:grid-cols-none': !fullscreen(),
@@ -9,7 +24,11 @@
   @for (category of categories() | keyvalue: () => 0; track category.key) {
     @if (!fullscreen() || category.value.displayFullScreen) {
       <div
-        [ngClass]="{ 'lg:col-span-2': !fullscreen(), 'w-full': fullscreen() }"
+        [ngClass]="{
+          'lg:col-span-2': !fullscreen(),
+          'w-full': fullscreen(),
+          'max-sm:hidden': !fullscreen() && activeCategory() !== category.key,
+        }"
         class="min-w-0 text-white border border-white/25 leaderboard-wrapper"
       >
         <div class="border-b border-white/25 uppercase text-[18px] leaderboard-header">
@@ -25,12 +44,16 @@
           <div class="ml-auto">Amount</div>
         </div>
 
-        @for (entry of category.value.entries; track entry.displayPoints; let placing = $index) {
+        @for (entry of category.value.entries; track entry.id; let placing = $index) {
           <div class="flex placing-wrapper border-b text-white border-white/25 p-4">
             <div class="placing placing-{{ placing }}">{{ placing + 1 }}</div>
             <div class="mr-auto ml-4 min-w-0 wrap-anywhere">{{ entry.name }}</div>
             <div class="ml-3 shrink-0">{{ entry.displayPoints }}</div>
           </div>
+        }
+
+        @if (category.value.entries.length === 0) {
+          <app-status-message [status]="emptyStatus()" emptyText="No results yet." />
         }
       </div>
     }

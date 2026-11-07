@@ -3,59 +3,8 @@
 }
 
 .table-body-header {
-  color: #6b6b80;
+  color: var(--muted);
   font-size: 12px;
-}
-
-.filter-button {
-  font-size: 13px;
-  color: #6b6b80;
-  border: 1px solid rgba(240, 240, 240, 0.2);
-  text-transform: uppercase;
-  padding: 8px 12px;
-  min-height: 44px;
-}
-
-@media (min-width: 1024px) {
-  .filter-button {
-    font-size: 12px;
-    padding: 4px 12px;
-    margin: 0 4px;
-    min-height: 0;
-  }
-}
-
-.filter-button.active {
-  color: white;
-  background-color: var(--red);
-  border-color: var(--red);
-  transition: 0.3s ease-in-out;
-}
-
-.placing {
-  height: 24px;
-  width: 24px;
-  border: 1px solid rgba(240, 240, 240, 0.5);
-  color: rgba(240, 240, 240, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.placing-0 {
-  border-color: rgba(253, 199, 0, 0.8);
-  color: rgba(253, 199, 0, 0.5);
-}
-
-.placing-1 {
-  border-color: rgba(202, 213, 226, 0.8);
-  color: rgba(202, 213, 226, 0.5);
-}
-
-.placing-2 {
-  border-color: rgba(255, 137, 4, 0.8);
-  color: rgba(255, 137, 4, 0.5);
 }
 
 .placing-wrapper {

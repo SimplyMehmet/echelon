@@ -26,7 +26,7 @@
       <span class="md:col-span-1 text-end">Points</span>
     </div>
 
-    @for (entry of leaderboardData(); track entry.name; let placing = $index) {
+    @for (entry of leaderboardData(); track entry.id; let placing = $index) {
       <div
         class="placing-wrapper border-b border-white/25 p-4 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 text-[14px] md:grid-cols-12 md:items-stretch md:gap-x-0"
       >
@@ -46,6 +46,10 @@
           >{{ entry.displayValue }}</span
         >
       </div>
+    }
+
+    @if (listStatus(); as status) {
+      <app-status-message [status]="status" emptyText="No results yet." />
     }
   </div>
 </div>
