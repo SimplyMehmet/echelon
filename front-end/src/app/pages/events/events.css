@@ -1,10 +1,19 @@
 .filter-button {
-  font-size: 12px;
+  font-size: 13px;
   color: #6b6b80;
   border: 1px solid rgba(240, 240, 240, 0.2);
   text-transform: uppercase;
-  padding: 4px 12px;
-  margin: 0 4px;
+  padding: 8px 12px;
+  min-height: 44px;
+}
+
+@media (min-width: 1024px) {
+  .filter-button {
+    font-size: 12px;
+    padding: 4px 12px;
+    margin: 0 4px;
+    min-height: 0;
+  }
 }
 
 .filter-button.active {
