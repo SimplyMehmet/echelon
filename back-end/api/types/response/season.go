@@ -22,7 +22,7 @@ func (s *SeasonResponse) MapModelIntoResponse(model models.Season) {
 	s.CurrentSeason = model.Current
 	for _, event := range model.Events {
 		var eventResponse EventResponse
-		eventResponse.MapModelIntoResponse(event)
+		eventResponse.MapModelIntoResponse(event, nil)
 		s.Events = append(s.Events, eventResponse)
 	}
 }

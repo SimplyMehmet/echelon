@@ -1,9 +1,11 @@
 package startgg
 
 import (
+	"net/http"
+	"time"
+
 	"github.com/Khan/genqlient/graphql"
 	"github.com/SimplyMehmet/echelon/back-end/config"
-	"net/http"
 )
 
 type authTransport struct {
@@ -78,6 +80,7 @@ func (r *Repository) ImportStartGGData() ([]MappedPlayer, []MappedSeason, error)
 }
 
 func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfiguration) ([]MappedPlayer, []Event, error) {
+	cfg := config.Load()
 	var tournaments []TournamentEvent
 	if season.Type == League {
 		events, err := r.GetLeagueTournaments(season.StartGGSource)
@@ -100,6 +103,7 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 	var AllPlayers []Player
 	var eventDetailCollection []Event
 	for _, event := range tournaments {
+		time.Sleep(cfg.MigrationDelay)
 		players, eventDetails, err := r.GetEventAndParticipants(event.ID, season.StartGGSource)
 		if err != nil {
 			return nil, nil, err

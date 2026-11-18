@@ -8,4 +8,5 @@ import (
 func SetupEventRoutes(r *gin.RouterGroup, h *handler.Handler) {
 	group := r.Group("/event")
 	group.GET("", h.GetAllEvents)
+	group.GET(":id", h.GetEventById)
 }

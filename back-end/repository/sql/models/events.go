@@ -13,8 +13,10 @@ type Event struct {
 	Location     string
 	DoublePoints bool
 	Status       string
-	StartGGID    string   `gorm:"unique"`
+	StartGGID    string `gorm:"unique"`
+	PlayerCount  int
 	Players      []Player `gorm:"many2many:player_events;"`
+	Sets         []Set
 	Season       Season
 	SeasonID     uuid.UUID
 }
