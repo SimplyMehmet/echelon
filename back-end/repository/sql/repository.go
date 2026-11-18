@@ -3,12 +3,10 @@ package sql
 import (
 	"fmt"
 
-	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
-	"github.com/google/uuid"
-	"gorm.io/gorm/clause"
-
 	"github.com/SimplyMehmet/echelon/back-end/config"
 	"github.com/SimplyMehmet/echelon/back-end/repository/sql/models"
+	"github.com/SimplyMehmet/echelon/back-end/repository/startgg"
+	"github.com/google/uuid"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -49,6 +47,16 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 		return fmt.Errorf("could not setup join table: %v", err)
 	}
 
+	err = db.SetupJoinTable(&models.Set{}, "Players", &models.PlayerSet{})
+	if err != nil {
+		return fmt.Errorf("could not setup join table: %v", err)
+	}
+
+	err = db.SetupJoinTable(&models.Player{}, "Sets", &models.PlayerSet{})
+	if err != nil {
+		return fmt.Errorf("could not setup join table: %v", err)
+	}
+
 	err = db.AutoMigrate(&models.Team{}, &models.Player{}, &models.Season{}, &models.Event{}, &models.PlayerEvent{})
 	if err != nil {
 		return fmt.Errorf("could not automigrate db models err %v", err)
@@ -56,9 +64,8 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 	teams := []string{"Dragon", "Mantis", "Phoenix", "Tarantula"}
 
 	for _, team := range teams {
-		var model models.Team
-		db.FirstOrCreate(&model, models.Team{Name: team})
-		if db.Error != nil {
+		model, err := r.FindOrCreateTeam(team)
+		if err != nil {
 			return fmt.Errorf("could not create Team %s err: %v", team, db.Error)
 		}
 
@@ -66,50 +73,33 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 	}
 
 	var events []models.Event
+	mappedSets := make(map[string][]models.PlayerSet)
 	for _, season := range startGGSeasonData {
-		seasonModel := models.Season{
-			Name:      season.Name,
-			StartGGID: season.StartGGSourceSeason,
-			Current:   season.Current,
-		}
-
-		db.Model(&models.Season{}).Clauses(clause.OnConflict{
-			Columns: []clause.Column{{Name: "start_gg_id"}},
-			DoUpdates: clause.AssignmentColumns([]string{
-				"name",
-			}),
-		}).FirstOrCreate(&seasonModel, models.Season{Name: season.Name})
-
-		if db.Error != nil {
+		seasonModel, err := r.UpsertStartGGSeason(season)
+		if err != nil {
 			return fmt.Errorf("could not create Season %s err: %v", season.Name, db.Error)
 		}
 
 		for _, event := range season.Events {
-			eventModel := models.Event{
-				Name:         event.Name,
-				SeasonID:     seasonModel.ID,
-				StartsAt:     event.StartsAt,
-				Location:     event.Location,
-				StartGGID:    event.ID,
-				DoublePoints: event.DoubleXP,
-				Status:       event.State,
-			}
-
-			db.Model(&models.Event{}).
-				Where("start_gg_id = ?", eventModel.StartGGID).
-				Assign(map[string]interface{}{
-					"starts_at":     eventModel.StartsAt,
-					"double_points": eventModel.DoublePoints,
-					"season_id":     eventModel.SeasonID,
-					"location":      eventModel.Location,
-					"name":          eventModel.Name,
-				}).FirstOrCreate(&eventModel)
-
-			if db.Error != nil {
-				return fmt.Errorf("could not create Event %s err: %v", eventModel.Name, db.Error)
+			eventModel, err := r.UpsertStartGGEvent(event, seasonModel.ID)
+			if err != nil {
+				return fmt.Errorf("could not create StartGGEvent %s err: %v", event.ID, err)
 			}
 
 			events = append(events, eventModel)
+			for _, set := range event.Sets {
+				setModel, err := r.UpsertStartGGSet(set, eventModel.ID)
+				if err != nil {
+					return fmt.Errorf("could not create StartGGSet %s err: %v", set.ID, err)
+				}
+
+				for _, player := range set.Players {
+					mappedSets[player.ID] = append(mappedSets[player.ID], models.PlayerSet{
+						SetID: setModel.ID,
+						Score: int(player.Score),
+					})
+				}
+			}
 		}
 	}
 
@@ -119,10 +109,19 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 			return fmt.Errorf("could not create Player %s err: %v", player.Team, db.Error)
 		}
 
-		err = r.CreatePlayerEventRelations(player.Placements, playerModel, events)
+		err = r.UpsertStartGGPlayerEventRelations(player.Placements, playerModel, events)
 		if err != nil {
 			return fmt.Errorf("could not create Player event relations err: %v", err)
 		}
+
+		for _, set := range mappedSets[player.StartGGID] {
+			set.PlayerID = playerModel.ID
+			_, err = r.UpsertPlayerSetRelation(set)
+			if err != nil {
+				return fmt.Errorf("could not create Player set relations err: %v", err)
+			}
+		}
+
 	}
 
 	return nil

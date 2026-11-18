@@ -29,6 +29,20 @@ type Event struct {
 	Location string
 	DoubleXP bool
 	State    string
+	Sets     []Set
+}
+
+type Set struct {
+	ID      string
+	Name    string
+	Round   int64
+	Players []SetPlayer
+}
+
+type SetPlayer struct {
+	ID    string
+	Name  string
+	Score int64
 }
 
 type MappedSeason struct {

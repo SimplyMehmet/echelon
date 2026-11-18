@@ -2,21 +2,23 @@ package config
 
 import (
 	"sync"
+	"time"
 
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 )
 
 type Config struct {
-	Debug               bool   `envconfig:"DEBUG" default:"false"`
-	MariaDBRootPassword string `envconfig:"MARIADB_ROOT_PASSWORD" default:"admin"`
-	MariaDBRootUser     string `envconfig:"MARIADB_ROOT_USER" default:"root"`
-	MariaDBHost         string `envconfig:"MARIADB_HOST" default:"db"`
-	MariaDBPort         string `envconfig:"MARIADB_PORT" default:"3306"`
-	MariaDBDatabase     string `envconfig:"MARIADB_DATABASE" default:"echelon"`
-	StartGGAPIKey       string `envconfig:"STARTGG_API_KEY"`
-	StartGGAPIUrl       string `default:"https://api.start.gg/gql/alpha"`
-	MigrateDatabase     bool   `envconfig:"MIGRATE_DATABASE" default:"false"`
+	Debug               bool          `envconfig:"DEBUG" default:"false"`
+	MariaDBRootPassword string        `envconfig:"MARIADB_ROOT_PASSWORD" default:"admin"`
+	MariaDBRootUser     string        `envconfig:"MARIADB_ROOT_USER" default:"root"`
+	MariaDBHost         string        `envconfig:"MARIADB_HOST" default:"db"`
+	MariaDBPort         string        `envconfig:"MARIADB_PORT" default:"3306"`
+	MariaDBDatabase     string        `envconfig:"MARIADB_DATABASE" default:"echelon"`
+	StartGGAPIKey       string        `envconfig:"STARTGG_API_KEY"`
+	StartGGAPIUrl       string        `default:"https://api.start.gg/gql/alpha"`
+	MigrateDatabase     bool          `envconfig:"MIGRATE_DATABASE" default:"false"`
+	MigrationDelay      time.Duration `envconfig:"MIGRATION_DELAY" default:"1s"`
 }
 
 var once sync.Once

@@ -10,6 +10,7 @@ type Player struct {
 	ID        uuid.UUID `gorm:"type:uuid;primary_key"`
 	Name      string    `gorm:"check:length(name) >= 2"`
 	Events    []Event   `gorm:"many2many:player_events;"`
+	Sets      []Set     `gorm:"many2many:player_sets;"`
 	Team      *Team
 	TeamID    *uuid.UUID
 	StartGGID string `gorm:"unique"`

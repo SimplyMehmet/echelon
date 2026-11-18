@@ -17,7 +17,7 @@ func (r *Repository) GetPLayerEventsByPlayerID(playerID uuid.UUID) ([]models.Pla
 	return events, nil
 }
 
-func (r *Repository) CreatePlayerEventRelations(
+func (r *Repository) UpsertStartGGPlayerEventRelations(
 	placements []startgg.PlacementInEvent,
 	playerModel models.Player,
 	events []models.Event,

@@ -20,6 +20,19 @@ func (r *Repository) GetEvents() ([]models.Event, error) {
 	return model, nil
 }
 
+func (r *Repository) GetEventByID(id uuid.UUID) (models.Event, error) {
+	model := models.Event{
+		ID: id,
+	}
+
+	r.db.Model(&models.Event{}).Find(&model)
+	if r.db.Error != nil && !errors.Is(gorm.ErrRecordNotFound, r.db.Error) {
+		return model, r.db.Error
+	}
+
+	return model, nil
+}
+
 func (r *Repository) GetEventsOfToday() ([]models.Event, error) {
 	completedStatus := "COMPLETED"
 	now := time.Now()
@@ -48,7 +61,7 @@ func (r *Repository) GetEventsOfToday() ([]models.Event, error) {
 	return model, nil
 }
 
-func (r *Repository) UpdateEvent(event startgg.Event, seasonID uuid.UUID) (models.Event, error) {
+func (r *Repository) UpsertStartGGEvent(event startgg.Event, seasonID uuid.UUID) (models.Event, error) {
 	eventModel := models.Event{
 		Name:         event.Name,
 		SeasonID:     seasonID,
@@ -57,6 +70,7 @@ func (r *Repository) UpdateEvent(event startgg.Event, seasonID uuid.UUID) (model
 		StartGGID:    event.ID,
 		DoublePoints: event.DoubleXP,
 		Status:       event.State,
+		PlayerCount:  int(event.Entrants),
 	}
 
 	r.db.Model(&models.Event{}).

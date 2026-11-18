@@ -38,11 +38,11 @@ var AllActivityState = []ActivityState{
 	ActivityStateQueued,
 }
 
-// EventResultsEvent includes the requested fields of the GraphQL type Event.
+// GetEventSetsEvent includes the requested fields of the GraphQL type Event.
 // The GraphQL type's documentation follows.
 //
 // An event in a tournament
-type EventResultsEvent struct {
+type GetEventSetsEvent struct {
 	Id ID `json:"id"`
 	// Title of event set by organizer
 	Name string `json:"name"`
@@ -52,59 +52,58 @@ type EventResultsEvent struct {
 	NumEntrants int `json:"numEntrants"`
 	// When does this event start?
 	StartAt    int64                       `json:"startAt"`
-	Tournament EventResultsEventTournament `json:"tournament"`
+	Tournament GetEventSetsEventTournament `json:"tournament"`
 	// The state of the Event.
 	State ActivityState `json:"state"`
 	// Paginated sets for this Event
-	Sets EventResultsEventSetsSetConnection `json:"sets"`
-	// Paginated list of standings
-	Standings EventResultsEventStandingsStandingConnection `json:"standings"`
+	Sets GetEventSetsEventSetsSetConnection `json:"sets"`
 }
 
-// GetId returns EventResultsEvent.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetId() ID { return v.Id }
+// GetId returns GetEventSetsEvent.Id, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetId() ID { return v.Id }
 
-// GetName returns EventResultsEvent.Name, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetName() string { return v.Name }
+// GetName returns GetEventSetsEvent.Name, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetName() string { return v.Name }
 
-// GetEntryFee returns EventResultsEvent.EntryFee, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetEntryFee() float64 { return v.EntryFee }
+// GetEntryFee returns GetEventSetsEvent.EntryFee, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetEntryFee() float64 { return v.EntryFee }
 
-// GetNumEntrants returns EventResultsEvent.NumEntrants, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetNumEntrants() int { return v.NumEntrants }
+// GetNumEntrants returns GetEventSetsEvent.NumEntrants, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetNumEntrants() int { return v.NumEntrants }
 
-// GetStartAt returns EventResultsEvent.StartAt, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetStartAt() int64 { return v.StartAt }
+// GetStartAt returns GetEventSetsEvent.StartAt, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetStartAt() int64 { return v.StartAt }
 
-// GetTournament returns EventResultsEvent.Tournament, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetTournament() EventResultsEventTournament { return v.Tournament }
+// GetTournament returns GetEventSetsEvent.Tournament, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetTournament() GetEventSetsEventTournament { return v.Tournament }
 
-// GetState returns EventResultsEvent.State, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetState() ActivityState { return v.State }
+// GetState returns GetEventSetsEvent.State, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetState() ActivityState { return v.State }
 
-// GetSets returns EventResultsEvent.Sets, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetSets() EventResultsEventSetsSetConnection { return v.Sets }
+// GetSets returns GetEventSetsEvent.Sets, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEvent) GetSets() GetEventSetsEventSetsSetConnection { return v.Sets }
 
-// GetStandings returns EventResultsEvent.Standings, and is useful for accessing the field via an interface.
-func (v *EventResultsEvent) GetStandings() EventResultsEventStandingsStandingConnection {
-	return v.Standings
+// GetEventSetsEventSetsSetConnection includes the requested fields of the GraphQL type SetConnection.
+type GetEventSetsEventSetsSetConnection struct {
+	PageInfo GetEventSetsEventSetsSetConnectionPageInfo   `json:"pageInfo"`
+	Nodes    []GetEventSetsEventSetsSetConnectionNodesSet `json:"nodes"`
 }
 
-// EventResultsEventSetsSetConnection includes the requested fields of the GraphQL type SetConnection.
-type EventResultsEventSetsSetConnection struct {
-	Nodes []EventResultsEventSetsSetConnectionNodesSet `json:"nodes"`
+// GetPageInfo returns GetEventSetsEventSetsSetConnection.PageInfo, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnection) GetPageInfo() GetEventSetsEventSetsSetConnectionPageInfo {
+	return v.PageInfo
 }
 
-// GetNodes returns EventResultsEventSetsSetConnection.Nodes, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnection) GetNodes() []EventResultsEventSetsSetConnectionNodesSet {
+// GetNodes returns GetEventSetsEventSetsSetConnection.Nodes, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnection) GetNodes() []GetEventSetsEventSetsSetConnectionNodesSet {
 	return v.Nodes
 }
 
-// EventResultsEventSetsSetConnectionNodesSet includes the requested fields of the GraphQL type Set.
+// GetEventSetsEventSetsSetConnectionNodesSet includes the requested fields of the GraphQL type Set.
 // The GraphQL type's documentation follows.
 //
 // A set
-type EventResultsEventSetsSetConnectionNodesSet struct {
+type GetEventSetsEventSetsSetConnectionNodesSet struct {
 	Id ID `json:"id"`
 	// Full round text of this set.
 	FullRoundText string `json:"fullRoundText"`
@@ -113,215 +112,359 @@ type EventResultsEventSetsSetConnectionNodesSet struct {
 	State    int `json:"state"`
 	WinnerId int `json:"winnerId"`
 	// A possible spot in a set. Use this to get all entrants in a set. Use this for all bracket types (FFA, elimination, etc)
-	Slots []EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot `json:"slots"`
+	Slots []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot `json:"slots"`
 }
 
-// GetId returns EventResultsEventSetsSetConnectionNodesSet.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetId() ID { return v.Id }
+// GetId returns GetEventSetsEventSetsSetConnectionNodesSet.Id, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetId() ID { return v.Id }
 
-// GetFullRoundText returns EventResultsEventSetsSetConnectionNodesSet.FullRoundText, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetFullRoundText() string {
+// GetFullRoundText returns GetEventSetsEventSetsSetConnectionNodesSet.FullRoundText, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetFullRoundText() string {
 	return v.FullRoundText
 }
 
-// GetRound returns EventResultsEventSetsSetConnectionNodesSet.Round, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetRound() int { return v.Round }
+// GetRound returns GetEventSetsEventSetsSetConnectionNodesSet.Round, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetRound() int { return v.Round }
 
-// GetState returns EventResultsEventSetsSetConnectionNodesSet.State, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetState() int { return v.State }
+// GetState returns GetEventSetsEventSetsSetConnectionNodesSet.State, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetState() int { return v.State }
 
-// GetWinnerId returns EventResultsEventSetsSetConnectionNodesSet.WinnerId, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetWinnerId() int { return v.WinnerId }
+// GetWinnerId returns GetEventSetsEventSetsSetConnectionNodesSet.WinnerId, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetWinnerId() int { return v.WinnerId }
 
-// GetSlots returns EventResultsEventSetsSetConnectionNodesSet.Slots, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSet) GetSlots() []EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot {
+// GetSlots returns GetEventSetsEventSetsSetConnectionNodesSet.Slots, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetSlots() []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot {
 	return v.Slots
 }
 
-// EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot includes the requested fields of the GraphQL type SetSlot.
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot includes the requested fields of the GraphQL type SetSlot.
 // The GraphQL type's documentation follows.
 //
 // A slot in a set where a seed currently or will eventually exist in order to participate in the set.
-type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot struct {
-	Entrant EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant `json:"entrant"`
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot struct {
+	Entrant GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant `json:"entrant"`
 	// The standing within this set for the seed currently assigned to this slot.
-	Standing EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding `json:"standing"`
+	Standing GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding `json:"standing"`
 }
 
-// GetEntrant returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot.Entrant, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot) GetEntrant() EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant {
+// GetEntrant returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot.Entrant, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot) GetEntrant() GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant {
 	return v.Entrant
 }
 
-// GetStanding returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot.Standing, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlot) GetStanding() EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding {
+// GetStanding returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot.Standing, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot) GetStanding() GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding {
 	return v.Standing
 }
 
-// EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant includes the requested fields of the GraphQL type Entrant.
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant includes the requested fields of the GraphQL type Entrant.
 // The GraphQL type's documentation follows.
 //
 // An entrant in an event
-type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant struct {
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant struct {
 	Id ID `json:"id"`
 	// The entrant name as it appears in bracket: gamerTag of the participant or team name
-	Name string `json:"name"`
+	Name         string                                                                                 `json:"name"`
+	Participants []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant `json:"participants"`
 }
 
-// GetId returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetId() ID { return v.Id }
+// GetId returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Id, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetId() ID { return v.Id }
 
-// GetName returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Name, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetName() string {
+// GetName returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Name, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetName() string {
 	return v.Name
 }
 
-// EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding includes the requested fields of the GraphQL type Standing.
+// GetParticipants returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant.Participants, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrant) GetParticipants() []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant {
+	return v.Participants
+}
+
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant includes the requested fields of the GraphQL type Participant.
+// The GraphQL type's documentation follows.
+//
+// A participant of a tournament; either a spectator or competitor
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant struct {
+	// The tag that was used when the participant registered, e.g. Mang0
+	GamerTag string                                                                                     `json:"gamerTag"`
+	Player   GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer `json:"player"`
+}
+
+// GetGamerTag returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant.GamerTag, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant) GetGamerTag() string {
+	return v.GamerTag
+}
+
+// GetPlayer returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant.Player, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipant) GetPlayer() GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer {
+	return v.Player
+}
+
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer includes the requested fields of the GraphQL type Player.
+// The GraphQL type's documentation follows.
+//
+// A player
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer struct {
+	Id ID `json:"id"`
+}
+
+// GetId returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer.Id, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotEntrantParticipantsParticipantPlayer) GetId() ID {
+	return v.Id
+}
+
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding includes the requested fields of the GraphQL type Standing.
 // The GraphQL type's documentation follows.
 //
 // A standing indicates the placement of something within a container.
-type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding struct {
-	Stats EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats `json:"stats"`
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding struct {
+	Stats GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats `json:"stats"`
 }
 
-// GetStats returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding.Stats, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStanding) GetStats() EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats {
+// GetStats returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding.Stats, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStanding) GetStats() GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats {
 	return v.Stats
 }
 
-// EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats includes the requested fields of the GraphQL type StandingStats.
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats includes the requested fields of the GraphQL type StandingStats.
 // The GraphQL type's documentation follows.
 //
 // Any stats related to this standing. This type is experimental and very likely to change in the future.
-type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats struct {
-	Score EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore `json:"score"`
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats struct {
+	Score GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore `json:"score"`
 }
 
-// GetScore returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats.Score, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats) GetScore() EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore {
+// GetScore returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats.Score, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStats) GetScore() GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore {
 	return v.Score
 }
 
-// EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore includes the requested fields of the GraphQL type Score.
+// GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore includes the requested fields of the GraphQL type Score.
 // The GraphQL type's documentation follows.
 //
 // The score that led to this standing being awarded. The meaning of this field can
 // vary by standing type and is not used for some standing types.
-type EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore struct {
+type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore struct {
 	// The raw score value
 	Value float64 `json:"value"`
 }
 
-// GetValue returns EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore.Value, and is useful for accessing the field via an interface.
-func (v *EventResultsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore) GetValue() float64 {
+// GetValue returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore.Value, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore) GetValue() float64 {
 	return v.Value
 }
 
-// EventResultsEventStandingsStandingConnection includes the requested fields of the GraphQL type StandingConnection.
-type EventResultsEventStandingsStandingConnection struct {
-	Nodes []EventResultsEventStandingsStandingConnectionNodesStanding `json:"nodes"`
+// GetEventSetsEventSetsSetConnectionPageInfo includes the requested fields of the GraphQL type PageInfo.
+type GetEventSetsEventSetsSetConnectionPageInfo struct {
+	Page       int `json:"page"`
+	TotalPages int `json:"totalPages"`
 }
 
-// GetNodes returns EventResultsEventStandingsStandingConnection.Nodes, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnection) GetNodes() []EventResultsEventStandingsStandingConnectionNodesStanding {
-	return v.Nodes
-}
+// GetPage returns GetEventSetsEventSetsSetConnectionPageInfo.Page, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionPageInfo) GetPage() int { return v.Page }
 
-// EventResultsEventStandingsStandingConnectionNodesStanding includes the requested fields of the GraphQL type Standing.
-// The GraphQL type's documentation follows.
-//
-// A standing indicates the placement of something within a container.
-type EventResultsEventStandingsStandingConnectionNodesStanding struct {
-	Placement int `json:"placement"`
-	// If the entity this standing is assigned to can be resolved into an entrant, this will provide the entrant.
-	Entrant EventResultsEventStandingsStandingConnectionNodesStandingEntrant `json:"entrant"`
-}
+// GetTotalPages returns GetEventSetsEventSetsSetConnectionPageInfo.TotalPages, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionPageInfo) GetTotalPages() int { return v.TotalPages }
 
-// GetPlacement returns EventResultsEventStandingsStandingConnectionNodesStanding.Placement, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStanding) GetPlacement() int {
-	return v.Placement
-}
-
-// GetEntrant returns EventResultsEventStandingsStandingConnectionNodesStanding.Entrant, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStanding) GetEntrant() EventResultsEventStandingsStandingConnectionNodesStandingEntrant {
-	return v.Entrant
-}
-
-// EventResultsEventStandingsStandingConnectionNodesStandingEntrant includes the requested fields of the GraphQL type Entrant.
-// The GraphQL type's documentation follows.
-//
-// An entrant in an event
-type EventResultsEventStandingsStandingConnectionNodesStandingEntrant struct {
-	Participants []EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant `json:"participants"`
-}
-
-// GetParticipants returns EventResultsEventStandingsStandingConnectionNodesStandingEntrant.Participants, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrant) GetParticipants() []EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant {
-	return v.Participants
-}
-
-// EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant includes the requested fields of the GraphQL type Participant.
-// The GraphQL type's documentation follows.
-//
-// A participant of a tournament; either a spectator or competitor
-type EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant struct {
-	// The tag that was used when the participant registered, e.g. Mang0
-	GamerTag string                                                                                        `json:"gamerTag"`
-	Player   EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer `json:"player"`
-}
-
-// GetGamerTag returns EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant.GamerTag, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant) GetGamerTag() string {
-	return v.GamerTag
-}
-
-// GetPlayer returns EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant.Player, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant) GetPlayer() EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer {
-	return v.Player
-}
-
-// EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer includes the requested fields of the GraphQL type Player.
-// The GraphQL type's documentation follows.
-//
-// A player
-type EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer struct {
-	Id       ID     `json:"id"`
-	GamerTag string `json:"gamerTag"`
-}
-
-// GetId returns EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer.Id, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetId() ID {
-	return v.Id
-}
-
-// GetGamerTag returns EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer.GamerTag, and is useful for accessing the field via an interface.
-func (v *EventResultsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetGamerTag() string {
-	return v.GamerTag
-}
-
-// EventResultsEventTournament includes the requested fields of the GraphQL type Tournament.
+// GetEventSetsEventTournament includes the requested fields of the GraphQL type Tournament.
 // The GraphQL type's documentation follows.
 //
 // A tournament
-type EventResultsEventTournament struct {
+type GetEventSetsEventTournament struct {
 	VenueName    string `json:"venueName"`
 	VenueAddress string `json:"venueAddress"`
 }
 
-// GetVenueName returns EventResultsEventTournament.VenueName, and is useful for accessing the field via an interface.
-func (v *EventResultsEventTournament) GetVenueName() string { return v.VenueName }
+// GetVenueName returns GetEventSetsEventTournament.VenueName, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventTournament) GetVenueName() string { return v.VenueName }
 
-// GetVenueAddress returns EventResultsEventTournament.VenueAddress, and is useful for accessing the field via an interface.
-func (v *EventResultsEventTournament) GetVenueAddress() string { return v.VenueAddress }
+// GetVenueAddress returns GetEventSetsEventTournament.VenueAddress, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventTournament) GetVenueAddress() string { return v.VenueAddress }
 
-// EventResultsResponse is returned by EventResults on success.
-type EventResultsResponse struct {
+// GetEventSetsResponse is returned by GetEventSets on success.
+type GetEventSetsResponse struct {
 	// Returns an event given its id or slug
-	Event EventResultsEvent `json:"event"`
+	Event GetEventSetsEvent `json:"event"`
 }
 
-// GetEvent returns EventResultsResponse.Event, and is useful for accessing the field via an interface.
-func (v *EventResultsResponse) GetEvent() EventResultsEvent { return v.Event }
+// GetEvent returns GetEventSetsResponse.Event, and is useful for accessing the field via an interface.
+func (v *GetEventSetsResponse) GetEvent() GetEventSetsEvent { return v.Event }
+
+// GetEventStandingsEvent includes the requested fields of the GraphQL type Event.
+// The GraphQL type's documentation follows.
+//
+// An event in a tournament
+type GetEventStandingsEvent struct {
+	Id ID `json:"id"`
+	// Title of event set by organizer
+	Name string `json:"name"`
+	// How much it costs to enter this event
+	EntryFee float64 `json:"entryFee"`
+	// Gets the number of entrants in this event
+	NumEntrants int `json:"numEntrants"`
+	// When does this event start?
+	StartAt    int64                            `json:"startAt"`
+	Tournament GetEventStandingsEventTournament `json:"tournament"`
+	// The state of the Event.
+	State ActivityState `json:"state"`
+	// Paginated list of standings
+	Standings GetEventStandingsEventStandingsStandingConnection `json:"standings"`
+}
+
+// GetId returns GetEventStandingsEvent.Id, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetId() ID { return v.Id }
+
+// GetName returns GetEventStandingsEvent.Name, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetName() string { return v.Name }
+
+// GetEntryFee returns GetEventStandingsEvent.EntryFee, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetEntryFee() float64 { return v.EntryFee }
+
+// GetNumEntrants returns GetEventStandingsEvent.NumEntrants, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetNumEntrants() int { return v.NumEntrants }
+
+// GetStartAt returns GetEventStandingsEvent.StartAt, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetStartAt() int64 { return v.StartAt }
+
+// GetTournament returns GetEventStandingsEvent.Tournament, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetTournament() GetEventStandingsEventTournament {
+	return v.Tournament
+}
+
+// GetState returns GetEventStandingsEvent.State, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetState() ActivityState { return v.State }
+
+// GetStandings returns GetEventStandingsEvent.Standings, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEvent) GetStandings() GetEventStandingsEventStandingsStandingConnection {
+	return v.Standings
+}
+
+// GetEventStandingsEventStandingsStandingConnection includes the requested fields of the GraphQL type StandingConnection.
+type GetEventStandingsEventStandingsStandingConnection struct {
+	PageInfo GetEventStandingsEventStandingsStandingConnectionPageInfo        `json:"pageInfo"`
+	Nodes    []GetEventStandingsEventStandingsStandingConnectionNodesStanding `json:"nodes"`
+}
+
+// GetPageInfo returns GetEventStandingsEventStandingsStandingConnection.PageInfo, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnection) GetPageInfo() GetEventStandingsEventStandingsStandingConnectionPageInfo {
+	return v.PageInfo
+}
+
+// GetNodes returns GetEventStandingsEventStandingsStandingConnection.Nodes, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnection) GetNodes() []GetEventStandingsEventStandingsStandingConnectionNodesStanding {
+	return v.Nodes
+}
+
+// GetEventStandingsEventStandingsStandingConnectionNodesStanding includes the requested fields of the GraphQL type Standing.
+// The GraphQL type's documentation follows.
+//
+// A standing indicates the placement of something within a container.
+type GetEventStandingsEventStandingsStandingConnectionNodesStanding struct {
+	Placement int `json:"placement"`
+	// If the entity this standing is assigned to can be resolved into an entrant, this will provide the entrant.
+	Entrant GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant `json:"entrant"`
+}
+
+// GetPlacement returns GetEventStandingsEventStandingsStandingConnectionNodesStanding.Placement, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStanding) GetPlacement() int {
+	return v.Placement
+}
+
+// GetEntrant returns GetEventStandingsEventStandingsStandingConnectionNodesStanding.Entrant, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStanding) GetEntrant() GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant {
+	return v.Entrant
+}
+
+// GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant includes the requested fields of the GraphQL type Entrant.
+// The GraphQL type's documentation follows.
+//
+// An entrant in an event
+type GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant struct {
+	Participants []GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant `json:"participants"`
+}
+
+// GetParticipants returns GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant.Participants, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrant) GetParticipants() []GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant {
+	return v.Participants
+}
+
+// GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant includes the requested fields of the GraphQL type Participant.
+// The GraphQL type's documentation follows.
+//
+// A participant of a tournament; either a spectator or competitor
+type GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant struct {
+	// The tag that was used when the participant registered, e.g. Mang0
+	GamerTag string                                                                                             `json:"gamerTag"`
+	Player   GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer `json:"player"`
+}
+
+// GetGamerTag returns GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant.GamerTag, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant) GetGamerTag() string {
+	return v.GamerTag
+}
+
+// GetPlayer returns GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant.Player, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipant) GetPlayer() GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer {
+	return v.Player
+}
+
+// GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer includes the requested fields of the GraphQL type Player.
+// The GraphQL type's documentation follows.
+//
+// A player
+type GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer struct {
+	Id       ID     `json:"id"`
+	GamerTag string `json:"gamerTag"`
+}
+
+// GetId returns GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer.Id, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetId() ID {
+	return v.Id
+}
+
+// GetGamerTag returns GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer.GamerTag, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionNodesStandingEntrantParticipantsParticipantPlayer) GetGamerTag() string {
+	return v.GamerTag
+}
+
+// GetEventStandingsEventStandingsStandingConnectionPageInfo includes the requested fields of the GraphQL type PageInfo.
+type GetEventStandingsEventStandingsStandingConnectionPageInfo struct {
+	Page       int `json:"page"`
+	TotalPages int `json:"totalPages"`
+}
+
+// GetPage returns GetEventStandingsEventStandingsStandingConnectionPageInfo.Page, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionPageInfo) GetPage() int { return v.Page }
+
+// GetTotalPages returns GetEventStandingsEventStandingsStandingConnectionPageInfo.TotalPages, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventStandingsStandingConnectionPageInfo) GetTotalPages() int {
+	return v.TotalPages
+}
+
+// GetEventStandingsEventTournament includes the requested fields of the GraphQL type Tournament.
+// The GraphQL type's documentation follows.
+//
+// A tournament
+type GetEventStandingsEventTournament struct {
+	VenueName    string `json:"venueName"`
+	VenueAddress string `json:"venueAddress"`
+}
+
+// GetVenueName returns GetEventStandingsEventTournament.VenueName, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventTournament) GetVenueName() string { return v.VenueName }
+
+// GetVenueAddress returns GetEventStandingsEventTournament.VenueAddress, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsEventTournament) GetVenueAddress() string { return v.VenueAddress }
+
+// GetEventStandingsResponse is returned by GetEventStandings on success.
+type GetEventStandingsResponse struct {
+	// Returns an event given its id or slug
+	Event GetEventStandingsEvent `json:"event"`
+}
+
+// GetEvent returns GetEventStandingsResponse.Event, and is useful for accessing the field via an interface.
+func (v *GetEventStandingsResponse) GetEvent() GetEventStandingsEvent { return v.Event }
 
 // GetUserEventsResponse is returned by GetUserEvents on success.
 type GetUserEventsResponse struct {
@@ -576,17 +719,29 @@ func (v *TournamentEventsTournamentOwnerUser) GetSlug() string { return v.Slug }
 // GetName returns TournamentEventsTournamentOwnerUser.Name, and is useful for accessing the field via an interface.
 func (v *TournamentEventsTournamentOwnerUser) GetName() string { return v.Name }
 
-// __EventResultsInput is used internally by genqlient
-type __EventResultsInput struct {
+// __GetEventSetsInput is used internally by genqlient
+type __GetEventSetsInput struct {
 	EventId ID  `json:"eventId"`
 	Page    int `json:"page"`
 }
 
-// GetEventId returns __EventResultsInput.EventId, and is useful for accessing the field via an interface.
-func (v *__EventResultsInput) GetEventId() ID { return v.EventId }
+// GetEventId returns __GetEventSetsInput.EventId, and is useful for accessing the field via an interface.
+func (v *__GetEventSetsInput) GetEventId() ID { return v.EventId }
 
-// GetPage returns __EventResultsInput.Page, and is useful for accessing the field via an interface.
-func (v *__EventResultsInput) GetPage() int { return v.Page }
+// GetPage returns __GetEventSetsInput.Page, and is useful for accessing the field via an interface.
+func (v *__GetEventSetsInput) GetPage() int { return v.Page }
+
+// __GetEventStandingsInput is used internally by genqlient
+type __GetEventStandingsInput struct {
+	EventId ID  `json:"eventId"`
+	Page    int `json:"page"`
+}
+
+// GetEventId returns __GetEventStandingsInput.EventId, and is useful for accessing the field via an interface.
+func (v *__GetEventStandingsInput) GetEventId() ID { return v.EventId }
+
+// GetPage returns __GetEventStandingsInput.Page, and is useful for accessing the field via an interface.
+func (v *__GetEventStandingsInput) GetPage() int { return v.Page }
 
 // __GetUserEventsInput is used internally by genqlient
 type __GetUserEventsInput struct {
@@ -612,9 +767,9 @@ type __TournamentEventsInput struct {
 // GetSlug returns __TournamentEventsInput.Slug, and is useful for accessing the field via an interface.
 func (v *__TournamentEventsInput) GetSlug() string { return v.Slug }
 
-// The query executed by EventResults.
-const EventResults_Operation = `
-query EventResults ($eventId: ID!, $page: Int!) {
+// The query executed by GetEventSets.
+const GetEventSets_Operation = `
+query GetEventSets ($eventId: ID!, $page: Int!) {
 	event(id: $eventId) {
 		id
 		name
@@ -626,7 +781,11 @@ query EventResults ($eventId: ID!, $page: Int!) {
 			venueAddress
 		}
 		state
-		sets(page: $page, perPage: 10) {
+		sets(page: $page, perPage: 50) {
+			pageInfo {
+				page
+				totalPages
+			}
 			nodes {
 				id
 				fullRoundText
@@ -637,6 +796,12 @@ query EventResults ($eventId: ID!, $page: Int!) {
 					entrant {
 						id
 						name
+						participants {
+							gamerTag
+							player {
+								id
+							}
+						}
 					}
 					standing {
 						stats {
@@ -648,7 +813,56 @@ query EventResults ($eventId: ID!, $page: Int!) {
 				}
 			}
 		}
-		standings(query: {page:$page,perPage:100}) {
+	}
+}
+`
+
+func GetEventSets(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	eventId ID,
+	page int,
+) (data_ *GetEventSetsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetEventSets",
+		Query:  GetEventSets_Operation,
+		Variables: &__GetEventSetsInput{
+			EventId: eventId,
+			Page:    page,
+		},
+	}
+
+	data_ = &GetEventSetsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetEventStandings.
+const GetEventStandings_Operation = `
+query GetEventStandings ($eventId: ID!, $page: Int!) {
+	event(id: $eventId) {
+		id
+		name
+		entryFee
+		numEntrants
+		startAt
+		tournament {
+			venueName
+			venueAddress
+		}
+		state
+		standings(query: {page:$page,perPage:25}) {
+			pageInfo {
+				page
+				totalPages
+			}
 			nodes {
 				placement
 				entrant {
@@ -666,22 +880,22 @@ query EventResults ($eventId: ID!, $page: Int!) {
 }
 `
 
-func EventResults(
+func GetEventStandings(
 	ctx_ context.Context,
 	client_ graphql.Client,
 	eventId ID,
 	page int,
-) (data_ *EventResultsResponse, err_ error) {
+) (data_ *GetEventStandingsResponse, err_ error) {
 	req_ := &graphql.Request{
-		OpName: "EventResults",
-		Query:  EventResults_Operation,
-		Variables: &__EventResultsInput{
+		OpName: "GetEventStandings",
+		Query:  GetEventStandings_Operation,
+		Variables: &__GetEventStandingsInput{
 			EventId: eventId,
 			Page:    page,
 		},
 	}
 
-	data_ = &EventResultsResponse{}
+	data_ = &GetEventStandingsResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(

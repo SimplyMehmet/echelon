@@ -9,6 +9,7 @@ func (h *Handler) GetAllSeasons(ctx *gin.Context) {
 	resp, err := h.services.SeasonService.GetAllSeasons()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, err)
+		return
 	}
 
 	ctx.JSON(http.StatusOK, resp)

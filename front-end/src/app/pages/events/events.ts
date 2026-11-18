@@ -3,6 +3,7 @@ import { Component, computed, inject, OnInit, signal, Signal } from '@angular/co
 import { toSignal } from '@angular/core/rxjs-interop';
 import { GetEventResponse } from '@app/api/responses/event';
 import { GetSeasonResponse } from '@app/api/responses/season';
+import { Event } from '@app/api/services/event';
 import { Season } from '@app/api/services/season';
 import { map, tap } from 'rxjs';
 
@@ -13,9 +14,10 @@ import { map, tap } from 'rxjs';
   templateUrl: './events.html',
 })
 export class Events {
+  private seasonsService = inject(Season);
+  private eventsService = inject(Event);
   public activeSeason = signal<string | null>(null);
   public seasonEvents = signal<GetEventResponse[]>([]);
-  private seasonsService = inject(Season);
   public seasonsData = toSignal(
     this.seasonsService.getAllSeasons().pipe(
       tap((s) => {
@@ -42,5 +44,11 @@ export class Events {
     this.seasonEvents.set(
       season.events.sort((a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime()),
     );
+  }
+
+  public onClickEvent(event: GetEventResponse) {
+    this.eventsService.getEventByID(event.id).subscribe((resp) => {
+      console.log(resp);
+    });
   }
 }

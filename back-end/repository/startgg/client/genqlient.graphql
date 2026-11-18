@@ -51,7 +51,7 @@ query TournamentEvents($slug: String!) {
   }
 }
 
-query EventResults($eventId: ID!, $page: Int!) {
+query GetEventStandings($eventId: ID!, $page: Int!) {
   event(id: $eventId) {
     id
     name
@@ -63,7 +63,44 @@ query EventResults($eventId: ID!, $page: Int!) {
       venueAddress
     }
     state
-    sets(page: $page, perPage: 10) {
+    standings(query: { page: $page, perPage: 25 }) {
+      pageInfo {
+        page
+        totalPages
+      }
+      nodes {
+        placement
+        entrant {
+          participants {
+            gamerTag
+            player {
+              id
+              gamerTag
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetEventSets($eventId: ID!, $page: Int!) {
+  event(id: $eventId) {
+    id
+    name
+    entryFee
+    numEntrants
+    startAt
+    tournament {
+      venueName
+      venueAddress
+    }
+    state
+    sets(page: $page, perPage: 50) {
+      pageInfo {
+        page
+        totalPages
+      }
       nodes {
         id
         fullRoundText
@@ -74,26 +111,18 @@ query EventResults($eventId: ID!, $page: Int!) {
           entrant {
             id
             name
+            participants {
+              gamerTag
+              player {
+                id
+              }
+            }
           }
           standing {
             stats {
               score {
                 value
               }
-            }
-          }
-        }
-      }
-    }
-    standings(query: { page: $page, perPage: 100 }) {
-      nodes {
-        placement
-        entrant {
-          participants {
-            gamerTag
-            player {
-              id
-              gamerTag
             }
           }
         }
