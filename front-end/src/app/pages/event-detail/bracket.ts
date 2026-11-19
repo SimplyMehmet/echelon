@@ -211,7 +211,23 @@ export async function buildBracket(
     const group = groupNumber.get(match.group_id) ?? 0;
     const round = roundNumber.get(match.round_id) ?? 0;
     const set = placedByGroup[group]?.[round - 1]?.[match.number - 1];
-    if (!set) continue;
+    if (!set) {
+      // brackets-manager drops winners bracket losers into different losers
+      // bracket slots than start.gg, so it doesn't always know which slots
+      // are byes. A match without a set whose next match has already started
+      // can only have been a bye.
+      const index = match.number - 1;
+      const next = group === 1 || round % 2 === 0 ? Math.floor(index / 2) : index;
+      const child = group === 3 ? null : placedByGroup[group]?.[round]?.[next];
+      if (child?.startedAt || child?.completedAt) {
+        await storage.update<Match>('match', Number(match.id), {
+          ...match,
+          opponent1: null,
+          opponent2: null,
+        });
+      }
+      continue;
+    }
     roundNames.set(groupKey(group, round), set.name);
 
     const [a, b] = set.players;
