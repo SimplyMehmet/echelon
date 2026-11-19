@@ -13,9 +13,9 @@ type PlayerResponse struct {
 	ID           uuid.UUID `json:"id"`
 	Name         string    `json:"name"`
 	Team         string    `json:"team"`
-	Attended     int64     `json:"attended"`
-	ScoreTotal   int64     `json:"scoreTotal"`
-	ScoreCurrent int64     `json:"scoreCurrent"`
+	Attended     int       `json:"attended"`
+	ScoreTotal   int       `json:"scoreTotal"`
+	ScoreCurrent int       `json:"scoreCurrent"`
 }
 
 func (r *PlayerResponse) MapModelIntoStruct(model models.Player, playerEvents []models.PlayerEvent) {
@@ -27,11 +27,7 @@ func (r *PlayerResponse) MapModelIntoStruct(model models.Player, playerEvents []
 	}
 
 	for _, playerEvent := range playerEvents {
-		points := models.PointsByPlacement[playerEvent.Placement]
-		if playerEvent.Event.DoublePoints {
-			points *= 2
-		}
-
+		points := models.PointsByPlacement[playerEvent.Placement] * playerEvent.Event.PointMultiplier
 		if playerEvent.Event.Season.Current {
 			r.ScoreCurrent += points
 		}

@@ -16,9 +16,9 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-3 lg:grid-cols-12 lg:gap-x-0">
     @for (event of seasonEvents(); track event.id; let i = $index) {
       <div
-        (click)="onClickEvent(event)"
+        [routerLink]="`/events/${event.id}`"
         [ngClass]="{ 'lg:mr-3': (i + 1) % 4 !== 0 }"
-        class="lg:col-span-3 card border-white/25 mt-5"
+        class="lg:col-span-3 card border-white/25 mt-5 cursor-pointer"
       >
         <div class="uppercase text-white text-[16px] font-bold p-4 wrap-anywhere">
           {{ event.name }}

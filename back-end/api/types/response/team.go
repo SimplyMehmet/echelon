@@ -12,10 +12,10 @@ type GetAllTeamsResponse struct {
 type TeamResponse struct {
 	ID    uuid.UUID `json:"id"`
 	Name  string    `json:"name"`
-	Score int64     `json:"score"`
+	Score int       `json:"score"`
 }
 
-func (r *TeamResponse) MapModelIntoStruct(team models.Team, score int64) {
+func (r *TeamResponse) MapModelIntoStruct(team models.Team, score int) {
 	r.ID = team.ID
 	r.Name = team.Name
 	r.Score = score

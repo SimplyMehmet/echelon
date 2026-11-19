@@ -23,7 +23,7 @@ func (r *Repository) UpsertStartGGPlayerEventRelations(
 	events []models.Event,
 ) error {
 	db := r.db
-	attendedStartGGEvents := map[string]int64{}
+	attendedStartGGEvents := map[string]int{}
 	for _, placement := range placements {
 		attendedStartGGEvents[placement.EventID] = placement.Placement
 	}

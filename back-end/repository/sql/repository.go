@@ -96,7 +96,7 @@ func (r *Repository) Migrate(startGGPlayerData []startgg.MappedPlayer, startGGSe
 				for _, player := range set.Players {
 					mappedSets[player.ID] = append(mappedSets[player.ID], models.PlayerSet{
 						SetID: setModel.ID,
-						Score: int(player.Score),
+						Score: player.Score,
 					})
 				}
 			}

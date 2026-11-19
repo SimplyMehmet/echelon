@@ -7,18 +7,18 @@ import (
 )
 
 type Event struct {
-	ID           uuid.UUID `gorm:"type:uuid;primary_key"`
-	Name         string
-	StartsAt     time.Time
-	Location     string
-	DoublePoints bool
-	Status       string
-	StartGGID    string `gorm:"unique"`
-	PlayerCount  int
-	Players      []Player `gorm:"many2many:player_events;"`
-	Sets         []Set
-	Season       Season
-	SeasonID     uuid.UUID
+	ID              uuid.UUID `gorm:"type:uuid;primary_key"`
+	Name            string
+	StartsAt        time.Time
+	Location        string
+	PointMultiplier int
+	Status          string
+	StartGGID       string `gorm:"unique"`
+	PlayerCount     int
+	Players         []Player `gorm:"many2many:player_events;"`
+	Sets            []Set
+	Season          Season
+	SeasonID        uuid.UUID
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.
