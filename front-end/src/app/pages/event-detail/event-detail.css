@@ -45,3 +45,46 @@
   color: white;
   background-color: var(--red);
 }
+
+.stream-match {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: white;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.stream-match.live {
+  border-color: var(--red);
+}
+
+.stream-round {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+.tbd {
+  color: #6b6b80;
+}
+
+.stream-players {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stream-players > .wrap-anywhere {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.stream-score {
+  font-weight: bold;
+}
+
+.stream-vs {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}

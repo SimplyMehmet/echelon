@@ -11,6 +11,8 @@ export type BracketData = {
   participants: Participant[];
   /** Round names from start.gg, keyed by `<group number>-<round number>`. */
   roundNames: Map<string, string>;
+  /** IDs of the matches whose set is or was on stream. */
+  onStream: Set<number>;
 };
 
 type Slot = GetEventSetsResponse | null;
@@ -196,6 +198,7 @@ export async function buildBracket(
   const groupNumber = new Map(data.group.map((g) => [g.id, g.number]));
   const roundNumber = new Map(data.round.map((r) => [r.id, r.number]));
   const roundNames = new Map<string, string>();
+  const onStream = new Set<number>();
 
   const finalsPlaced: Slot[][] = [
     finals.filter((s) => !isReset(s)).slice(0, 1),
@@ -229,6 +232,7 @@ export async function buildBracket(
       continue;
     }
     roundNames.set(groupKey(group, round), set.name);
+    if (set.onStream) onStream.add(Number(match.id));
 
     const [a, b] = set.players;
     let winner: string | undefined;
@@ -250,6 +254,7 @@ export async function buildBracket(
     matchGames: [],
     participants: result.participant,
     roundNames,
+    onStream,
   };
 }
 

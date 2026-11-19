@@ -4,6 +4,35 @@
   @if (status() === 'loading') {
     <p class="bracket-status">Loading bracket…</p>
   }
+  @if (status() === 'shown') {
+    <div class="bracket-search">
+      <label class="bracket-search-label" [for]="elementId + '-search'">Find a player</label>
+      <input
+        [id]="elementId + '-search'"
+        type="search"
+        class="bracket-search-input"
+        placeholder="Player name"
+        autocomplete="off"
+        [attr.list]="elementId + '-players'"
+        [value]="query()"
+        (input)="onSearch($event)"
+      />
+      <datalist [id]="elementId + '-players'">
+        @for (player of players(); track player.id) {
+          <option [value]="player.name"></option>
+        }
+      </datalist>
+      @if (query().trim()) {
+        <p class="bracket-search-result" aria-live="polite">
+          @if (foundPlayer(); as player) {
+            {{ player.name }}: {{ foundMatches() }} {{ foundMatches() === 1 ? 'match' : 'matches' }}
+          } @else {
+            No single player matches "{{ query().trim() }}"
+          }
+        </p>
+      }
+    </div>
+  }
   <!-- brackets-viewer draws into this element -->
   <div
     #bracket

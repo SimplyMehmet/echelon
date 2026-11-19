@@ -54,6 +54,24 @@ export class Bracket {
   /** Whether the bracket was drawn; unavailable shows the sets as a list instead. */
   public status = signal<'loading' | 'shown' | 'unavailable'>('loading');
 
+  /** Players in the drawn bracket, for the player search. */
+  public players = signal<{ id: number; name: string }[]>([]);
+  public query = signal('');
+
+  /** The player matching the search: an exact name, or the only partial match. */
+  public foundPlayer = computed(() => {
+    const query = this.query().trim().toLowerCase();
+    if (!query) return null;
+    const players = this.players();
+    const exact = players.find((p) => p.name.toLowerCase() === query);
+    if (exact) return exact;
+    const partial = players.filter((p) => p.name.toLowerCase().includes(query));
+    return partial.length === 1 ? partial[0] : null;
+  });
+
+  /** How many of the found player's matches are in the bracket. */
+  public foundMatches = signal(0);
+
   /** Sets grouped by round, for when the bracket can't be drawn. */
   public rounds = computed(() => {
     const groups = new Map<string, GetEventSetsResponse[]>();
@@ -65,6 +83,7 @@ export class Bracket {
   });
 
   constructor() {
+    effect(() => this.highlight(this.foundPlayer(), this.query().trim() !== ''));
     effect(() => {
       const event = this.event();
       const element = this.bracketElement();
@@ -92,6 +111,9 @@ export class Bracket {
         customRoundName: (info) =>
           data.roundNames.get(groupKey(GROUP_NUMBER[info.groupType] ?? 0, info.roundNumber)),
       });
+      for (const id of data.onStream) {
+        element.querySelector(`.match[data-match-id="${id}"]`)?.classList.add('on-stream');
+      }
       // start.gg doesn't show byes, so hide rounds that only contain byes.
       for (const round of element.querySelectorAll('.round')) {
         const matches = [...round.querySelectorAll<HTMLElement>('.match')];
@@ -99,10 +121,44 @@ export class Bracket {
           round.classList.add('bye-round');
         }
       }
+      this.players.set(
+        data.participants
+          .map((p) => ({ id: Number(p.id), name: p.name }))
+          .sort((a, b) => a.name.localeCompare(b.name)),
+      );
       this.status.set('shown');
+      this.highlight(this.foundPlayer(), this.query().trim() !== '');
     } catch (error) {
       console.error('Could not draw the bracket', error);
       this.status.set('unavailable');
     }
+  }
+
+  public onSearch(event: Event) {
+    this.query.set((event.target as HTMLInputElement).value);
+  }
+
+  /** Fades out every match the found player didn't play in. */
+  private highlight(player: { id: number } | null, searching: boolean) {
+    const element = this.bracketElement()?.nativeElement;
+    if (!element) return;
+    element.classList.toggle('searching', searching);
+    element.querySelectorAll('.found').forEach((el) => el.classList.remove('found'));
+    if (!player) {
+      this.foundMatches.set(0);
+      return;
+    }
+    const rows = element.querySelectorAll(`.participant[data-participant-id="${player.id}"]`);
+    const matches = new Set<Element>();
+    rows.forEach((row) => {
+      row.classList.add('found');
+      const match = row.closest('.match');
+      if (match) {
+        match.classList.add('found');
+        matches.add(match);
+      }
+    });
+    this.foundMatches.set(matches.size);
+    [...matches][0]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
   }
 }

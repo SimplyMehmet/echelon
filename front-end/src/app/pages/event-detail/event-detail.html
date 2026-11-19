@@ -41,14 +41,33 @@
       </div>
     </div>
 
-    @if (onStream().length) {
-      <div class="mt-5 text-[14px] card-display">
-        <span class="uppercase text-[11px] text-[#6b6b80] mr-2">On stream</span>
-        @for (set of onStream(); track set.id) {
-          <span class="mr-4">
-            {{ set.players[0]?.name ?? 'TBD' }} vs {{ set.players[1]?.name ?? 'TBD' }}
-            <span class="text-[#6b6b80]">({{ set.name }})</span>
-          </span>
+    @if (upNextOnStream().length) {
+      <h2 class="text-[20px] mt-8">Up next on stream</h2>
+      <div class="grid grid-cols-1 gap-3 mt-3 sm:grid-cols-2 lg:grid-cols-4">
+        @for (set of upNextOnStream(); track set.id) {
+          <div class="stream-match" [class.live]="set.startedAt">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="stream-round">{{ set.name }}</span>
+              @if (set.startedAt) {
+                <span class="live-badge ml-auto">Live</span>
+              }
+            </div>
+            <div class="stream-players">
+              <span class="wrap-anywhere" [class.tbd]="!set.players[0]">
+                {{ set.players[0]?.name ?? 'TBD' }}
+              </span>
+              @if (set.startedAt && set.players[0]) {
+                <span class="stream-score">{{ set.players[0].score }}</span>
+              }
+              <span class="stream-vs">vs</span>
+              @if (set.startedAt && set.players[1]) {
+                <span class="stream-score">{{ set.players[1].score }}</span>
+              }
+              <span class="wrap-anywhere text-end" [class.tbd]="!set.players[1]">
+                {{ set.players[1]?.name ?? 'TBD' }}
+              </span>
+            </div>
+          </div>
         }
       </div>
     }

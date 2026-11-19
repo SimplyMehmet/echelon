@@ -111,3 +111,72 @@ app-bracket .brackets-viewer .participant.win .result {
   color: white;
   font-weight: bold;
 }
+
+app-bracket .brackets-viewer .match.on-stream .opponents {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red);
+}
+
+app-bracket .brackets-viewer .match.on-stream .opponents::after {
+  content: 'Stream';
+  position: absolute;
+  top: -7px;
+  right: 4px;
+  padding: 0 4px;
+  font-size: 9px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--red);
+}
+
+app-bracket .bracket-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 12px 0 4px;
+}
+
+app-bracket .bracket-search-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+app-bracket .bracket-search-input {
+  width: 100%;
+  max-width: 260px;
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: 16px;
+  color: white;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+app-bracket .bracket-search-input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+app-bracket .bracket-search-result {
+  font-size: 13px;
+  color: #b0b0c0;
+}
+
+app-bracket .brackets-viewer.searching .match:not(.found) {
+  opacity: 0.25;
+}
+
+app-bracket .brackets-viewer .participant.found .name {
+  color: var(--red);
+  font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+  app-bracket .bracket-search-input {
+    min-height: 36px;
+    font-size: 14px;
+  }
+}

@@ -24,10 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "node_modules/brackets-viewer/dist/brackets-viewer.min.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "static",
             "security": {

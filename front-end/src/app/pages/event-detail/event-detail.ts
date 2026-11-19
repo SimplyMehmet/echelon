@@ -51,7 +51,19 @@ export class EventDetail {
 
   public sets = computed(() => this.event()?.sets ?? []);
   public isLive = computed(() => this.sets().some((s) => s.startedAt && !s.completedAt));
-  public onStream = computed(() =>
-    this.sets().filter((s) => s.onStream && s.startedAt && !s.completedAt),
+  /**
+   * The next 4 streamed matches that haven't finished: lowest round first,
+   * winners side before losers side, then by ID.
+   */
+  public upNextOnStream = computed(() =>
+    this.sets()
+      .filter((s) => s.onStream && !s.completedAt)
+      .sort(
+        (a, b) =>
+          Math.abs(a.round) - Math.abs(b.round) ||
+          Number(b.round > 0) - Number(a.round > 0) ||
+          a.id.localeCompare(b.id),
+      )
+      .slice(0, 4),
   );
 }
