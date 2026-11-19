@@ -45,10 +45,3 @@
   color: white;
   background-color: var(--red);
 }
-
-.set {
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #111117;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}

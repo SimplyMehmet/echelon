@@ -55,36 +55,6 @@
 
     <h2 class="text-[20px] mt-8">Bracket</h2>
 
-    @if (sets().length === 0) {
-      <p class="status-text">The bracket will appear here once the event starts.</p>
-    } @else {
-      @if (bracketStatus() === 'loading') {
-        <p class="status-text">Loading bracket…</p>
-      }
-      <!-- brackets-viewer draws into this element -->
-      <div
-        #bracket
-        class="brackets-viewer bracket-wrapper"
-        [class.hidden]="bracketStatus() !== 'shown'"
-      ></div>
-
-      @if (bracketStatus() === 'unavailable') {
-        @for (round of rounds(); track round.name) {
-          <h3 class="uppercase text-[13px] text-[#6b6b80] mt-6 mb-2">{{ round.name }}</h3>
-          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            @for (set of round.sets; track set.id) {
-              <div class="set">
-                @for (player of set.players; track player.name) {
-                  <div class="flex justify-between gap-3">
-                    <span class="wrap-anywhere">{{ player.name }}</span>
-                    <span class="card-display">{{ set.startedAt ? player.score : '' }}</span>
-                  </div>
-                }
-              </div>
-            }
-          </div>
-        }
-      }
-    }
+    <app-bracket [event]="event" />
   }
 </div>
