@@ -22,5 +22,5 @@ type PlayerWithPlacement struct {
 
 type EventWithPlacement struct {
 	models.Event
-	Placement int64
+	Placement int
 }

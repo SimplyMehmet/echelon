@@ -2,11 +2,12 @@ package startgg
 
 type SeasonType string
 type TournamentSeasonConfiguration struct {
-	Name             string
-	StartGGSource    string
-	Type             SeasonType
-	CurrentSeason    bool
-	DoubleXPEventIDs map[string]bool
+	Name              string
+	StartGGSource     string
+	Type              SeasonType
+	CurrentSeason     bool
+	PointMultiplier   map[string]int
+	EligibleForPoints bool
 }
 
 const (
@@ -64,34 +65,54 @@ var Seasons = map[string]TournamentSeasonConfiguration{
 	"levels-tekken-8-2026-season-1": {
 		Name:          "Season 1",
 		StartGGSource: "levels-tekken-8-2026-season-1",
-		Type:          "tournament",
+		Type:          Tournament,
 		CurrentSeason: false,
-		DoubleXPEventIDs: map[string]bool{
-			"1548541": true,
+		PointMultiplier: map[string]int{
+			"1548541": 2,
 		},
+		EligibleForPoints: true,
 	},
 
 	"levels-tekken-league-season-2": {
 		Name:          "Season 2",
 		StartGGSource: "levels-tekken-league-season-2",
-		Type:          "league",
+		Type:          League,
 		CurrentSeason: false,
-		DoubleXPEventIDs: map[string]bool{
-			"1605188": true,
+		PointMultiplier: map[string]int{
+			"1605188": 2,
 		},
+		EligibleForPoints: true,
 	},
 
 	"levels-tekken-league-season-3": {
 		Name:          "Season 3",
 		StartGGSource: "levels-tekken-league-season-3",
-		Type:          "tournament",
+		Type:          Tournament,
+		CurrentSeason: false,
+		PointMultiplier: map[string]int{
+			"1689341": 2,
+			"1696410": 2,
+			"1696415": 2,
+			"1696416": 2,
+			"1696417": 2,
+		},
+	},
+	"levels-tekken-league-festival": {
+		Name:          "Festival",
+		StartGGSource: "levels-tekken-league-festival",
 		CurrentSeason: true,
-		DoubleXPEventIDs: map[string]bool{
-			"1689341": true,
-			"1696410": true,
-			"1696415": true,
-			"1696416": true,
-			"1696417": true,
+		PointMultiplier: map[string]int{
+			"1731475": 0,
+		},
+		Type: Tournament,
+	},
+	"test-tournament-1774": {
+		Name:          "Test",
+		StartGGSource: "test-tournament-1774",
+		CurrentSeason: false,
+		Type:          Tournament,
+		PointMultiplier: map[string]int{
+			"1759152": 0,
 		},
 	},
 }

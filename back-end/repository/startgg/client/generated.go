@@ -108,9 +108,12 @@ type GetEventSetsEventSetsSetConnectionNodesSet struct {
 	// Full round text of this set.
 	FullRoundText string `json:"fullRoundText"`
 	// The round number of the set. Negative numbers are losers bracket
-	Round    int `json:"round"`
-	State    int `json:"state"`
-	WinnerId int `json:"winnerId"`
+	Round     int   `json:"round"`
+	StartedAt int64 `json:"startedAt"`
+	// The time this set was marked as completed
+	CompletedAt int64 `json:"completedAt"`
+	// Tournament event stream for a set
+	Stream GetEventSetsEventSetsSetConnectionNodesSetStreamStreams `json:"stream"`
 	// A possible spot in a set. Use this to get all entrants in a set. Use this for all bracket types (FFA, elimination, etc)
 	Slots []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot `json:"slots"`
 }
@@ -126,11 +129,16 @@ func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetFullRoundText() string {
 // GetRound returns GetEventSetsEventSetsSetConnectionNodesSet.Round, and is useful for accessing the field via an interface.
 func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetRound() int { return v.Round }
 
-// GetState returns GetEventSetsEventSetsSetConnectionNodesSet.State, and is useful for accessing the field via an interface.
-func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetState() int { return v.State }
+// GetStartedAt returns GetEventSetsEventSetsSetConnectionNodesSet.StartedAt, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetStartedAt() int64 { return v.StartedAt }
 
-// GetWinnerId returns GetEventSetsEventSetsSetConnectionNodesSet.WinnerId, and is useful for accessing the field via an interface.
-func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetWinnerId() int { return v.WinnerId }
+// GetCompletedAt returns GetEventSetsEventSetsSetConnectionNodesSet.CompletedAt, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetCompletedAt() int64 { return v.CompletedAt }
+
+// GetStream returns GetEventSetsEventSetsSetConnectionNodesSet.Stream, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetStream() GetEventSetsEventSetsSetConnectionNodesSetStreamStreams {
+	return v.Stream
+}
 
 // GetSlots returns GetEventSetsEventSetsSetConnectionNodesSet.Slots, and is useful for accessing the field via an interface.
 func (v *GetEventSetsEventSetsSetConnectionNodesSet) GetSlots() []GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlot {
@@ -253,6 +261,23 @@ type GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore st
 // GetValue returns GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore.Value, and is useful for accessing the field via an interface.
 func (v *GetEventSetsEventSetsSetConnectionNodesSetSlotsSetSlotStandingStatsScore) GetValue() float64 {
 	return v.Value
+}
+
+// GetEventSetsEventSetsSetConnectionNodesSetStreamStreams includes the requested fields of the GraphQL type Streams.
+// The GraphQL type's documentation follows.
+//
+// Tournament Stream
+type GetEventSetsEventSetsSetConnectionNodesSetStreamStreams struct {
+	Id         ID     `json:"id"`
+	StreamName string `json:"streamName"`
+}
+
+// GetId returns GetEventSetsEventSetsSetConnectionNodesSetStreamStreams.Id, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetStreamStreams) GetId() ID { return v.Id }
+
+// GetStreamName returns GetEventSetsEventSetsSetConnectionNodesSetStreamStreams.StreamName, and is useful for accessing the field via an interface.
+func (v *GetEventSetsEventSetsSetConnectionNodesSetStreamStreams) GetStreamName() string {
+	return v.StreamName
 }
 
 // GetEventSetsEventSetsSetConnectionPageInfo includes the requested fields of the GraphQL type PageInfo.
@@ -781,7 +806,7 @@ query GetEventSets ($eventId: ID!, $page: Int!) {
 			venueAddress
 		}
 		state
-		sets(page: $page, perPage: 50) {
+		sets(page: $page, perPage: 25) {
 			pageInfo {
 				page
 				totalPages
@@ -790,8 +815,12 @@ query GetEventSets ($eventId: ID!, $page: Int!) {
 				id
 				fullRoundText
 				round
-				state
-				winnerId
+				startedAt
+				completedAt
+				stream {
+					id
+					streamName
+				}
 				slots {
 					entrant {
 						id

@@ -73,7 +73,7 @@ func checkDBForInProgressEvents(sqlRepository *sql.Repository, startGGRepository
 
 				for _, player := range set.Players {
 					mappedPlayerSets[player.ID] = append(mappedPlayerSets[player.ID], models.PlayerSet{
-						Score: int(player.Score),
+						Score: player.Score,
 						SetID: updatedSet.ID,
 					})
 				}
@@ -86,7 +86,7 @@ func checkDBForInProgressEvents(sqlRepository *sql.Repository, startGGRepository
 				mappedPlayer := startgg.MappedPlayer{
 					Name:       player.Name,
 					Placements: player.Placements,
-					Attended:   int64(len(player.Placements)),
+					Attended:   len(player.Placements),
 					StartGGID:  player.ID,
 					Team:       player.Team,
 				}

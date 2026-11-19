@@ -63,24 +63,25 @@ func (r *Repository) GetEventsOfToday() ([]models.Event, error) {
 
 func (r *Repository) UpsertStartGGEvent(event startgg.Event, seasonID uuid.UUID) (models.Event, error) {
 	eventModel := models.Event{
-		Name:         event.Name,
-		SeasonID:     seasonID,
-		StartsAt:     event.StartsAt,
-		Location:     event.Location,
-		StartGGID:    event.ID,
-		DoublePoints: event.DoubleXP,
-		Status:       event.State,
-		PlayerCount:  int(event.Entrants),
+		Name:            event.Name,
+		SeasonID:        seasonID,
+		StartsAt:        event.StartsAt,
+		Location:        event.Location,
+		StartGGID:       event.ID,
+		PointMultiplier: event.PointMultiplier,
+		Status:          event.State,
+		PlayerCount:     event.Entrants,
 	}
 
 	r.db.Model(&models.Event{}).
 		Where("start_gg_id = ?", eventModel.StartGGID).
 		Assign(map[string]interface{}{
-			"starts_at":     eventModel.StartsAt,
-			"double_points": eventModel.DoublePoints,
-			"season_id":     eventModel.SeasonID,
-			"location":      eventModel.Location,
-			"name":          eventModel.Name,
+			"starts_at":        eventModel.StartsAt,
+			"point_multiplier": eventModel.PointMultiplier,
+			"player_count":     eventModel.PlayerCount,
+			"season_id":        eventModel.SeasonID,
+			"location":         eventModel.Location,
+			"name":             eventModel.Name,
 		}).FirstOrCreate(&eventModel)
 
 	if r.db.Error != nil {

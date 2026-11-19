@@ -96,17 +96,21 @@ query GetEventSets($eventId: ID!, $page: Int!) {
       venueAddress
     }
     state
-    sets(page: $page, perPage: 50) {
+    sets(page: $page, perPage: 25) {
       pageInfo {
-        page
+          page
         totalPages
       }
       nodes {
         id
         fullRoundText
         round
-        state
-        winnerId
+        startedAt
+        completedAt
+        stream{
+          id
+          streamName
+        }
         slots {
           entrant {
             id

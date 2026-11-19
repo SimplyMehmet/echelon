@@ -8,5 +8,5 @@ export type GetSeasonResponse = {
   id: string;
   name: string;
   currentSeason: boolean;
-  events: GetEventResponse[];
+  events: Omit<GetEventResponse, 'sets'>[];
 };

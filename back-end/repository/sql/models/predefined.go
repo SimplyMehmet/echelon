@@ -1,6 +1,6 @@
 package models
 
-var PointsByPlacement = map[int64]int64{
+var PointsByPlacement = map[int]int{
 	1:  25,
 	2:  18,
 	3:  15,

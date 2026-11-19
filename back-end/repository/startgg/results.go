@@ -38,21 +38,26 @@ func (r *Repository) GetEventAndParticipants(id string, StartGGSource string) ([
 			entry.Name = participant.Player.GamerTag
 			entry.Placements = append(entry.Placements, PlacementInEvent{
 				EventID:   id,
-				Placement: int64(node.Placement),
+				Placement: node.Placement,
 			})
 			entry.Team = hardcodedTeams[entry.ID]
 			respPlayer = append(respPlayer, entry)
 		}
 	}
 
+	pointMultiplier, ok := Seasons[StartGGSource].PointMultiplier[string(dataStandings.Event.Id)]
+	if !ok {
+		pointMultiplier = 1
+	}
+
 	respEvent = Event{
-		ID:       string(dataStandings.Event.Id),
-		Name:     dataStandings.Event.Name,
-		Entrants: int64(dataStandings.Event.NumEntrants),
-		Location: dataStandings.Event.Tournament.VenueAddress,
-		StartsAt: time.Unix(dataStandings.Event.StartAt, 0),
-		DoubleXP: Seasons[StartGGSource].DoubleXPEventIDs[string(dataStandings.Event.Id)],
-		State:    string(dataStandings.Event.State),
+		ID:              string(dataStandings.Event.Id),
+		Name:            dataStandings.Event.Name,
+		Entrants:        dataStandings.Event.NumEntrants,
+		Location:        dataStandings.Event.Tournament.VenueAddress,
+		StartsAt:        time.Unix(dataStandings.Event.StartAt, 0),
+		PointMultiplier: pointMultiplier,
+		State:           string(dataStandings.Event.State),
 	}
 
 	dataEventSets, err := client.GetEventSets(context.Background(), r.client, client.ID(id), eventSetsPage)
@@ -75,12 +80,28 @@ func (r *Repository) GetEventAndParticipants(id string, StartGGSource string) ([
 		var set Set
 		set.ID = string(node.Id)
 		set.Name = node.FullRoundText
-		set.Round = int64(node.Round)
+		set.Round = node.Round
+		if node.StartedAt > 0 {
+			set.StartedAt = time.Unix(node.StartedAt, 0)
+		}
+
+		if node.CompletedAt > 0 {
+			set.CompletedAt = time.Unix(node.CompletedAt, 0)
+		}
+
+		if len(node.Stream.Id) > 0 {
+			set.OnStream = true
+		}
+
 		for _, setPlayer := range node.Slots {
+			if len(setPlayer.Entrant.Participants) < 1 {
+				continue
+			}
+
 			var player SetPlayer
 			player.ID = string(setPlayer.Entrant.Participants[0].Player.Id)
 			player.Name = setPlayer.Entrant.Name
-			player.Score = int64(setPlayer.Standing.Stats.Score.Value)
+			player.Score = int(setPlayer.Standing.Stats.Score.Value)
 			set.Players = append(set.Players, player)
 		}
 

@@ -22,27 +22,30 @@ type Player struct {
 }
 
 type Event struct {
-	ID       string
-	Name     string
-	StartsAt time.Time
-	Entrants int64
-	Location string
-	DoubleXP bool
-	State    string
-	Sets     []Set
+	ID              string
+	Name            string
+	StartsAt        time.Time
+	Entrants        int
+	Location        string
+	PointMultiplier int
+	State           string
+	Sets            []Set
 }
 
 type Set struct {
-	ID      string
-	Name    string
-	Round   int64
-	Players []SetPlayer
+	ID          string
+	Name        string
+	Round       int
+	OnStream    bool
+	StartedAt   time.Time
+	CompletedAt time.Time
+	Players     []SetPlayer
 }
 
 type SetPlayer struct {
 	ID    string
 	Name  string
-	Score int64
+	Score int
 }
 
 type MappedSeason struct {
@@ -54,12 +57,12 @@ type MappedSeason struct {
 
 type PlacementInEvent struct {
 	EventID   string
-	Placement int64
+	Placement int
 }
 
 type MappedPlayer struct {
 	Name       string
-	Attended   int64
+	Attended   int
 	Placements []PlacementInEvent
 	Team       string
 	StartGGID  string

@@ -14,9 +14,12 @@ func (r *Repository) UpsertStartGGSet(set startgg.Set, eventID uuid.UUID) (model
 	r.db.Model(&models.Set{}).
 		Where("start_gg_id = ?", set.ID).
 		Assign(map[string]interface{}{
-			"round":    model.Round,
-			"name":     model.Name,
-			"event_id": eventID,
+			"round":        model.Round,
+			"name":         model.Name,
+			"event_id":     eventID,
+			"started_at":   model.StartedAt,
+			"completed_at": model.CompletedAt,
+			"on_stream":    model.OnStream,
 		}).FirstOrCreate(&model)
 
 	if r.db.Error != nil {

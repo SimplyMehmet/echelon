@@ -18,7 +18,7 @@ type Config struct {
 	StartGGAPIKey       string        `envconfig:"STARTGG_API_KEY"`
 	StartGGAPIUrl       string        `default:"https://api.start.gg/gql/alpha"`
 	MigrateDatabase     bool          `envconfig:"MIGRATE_DATABASE" default:"false"`
-	MigrationDelay      time.Duration `envconfig:"MIGRATION_DELAY" default:"1s"`
+	MigrationDelay      time.Duration `envconfig:"MIGRATION_DELAY" default:"10s"`
 }
 
 var once sync.Once

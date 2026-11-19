@@ -130,7 +130,7 @@ func (r *Repository) buildLeaderboardForSeason(season TournamentSeasonConfigurat
 		playerEntry := MappedPlayer{
 			Name:       player.Name,
 			Placements: player.Placements,
-			Attended:   int64(len(player.Placements)),
+			Attended:   len(player.Placements),
 			Team:       player.Team,
 			StartGGID:  player.ID,
 		}

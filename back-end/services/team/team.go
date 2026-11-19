@@ -21,7 +21,7 @@ func (t *Team) GetAllTeams() (response.GetAllTeamsResponse, error) {
 
 	for _, team := range teams {
 		var teamResponse response.TeamResponse
-		var totalScore int64
+		var totalScore int
 		for _, player := range team.Players {
 			playerEvents, queryErr := t.sqlRepository.GetPLayerEventsByPlayerID(player.ID)
 			if queryErr != nil {
@@ -33,11 +33,7 @@ func (t *Team) GetAllTeams() (response.GetAllTeamsResponse, error) {
 					continue
 				}
 
-				points := models.PointsByPlacement[playerEvent.Placement]
-				if playerEvent.Event.DoublePoints {
-					points *= 2
-				}
-
+				points := models.PointsByPlacement[playerEvent.Placement] * playerEvent.Event.PointMultiplier
 				totalScore += points
 			}
 		}
