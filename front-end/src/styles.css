@@ -15,3 +15,67 @@ body {
   font-family: 'Oswald';
   font-weight: 400;
 }
+
+/* Bracket on the event detail page (drawn by brackets-viewer) */
+.brackets-viewer {
+  --primary-background: var(--black);
+  --secondary-background: #1a1a22;
+  --match-background: #111117;
+  --font-color: #b0b0c0;
+  --win-color: white;
+  --loss-color: #6b6b80;
+  --label-color: #6b6b80;
+  --hint-color: #6b6b80;
+  --connector-color: rgba(255, 255, 255, 0.25);
+  --border-color: rgba(255, 255, 255, 0.25);
+  --border-hover-color: rgba(255, 255, 255, 0.5);
+  --border-selected-color: var(--red);
+  --text-size: 13px;
+  --match-width: 170px;
+  --round-margin: 32px;
+  --match-border-radius: 0;
+  font-family: 'Oswald';
+  margin: 0;
+  padding: 0 0 16px;
+  max-width: 100%;
+}
+
+.brackets-viewer h1 {
+  display: none;
+}
+
+.brackets-viewer .bracket h2 {
+  margin: 24px 0 12px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+.brackets-viewer h3 {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #b0b0c0;
+  border-top: 2px solid var(--red);
+}
+
+.brackets-viewer .match:has(.bye) {
+  visibility: hidden;
+}
+
+.brackets-viewer .round.bye-round {
+  display: none;
+}
+
+.brackets-viewer .round.bye-round + .round .opponents.connect-previous::before {
+  display: none;
+}
+
+.brackets-viewer .participant.win .name {
+  color: white;
+}
+
+.brackets-viewer .participant.win .result {
+  color: white;
+  font-weight: bold;
+}

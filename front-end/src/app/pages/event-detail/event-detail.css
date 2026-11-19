@@ -1,0 +1,54 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.status-text {
+  margin-top: 20px;
+  color: #6b6b80;
+}
+
+.card {
+  color: #6b6b80;
+  position: relative;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.card-display {
+  color: #b0b0c0;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -1px;
+  right: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(232, 0, 45), rgba(232, 0, 45, 0.267));
+}
+
+.live-badge {
+  align-self: flex-start;
+  padding: 2px 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--red);
+}
+
+.set {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}

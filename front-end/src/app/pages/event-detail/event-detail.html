@@ -1,3 +1,90 @@
-<div>
-  <p class="text-white">{{ event()?.name ?? 'where it thy' }}</p>
+<div class="min-h-screen pt-4 pb-10">
+  <a routerLink="/events" class="back-link">&larr; All events</a>
+
+  @switch (state().status) {
+    @case ('loading') {
+      <p class="status-text">Loading event…</p>
+    }
+    @case ('error') {
+      <p class="status-text">Couldn't load this event. Please try again later.</p>
+    }
+    @case ('not-found') {
+      <p class="status-text">This event doesn't exist.</p>
+    }
+  }
+
+  @if (event(); as event) {
+    <div class="card border-white/25 mt-5">
+      <div class="flex flex-col gap-3 p-4 sm:flex-row sm:items-start">
+        <h1 class="uppercase text-white text-[20px] font-bold wrap-anywhere lg:text-[24px]">
+          {{ event.name }}
+        </h1>
+        @if (isLive()) {
+          <span class="live-badge sm:ml-auto">Live</span>
+        }
+      </div>
+      <div class="grid grid-cols-2 gap-x-3 p-4 pt-0 sm:grid-cols-4">
+        <div class="my-2">
+          <span class="block text-[11px] uppercase lg:text-[10px]">Date</span>
+          <span class="block text-[14px] card-display">
+            {{ event.startsAt | date: 'dd MMM yyyy - HH:mm' }}
+          </span>
+        </div>
+        <div class="my-2">
+          <span class="block text-[11px] uppercase lg:text-[10px]">Players</span>
+          <span class="block text-[14px] card-display">{{ event.entrants }}</span>
+        </div>
+        <div class="col-span-2 my-2">
+          <span class="block text-[11px] uppercase lg:text-[10px]">Location</span>
+          <span class="block text-[14px] card-display wrap-anywhere">{{ event.location }}</span>
+        </div>
+      </div>
+    </div>
+
+    @if (onStream().length) {
+      <div class="mt-5 text-[14px] card-display">
+        <span class="uppercase text-[11px] text-[#6b6b80] mr-2">On stream</span>
+        @for (set of onStream(); track set.id) {
+          <span class="mr-4">
+            {{ set.players[0]?.name ?? 'TBD' }} vs {{ set.players[1]?.name ?? 'TBD' }}
+            <span class="text-[#6b6b80]">({{ set.name }})</span>
+          </span>
+        }
+      </div>
+    }
+
+    <h2 class="text-[20px] mt-8">Bracket</h2>
+
+    @if (sets().length === 0) {
+      <p class="status-text">The bracket will appear here once the event starts.</p>
+    } @else {
+      @if (bracketStatus() === 'loading') {
+        <p class="status-text">Loading bracket…</p>
+      }
+      <!-- brackets-viewer draws into this element -->
+      <div
+        #bracket
+        class="brackets-viewer bracket-wrapper"
+        [class.hidden]="bracketStatus() !== 'shown'"
+      ></div>
+
+      @if (bracketStatus() === 'unavailable') {
+        @for (round of rounds(); track round.name) {
+          <h3 class="uppercase text-[13px] text-[#6b6b80] mt-6 mb-2">{{ round.name }}</h3>
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            @for (set of round.sets; track set.id) {
+              <div class="set">
+                @for (player of set.players; track player.name) {
+                  <div class="flex justify-between gap-3">
+                    <span class="wrap-anywhere">{{ player.name }}</span>
+                    <span class="card-display">{{ set.startedAt ? player.score : '' }}</span>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      }
+    }
+  }
 </div>

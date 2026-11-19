@@ -24,7 +24,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "node_modules/brackets-viewer/dist/brackets-viewer.min.css",
+              "src/styles.css"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "static",
             "security": {
@@ -32,7 +35,13 @@
             },
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "brackets-manager",
+              "brackets-memory-db",
+              "brackets-model",
+              "brackets-viewer"
+            ]
           },
           "configurations": {
             "production": {
