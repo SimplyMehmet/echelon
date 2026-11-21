@@ -20,6 +20,11 @@
     "@angular/platform-server": "^22.1.0",
     "@angular/router": "^22.1.0",
     "@angular/ssr": "^22.1.6",
+    "brackets-manager": "^1.11.1",
+    "brackets-memory-db": "^1.0.6",
+    "brackets-model": "^1.7.0",
+    "brackets-viewer": "^1.9.1",
+    "events": "^3.3.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

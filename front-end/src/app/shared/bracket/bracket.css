@@ -1,0 +1,182 @@
+/*
+ * Styles for the bracket drawn by brackets-viewer (its base stylesheet is
+ * loaded in angular.json). This component has no style encapsulation, so
+ * every rule starts with `app-bracket`.
+ */
+
+app-bracket {
+  display: block;
+}
+
+app-bracket .bracket-status {
+  margin-top: 20px;
+  color: #6b6b80;
+}
+
+app-bracket .bracket-round-name {
+  margin: 24px 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+app-bracket .bracket-set {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+app-bracket .bracket-score {
+  color: #b0b0c0;
+}
+
+app-bracket .brackets-viewer {
+  --primary-background: var(--black);
+  --secondary-background: #1a1a22;
+  --match-background: #111117;
+  --font-color: #b0b0c0;
+  --win-color: white;
+  --loss-color: #6b6b80;
+  --label-color: #6b6b80;
+  --hint-color: #6b6b80;
+  --connector-color: rgba(255, 255, 255, 0.25);
+  --border-color: rgba(255, 255, 255, 0.25);
+  --border-hover-color: rgba(255, 255, 255, 0.5);
+  --border-selected-color: var(--red);
+  --text-size: 12px;
+  --match-width: 140px;
+  --round-margin: 20px;
+  --match-horizontal-padding: 6px;
+  --match-vertical-padding: 2px;
+  --match-border-radius: 0;
+  font-family: 'Oswald';
+  margin: 0;
+  padding: 0 0 16px;
+  max-width: 100%;
+}
+
+app-bracket .brackets-viewer h1 {
+  display: none;
+}
+
+app-bracket .brackets-viewer .bracket h2 {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+app-bracket .brackets-viewer h3 {
+  margin-bottom: 0;
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #b0b0c0;
+  border-top: 2px solid var(--red);
+}
+
+app-bracket .brackets-viewer .match {
+  margin: 3px 0;
+}
+
+app-bracket .brackets-viewer .participant {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  line-height: 1.3;
+}
+
+app-bracket .brackets-viewer .bracket .rounds:not(:last-of-type) {
+  margin-bottom: 0;
+}
+
+app-bracket .brackets-viewer .match:has(.bye) {
+  visibility: hidden;
+}
+
+app-bracket .brackets-viewer .bracket .rounds .round.bye-round {
+  display: none;
+}
+
+app-bracket .brackets-viewer .round.bye-round + .round .opponents.connect-previous::before {
+  display: none;
+}
+
+app-bracket .brackets-viewer .participant.win .name {
+  color: white;
+}
+
+app-bracket .brackets-viewer .participant.win .result {
+  color: white;
+  font-weight: bold;
+}
+
+app-bracket .brackets-viewer .match.on-stream .opponents {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red);
+}
+
+app-bracket .brackets-viewer .match.on-stream .opponents::after {
+  content: 'Stream';
+  position: absolute;
+  top: -7px;
+  right: 4px;
+  padding: 0 4px;
+  font-size: 9px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--red);
+}
+
+app-bracket .bracket-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 12px 0 4px;
+}
+
+app-bracket .bracket-search-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b6b80;
+}
+
+app-bracket .bracket-search-input {
+  width: 100%;
+  max-width: 260px;
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: 16px;
+  color: white;
+  background-color: #111117;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+app-bracket .bracket-search-input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+app-bracket .bracket-search-result {
+  font-size: 13px;
+  color: #b0b0c0;
+}
+
+app-bracket .brackets-viewer.searching .match:not(.found) {
+  opacity: 0.25;
+}
+
+app-bracket .brackets-viewer .participant.found .name {
+  color: var(--red);
+  font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+  app-bracket .bracket-search-input {
+    min-height: 36px;
+    font-size: 14px;
+  }
+}

@@ -1,25 +1,69 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { GetEventResponse } from '@app/api/responses/event';
 import { Event } from '@app/api/services/event';
-import { switchMap } from 'rxjs';
+import { Bracket } from '@app/shared/bracket/bracket';
+import { catchError, map, of, startWith, switchMap } from 'rxjs';
 
+type EventState =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'not-found' }
+  | { status: 'loaded'; event: GetEventResponse };
+
+const EMPTY_ID = '00000000-0000-0000-0000-000000000000';
 @Component({
-  imports: [],
+  imports: [Bracket, DatePipe, RouterLink],
   selector: 'app-event-detail',
   styleUrl: './event-detail.css',
   templateUrl: './event-detail.html',
 })
-export class EventDetail implements OnInit {
+export class EventDetail {
   private activatedRoute = inject(ActivatedRoute);
   private eventsService = inject(Event);
-  public event = signal<GetEventResponse | null>(null);
 
-  ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(switchMap((res) => this.eventsService.getEventByID(res['id'])))
-      .subscribe((resp) => {
-        this.event.set(resp);
-      });
-  }
+  public state = toSignal(
+    this.activatedRoute.params.pipe(
+      switchMap((params) =>
+        this.eventsService.getEventByID(params['id']).pipe(
+          map((event): EventState =>
+            // The API answers with an empty event when the ID doesn't exist.
+            event.id === EMPTY_ID || !event.name
+              ? { status: 'not-found' }
+              : { status: 'loaded', event },
+          ),
+          catchError((error) =>
+            of<EventState>(error?.status === 400 ? { status: 'not-found' } : { status: 'error' }),
+          ),
+          startWith<EventState>({ status: 'loading' }),
+        ),
+      ),
+    ),
+    { initialValue: { status: 'loading' } as EventState },
+  );
+
+  public event = computed(() => {
+    const state = this.state();
+    return state.status === 'loaded' ? state.event : null;
+  });
+
+  public sets = computed(() => this.event()?.sets ?? []);
+  public isLive = computed(() => this.sets().some((s) => s.startedAt && !s.completedAt));
+  /**
+   * The next 4 streamed matches that haven't finished: lowest round first,
+   * winners side before losers side, then by ID.
+   */
+  public upNextOnStream = computed(() =>
+    this.sets()
+      .filter((s) => s.onStream && !s.completedAt)
+      .sort(
+        (a, b) =>
+          Math.abs(a.round) - Math.abs(b.round) ||
+          Number(b.round > 0) - Number(a.round > 0) ||
+          a.id.localeCompare(b.id),
+      )
+      .slice(0, 4),
+  );
 }

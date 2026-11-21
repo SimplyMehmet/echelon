@@ -32,7 +32,13 @@
             },
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "brackets-manager",
+              "brackets-memory-db",
+              "brackets-model",
+              "brackets-viewer"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,61 @@
+@if (sets().length === 0) {
+  <p class="bracket-status">The bracket will appear here once the event starts.</p>
+} @else {
+  @if (status() === 'loading') {
+    <p class="bracket-status">Loading bracket…</p>
+  }
+  @if (status() === 'shown') {
+    <div class="bracket-search">
+      <label class="bracket-search-label" [for]="elementId + '-search'">Find a player</label>
+      <input
+        [id]="elementId + '-search'"
+        type="search"
+        class="bracket-search-input"
+        placeholder="Player name"
+        autocomplete="off"
+        [attr.list]="elementId + '-players'"
+        [value]="query()"
+        (input)="onSearch($event)"
+      />
+      <datalist [id]="elementId + '-players'">
+        @for (player of players(); track player.id) {
+          <option [value]="player.name"></option>
+        }
+      </datalist>
+      @if (query().trim()) {
+        <p class="bracket-search-result" aria-live="polite">
+          @if (foundPlayer(); as player) {
+            {{ player.name }}: {{ foundMatches() }} {{ foundMatches() === 1 ? 'match' : 'matches' }}
+          } @else {
+            No single player matches "{{ query().trim() }}"
+          }
+        </p>
+      }
+    </div>
+  }
+  <!-- brackets-viewer draws into this element -->
+  <div
+    #bracket
+    [id]="elementId"
+    class="brackets-viewer"
+    [style.display]="status() === 'shown' ? null : 'none'"
+  ></div>
+
+  @if (status() === 'unavailable') {
+    @for (round of rounds(); track round.name) {
+      <h3 class="bracket-round-name">{{ round.name }}</h3>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        @for (set of round.sets; track set.id) {
+          <div class="bracket-set">
+            @for (player of set.players; track player.name) {
+              <div class="flex justify-between gap-3">
+                <span class="wrap-anywhere">{{ player.name }}</span>
+                <span class="bracket-score">{{ set.startedAt ? player.score : '' }}</span>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+}
